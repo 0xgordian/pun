@@ -2,27 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* -- Kiro Design System ---------------------------------------------------- */
+/* Kiro Design System */
 :root {
-  /* Backgrounds - Kiro uses pure black with subtle layering */
+  /* Backgrounds */
   --background: #000000;
-  --surface-1: #0a0a0a;   /* slightly lifted surface */
-  --surface-2: #111111;   /* card background */
-  --surface-3: #1a1a1a;   /* hover state */
+  --surface-1: #0a0a0a;
+  --surface-2: #111111;
+  --surface-3: #1a1a1a;
 
   /* Borders */
   --border: rgba(255, 255, 255, 0.06);
   --border-hover: rgba(255, 255, 255, 0.12);
   --border-active: rgba(255, 255, 255, 0.18);
 
-  /* Brand - Kiro purple */
+  /* Brand purple */
   --brand: #7c3aed;
   --brand-hover: #8b5cf6;
   --brand-light: #a78bfa;
   --brand-dim: rgba(124, 58, 237, 0.12);
   --brand-glow: rgba(124, 58, 237, 0.5);
 
-  /* Text - Kiro uses high contrast white with grey secondaries */
+  /* Text */
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.6);
   --text-tertiary: rgba(255, 255, 255, 0.3);
@@ -34,23 +34,19 @@
   --warning: #f59e0b;
 
   /* Fonts */
-  --font-sans: var(--font-sans, 'Plus Jakarta Sans'), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), 'JetBrains Mono', 'Fira Code', monospace;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Radius - Kiro uses generous rounding */
+  /* Radius */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
   --radius-pill: 9999px;
-
-  /* Shadows */
-  --shadow-brand: 0 0 20px rgba(124, 58, 237, 0.15);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
-/* -- Reset ----------------------------------------------------------------- */
+/* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -62,7 +58,7 @@ html {
   color-scheme: dark;
 }
 
-/* -- Base typography - Kiro style ------------------------------------------ */
+/* Base */
 body {
   background: var(--background);
   color: var(--text-primary);
@@ -74,7 +70,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Kiro headings - heavy weight, tight tracking */
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
   font-weight: 800;
@@ -102,7 +98,7 @@ a:hover {
   color: var(--text-primary);
 }
 
-/* -- Kiro card / panel system ---------------------------------------------- */
+/* Panel / card */
 .panel-bracket {
   background-color: var(--surface-2);
   border: 1px solid var(--border);
@@ -115,10 +111,10 @@ a:hover {
   background-color: var(--surface-3);
 }
 
-/* Highlighted / active panel */
+/* Highlighted panel */
 .panel-strong {
   border-color: rgba(124, 58, 237, 0.35) !important;
-  box-shadow: var(--shadow-brand);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);
 }
 
 @keyframes pulse-brand {
@@ -130,8 +126,7 @@ a:hover {
   animation: pulse-brand 2.5s ease-in-out infinite;
 }
 
-/* -- Kiro button styles ---------------------------------------------------- */
-/* Primary - purple pill */
+/* Buttons */
 .btn-primary {
   display: inline-flex;
   align-items: center;
@@ -155,7 +150,6 @@ a:hover {
   transform: translateY(-1px);
 }
 
-/* Secondary - outlined pill */
 .btn-secondary {
   display: inline-flex;
   align-items: center;
@@ -178,7 +172,7 @@ a:hover {
   background: rgba(255, 255, 255, 0.05);
 }
 
-/* -- Mono / terminal labels (kept for data display) ------------------------ */
+/* Mono / terminal labels */
 .font-terminal {
   font-family: var(--font-mono);
   letter-spacing: 0.05em;
@@ -197,18 +191,18 @@ a:hover {
   color: var(--brand-light);
 }
 
-/* -- Glow effect ----------------------------------------------------------- */
+/* Glow */
 .orange-glow {
   color: var(--brand-light);
   text-shadow: 0 0 16px var(--brand-glow);
 }
 
-/* -- Text utilities -------------------------------------------------------- */
+/* Text utilities */
 .text-text-primary   { color: var(--text-primary); }
 .text-text-secondary { color: var(--text-secondary); }
 .text-text-tertiary  { color: var(--text-tertiary); }
 
-/* -- Kiro-style pill badge ------------------------------------------------- */
+/* Badge */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -229,7 +223,7 @@ a:hover {
   color: var(--brand-light);
 }
 
-/* -- Accessibility --------------------------------------------------------- */
+/* Accessibility */
 :focus-visible {
   outline: 2px solid var(--brand);
   outline-offset: 2px;
@@ -240,13 +234,13 @@ a:hover {
   outline: none;
 }
 
-/* -- Scrollbar ------------------------------------------------------------- */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); }
 
-/* -- Animations ------------------------------------------------------------ */
+/* Animations */
 @keyframes spin { to { transform: rotate(360deg); } }
 .animate-spin { animation: spin 1s linear infinite; }
 
@@ -257,7 +251,7 @@ a:hover {
 
 .animate-in { animation: fade-in 0.2s ease forwards; }
 
-/* -- Para Wallet Modal ----------------------------------------------------- */
+/* Para Wallet Modal */
 [class*="para-modal-overlay"],
 [class*="ParaModal-overlay"],
 [class*="para-overlay"] {
@@ -284,7 +278,7 @@ div[class*="psdk"] span, div[class*="psdk"] p, div[class*="psdk"] div, div[class
   fill: var(--text-primary) !important;
 }
 
-/* -- Kiro-style input ------------------------------------------------------ */
+/* Inputs */
 input[type="text"],
 input[type="number"],
 input[type="email"],
