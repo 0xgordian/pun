@@ -148,14 +148,14 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
         onTouchEnd={onTouchEnd}
       >
         {/* Top orange accent line */}
-        <div className="h-[2px]" style={{ backgroundColor: '#ff4500' }} />
+        <div className="h-[2px]" style={{ backgroundColor: '#7c3aed' }} />
 
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3 border-b"
           style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5"
-              style={{ backgroundColor: '#ff4500', boxShadow: '0 0 6px rgba(255,69,0,0.6)' }} />
+              style={{ backgroundColor: '#7c3aed', boxShadow: '0 0 6px rgba(124,58,237,0.6)' }} />
             <span className="font-terminal text-[10px] tracking-[0.2em] uppercase" style={{ color: '#444' }}>
               pun // setup
             </span>
@@ -182,7 +182,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
             className="h-full transition-all duration-400"
             style={{
               width: `${((step + 1) / STEPS.length) * 100}%`,
-              backgroundColor: '#ff4500',
+              backgroundColor: '#7c3aed',
               transition: 'width 0.4s ease',
             }}
           />
@@ -192,7 +192,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
         <div className="px-6 py-7 lg:px-8 lg:py-8">
           {/* Step label */}
           <p className="font-terminal text-[10px] tracking-[0.3em] uppercase mb-5"
-            style={{ color: '#ff4500' }}>
+            style={{ color: '#7c3aed' }}>
             {current.label}
           </p>
 
@@ -215,7 +215,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
               <div className="flex gap-1.5">
                 <div className="w-2 h-2" style={{ backgroundColor: '#2a2a2a' }} />
                 <div className="w-2 h-2" style={{ backgroundColor: '#2a2a2a' }} />
-                <div className="w-2 h-2" style={{ backgroundColor: '#ff4500', boxShadow: '0 0 4px rgba(255,69,0,0.4)' }} />
+                <div className="w-2 h-2" style={{ backgroundColor: '#7c3aed', boxShadow: '0 0 4px rgba(124,58,237,0.4)' }} />
               </div>
               <span className="font-terminal text-[10px] tracking-widest uppercase ml-2" style={{ color: '#2a2a2a' }}>
                 pun
@@ -226,9 +226,9 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
               {current.terminal.map((line, i) => (
                 <div key={i} style={{
                   color: line.startsWith('>')
-                    ? '#ff4500'
+                    ? '#7c3aed'
                     : line.startsWith('  ═')
-                    ? 'rgba(255,69,0,0.3)'
+                    ? 'rgba(124,58,237,0.3)'
                     : line.startsWith('YOU:')
                     ? '#f0f0f0'
                     : line.startsWith('AI:') || line.startsWith('    ')
@@ -259,8 +259,8 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
                 style={{
                   width: i === step ? 20 : 6,
                   height: 6,
-                  backgroundColor: i === step ? '#ff4500' : i < step ? 'rgba(255,69,0,0.35)' : 'rgba(255,255,255,0.08)',
-                  boxShadow: i === step ? '0 0 6px rgba(255,69,0,0.4)' : 'none',
+                  backgroundColor: i === step ? '#7c3aed' : i < step ? 'rgba(124,58,237,0.35)' : 'rgba(255,255,255,0.08)',
+                  boxShadow: i === step ? '0 0 6px rgba(124,58,237,0.4)' : 'none',
                   transition: 'all 0.3s ease',
                   borderRadius: 0,
                   border: 'none',
@@ -298,9 +298,9 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
                 <button
                   onClick={handleConnectWallet}
                   className="h-8 px-5 font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
-                  style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ff6020'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ff4500'; }}
+                  style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#7c3aed'; }}
                 >
                   Connect Wallet →
                 </button>
@@ -309,9 +309,9 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
               <button
                 onClick={goNext}
                 className="h-8 px-5 font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
-                style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ff6020'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ff4500'; }}
+                style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#7c3aed'; }}
               >
                 Next →
               </button>

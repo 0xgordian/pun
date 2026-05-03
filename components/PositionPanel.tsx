@@ -88,7 +88,7 @@ export default function PositionPanel({ walletAddress = null, isConnected = fals
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}
       >
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
-          {'Positions'} <span style={{ color: '#ff4500' }}>{'// Open'}</span>
+          {'Positions'} <span style={{ color: '#7c3aed' }}>{'// Open'}</span>
         </span>
         {isConnected && (
           <button

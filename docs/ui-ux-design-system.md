@@ -27,9 +27,9 @@
 | Secondary text | `#a0a0a0` |
 | Muted / disabled | `#555555` |
 | Tertiary / very dim | `#333333` |
-| Brand orange | `#ff4500` |
-| Orange dim bg | `rgba(255, 69, 0, 0.15)` |
-| Orange glow | `rgba(255, 69, 0, 0.5)` |
+| Brand orange | `#7c3aed` |
+| Orange dim bg | `rgba(124, 58, 237, 0.15)` |
+| Orange glow | `rgba(124, 58, 237, 0.5)` |
 | Default border | `rgba(255, 255, 255, 0.08)` |
 | Hover border | `rgba(255, 255, 255, 0.15)` |
 | Active border | `rgba(255, 255, 255, 0.20)` |
@@ -74,7 +74,7 @@ CSS classes defined in `globals.css`:
 
 .orange-glow {
   color: var(--orange);
-  text-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
+  text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
 ```
 
@@ -124,7 +124,7 @@ onMouseLeave={(e) => {
 
 Primary CTA:
 ```tsx
-style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
+style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
 className="font-terminal text-xs font-bold uppercase tracking-widest"
 ```
 
@@ -145,10 +145,10 @@ Max width: `1400px` centered
 
 Nav links: mono, 11px, tracking-widest, uppercase
 - Inactive: `#555`, hover `#a0a0a0`
-- Active: `#ff4500` with 2px solid orange bottom bar
+- Active: `#7c3aed` with 2px solid orange bottom bar
 
 Right status bar:
-- Live dot: orange `#ff4500` with `box-shadow: 0 0 6px rgba(255,69,0,0.6)` when live
+- Live dot: orange `#7c3aed` with `box-shadow: 0 0 6px rgba(124,58,237,0.6)` when live
 - Wallet address: `#4ade80` green mono when connected
 
 ---
@@ -175,7 +175,7 @@ Right status bar:
 - Change the nav link style (font, size, color, active indicator)
 - Change the TopNav height from `h-12`
 - Add rounded corners to buttons, inputs, or dropdowns
-- Change `#ff4500` to any other orange shade
+- Change `#7c3aed` to any other orange shade
 
 ---
 

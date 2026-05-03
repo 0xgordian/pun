@@ -82,17 +82,17 @@ export function AgentIdentityBadge({ agentId }: AgentIdentityBadgeProps) {
           alignItems: 'center',
           gap: 6,
           padding: '3px 8px',
-          backgroundColor: 'rgba(255,69,0,0.1)',
-          border: '1px solid rgba(255,69,0,0.4)',
+          backgroundColor: 'rgba(124,58,237,0.1)',
+          border: '1px solid rgba(124,58,237,0.4)',
           borderRadius: 0,
           fontFamily: 'var(--font-mono)',
           fontSize: 10,
-          color: '#ff4500',
+          color: '#7c3aed',
           letterSpacing: '0.05em',
           textTransform: 'uppercase',
         }}
       >
-        <span style={{ width: 6, height: 6, backgroundColor: '#ff4500', flexShrink: 0 }} />
+        <span style={{ width: 6, height: 6, backgroundColor: '#7c3aed', flexShrink: 0 }} />
         ERC-8004: Demo
       </div>
     );
@@ -106,17 +106,17 @@ export function AgentIdentityBadge({ agentId }: AgentIdentityBadgeProps) {
           alignItems: 'center',
           gap: 6,
           padding: '3px 8px',
-          backgroundColor: 'rgba(255,69,0,0.1)',
-          border: '1px solid rgba(255,69,0,0.4)',
+          backgroundColor: 'rgba(124,58,237,0.1)',
+          border: '1px solid rgba(124,58,237,0.4)',
           borderRadius: 0,
           fontFamily: 'var(--font-mono)',
           fontSize: 10,
-          color: '#ff4500',
+          color: '#7c3aed',
           letterSpacing: '0.05em',
           textTransform: 'uppercase',
         }}
       >
-        <span style={{ width: 6, height: 6, backgroundColor: '#ff4500', flexShrink: 0 }} />
+        <span style={{ width: 6, height: 6, backgroundColor: '#7c3aed', flexShrink: 0 }} />
         ERC-8004: Pending
       </div>
     );

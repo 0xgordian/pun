@@ -28,7 +28,7 @@ const ThreadListNew: FC = () => {
       <Button
         className="aui-thread-list-new flex items-center justify-start gap-2 px-4 py-2 text-start w-full transition-colors"
         variant="ghost"
-        style={{ borderRadius: 0, color: '#ff4500', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700 }}
+        style={{ borderRadius: 0, color: '#7c3aed', fontSize: '11px', fontFamily: 'monospace', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 700 }}
       >
         <Icon icon="solar:add-circle-linear" className="size-3.5" />
         New Chat

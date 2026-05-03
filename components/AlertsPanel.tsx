@@ -102,10 +102,10 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
           {'Alerts'}{' '}
-          <span style={{ color: '#ff4500' }}>{'// Active'}</span>
+          <span style={{ color: '#7c3aed' }}>{'// Active'}</span>
           {activeAlerts.length > 0 && (
             <span className="ml-2 px-1.5 py-0.5 font-terminal text-[9px]"
-              style={{ backgroundColor: 'rgba(255,69,0,0.15)', color: '#ff4500' }}>
+              style={{ backgroundColor: 'rgba(124,58,237,0.15)', color: '#7c3aed' }}>
               {activeAlerts.length}
             </span>
           )}
@@ -146,8 +146,8 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
             onClick={() => setShowForm((v) => !v)}
             className="font-terminal text-[10px] tracking-widest uppercase px-2 py-1 border transition-colors"
             style={{
-              borderColor: showForm ? '#ff4500' : 'rgba(255,255,255,0.12)',
-              color: showForm ? '#ff4500' : '#555',
+              borderColor: showForm ? '#7c3aed' : 'rgba(255,255,255,0.12)',
+              color: showForm ? '#7c3aed' : '#555',
               backgroundColor: 'transparent',
               borderRadius: 0,
             }}
@@ -199,7 +199,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#161616')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                     >
-                      <span className="font-terminal text-[10px] mr-2" style={{ color: '#ff4500' }}>
+                      <span className="font-terminal text-[10px] mr-2" style={{ color: '#7c3aed' }}>
                         {m.currentProbability}%
                       </span>
                       {m.question.slice(0, 70)}
@@ -249,7 +249,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
               disabled={!selectedMarket || !threshold}
               className="w-full py-2 text-xs font-bold transition-all"
               style={{
-                backgroundColor: selectedMarket && threshold ? '#ff4500' : '#1a1a1a',
+                backgroundColor: selectedMarket && threshold ? '#7c3aed' : '#1a1a1a',
                 color: selectedMarket && threshold ? '#000' : '#555',
                 borderRadius: 0,
               }}

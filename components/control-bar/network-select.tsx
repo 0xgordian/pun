@@ -78,7 +78,7 @@ export const NetworkSelect: FC<NetworkSelectProps> = ({
               style={{ borderRadius: 0, fontFamily: "var(--font-geist-mono), monospace" }}
             >
               <span>{chain.name}</span>
-              {chainId === chain.id && <Icon icon="solar:check-circle-linear" className="h-3.5 w-3.5" style={{ color: '#ff4500' }} />}
+              {chainId === chain.id && <Icon icon="solar:check-circle-linear" className="h-3.5 w-3.5" style={{ color: '#7c3aed' }} />}
             </button>
           ))}
         </div>

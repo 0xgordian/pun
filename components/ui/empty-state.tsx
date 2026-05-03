@@ -142,10 +142,10 @@ export function WalletConnectPrompt({ className }: WalletConnectPromptProps) {
       <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
         <rect x="2" y="8" width="36" height="24" rx="0" stroke="#2a2a2a" strokeWidth="1.5" />
         <rect x="4" y="10" width="32" height="20" rx="0" stroke="#2a2a2a" strokeWidth="1" />
-        <circle cx="28" cy="20" r="5" stroke="#ff4500" strokeWidth="1.5" strokeOpacity="0.4" />
-        <circle cx="28" cy="20" r="2" fill="#ff4500" fillOpacity="0.2" />
+        <circle cx="28" cy="20" r="5" stroke="#7c3aed" strokeWidth="1.5" strokeOpacity="0.4" />
+        <circle cx="28" cy="20" r="2" fill="#7c3aed" fillOpacity="0.2" />
         <path d="M2 16 L38 16" stroke="#2a2a2a" strokeWidth="1" />
-        <rect x="8" y="12" width="10" height="4" rx="0" fill="#ff4500" fillOpacity="0.1" />
+        <rect x="8" y="12" width="10" height="4" rx="0" fill="#7c3aed" fillOpacity="0.1" />
       </svg>
 
       <div className="space-y-2">

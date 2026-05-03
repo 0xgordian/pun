@@ -81,7 +81,7 @@ function FilterSelect<T extends string>({
             }}
           >
             <span>{opt.label}</span>
-            {value === opt.value && <Icon icon="solar:check-circle-linear" className="w-3 h-3 shrink-0" style={{ color: '#ff4500' }} />}
+            {value === opt.value && <Icon icon="solar:check-circle-linear" className="w-3 h-3 shrink-0" style={{ color: '#7c3aed' }} />}
           </button>
         ))}
       </PopoverContent>
@@ -201,7 +201,7 @@ function MarketsContent() {
     });
     toast.success(`Alert set: ${market.question.slice(0, 50)}…`, {
       style: { background: '#111', color: '#f0f0f0', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 0 },
-      iconTheme: { primary: '#ff4500', secondary: '#000' },
+      iconTheme: { primary: '#7c3aed', secondary: '#000' },
     });
   }, []);
 
@@ -234,9 +234,9 @@ function MarketsContent() {
               onClick={() => setActiveCategory(cat as MarketCategory)}
               className="text-left px-2 py-1.5 border font-terminal text-[10px] tracking-widest uppercase transition-all"
               style={{
-                backgroundColor: activeCategory === cat ? 'rgba(255,69,0,0.12)' : 'transparent',
-                borderColor: activeCategory === cat ? '#ff4500' : 'rgba(255,255,255,0.08)',
-                color: activeCategory === cat ? '#ff4500' : '#555',
+                backgroundColor: activeCategory === cat ? 'rgba(124,58,237,0.12)' : 'transparent',
+                borderColor: activeCategory === cat ? '#7c3aed' : 'rgba(255,255,255,0.08)',
+                color: activeCategory === cat ? '#7c3aed' : '#555',
                 borderRadius: 0,
               }}
             >
@@ -500,7 +500,7 @@ function MarketCard({ market, onSetAlert }: { market: Market; onSetAlert: (m: Ma
   const change7d = market.probabilityChange7d;
   const change30d = market.probabilityChange30d;
   const hasChange = change !== null && change !== undefined;
-  const probColor = prob >= 65 ? '#ff4500' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
+  const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
   const endDate = new Date(market.endDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   const fmtChange = (v: number | null | undefined, label: string) => {
@@ -538,7 +538,7 @@ function MarketCard({ market, onSetAlert }: { market: Market; onSetAlert: (m: Ma
         <p
           className="text-2xl font-terminal font-bold"
           style={prob >= 65
-            ? { color: '#ff4500', textShadow: '0 0 12px rgba(255,69,0,0.35)' }
+            ? { color: '#7c3aed', textShadow: '0 0 12px rgba(124,58,237,0.35)' }
             : { color: probColor }}
         >
           {prob}%
@@ -560,9 +560,9 @@ function MarketCard({ market, onSetAlert }: { market: Market; onSetAlert: (m: Ma
         <Link
           href={`/trade?q=${encodeURIComponent(market.question)}`}
           className="flex-1 py-2 text-xs font-bold text-center transition-all"
-          style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ff6b35')}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff4500')}
+          style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#8b5cf6')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7c3aed')}
         >
           Analyze
         </Link>
@@ -599,7 +599,7 @@ export default function MarketsPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0d0d0d' }}>
-        <div className="w-6 h-6 border-2 border-[#ff4500]/30 border-t-[#ff4500] rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[#7c3aed]/30 border-t-[#7c3aed] rounded-full animate-spin" />
       </div>
     }>
       <MarketsContent />

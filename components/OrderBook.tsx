@@ -94,7 +94,7 @@ export default function OrderBook({ tokenId = null, marketQuestion = '' }: Order
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}
       >
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
-          {'Liquidity Depth'} <span style={{ color: '#ff4500' }}>{'// Mantle'}</span>
+          {'Liquidity Depth'} <span style={{ color: '#7c3aed' }}>{'// Mantle'}</span>
         </span>
         {isLoading && (
           <svg

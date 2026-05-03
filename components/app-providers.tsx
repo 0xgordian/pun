@@ -105,7 +105,7 @@ function GlobalInit() {
 const toastStyle = {
   background: '#111',
   color: '#f0f0f0',
-  border: '1px solid rgba(255,69,0,0.3)',
+  border: '1px solid rgba(124,58,237,0.3)',
   borderRadius: 0,
   fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace",
   fontSize: '12px',
@@ -147,7 +147,7 @@ export function AppProviders({ children }: PropsWithChildren<{}>) {
               mode: 'dark',
               foregroundColor: '#f0f0f0',
               backgroundColor: '#111111',
-              accentColor: '#ff4500',
+              accentColor: '#7c3aed',
               borderRadius: 'none',
               customPalette: {
                 text: {
@@ -173,12 +173,12 @@ export function AppProviders({ children }: PropsWithChildren<{}>) {
                   },
                   border: {
                     placeholder: 'rgba(255,255,255,0.15)',
-                    active: 'rgba(255,69,0,0.5)',
+                    active: 'rgba(124,58,237,0.5)',
                   },
                 },
                 primaryButton: {
                   surface: {
-                    default: '#ff4500',
+                    default: '#7c3aed',
                     hover: '#ff5500',
                     pressed: '#e03d00',
                   },

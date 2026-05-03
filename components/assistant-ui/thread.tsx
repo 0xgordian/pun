@@ -66,7 +66,7 @@ const SlashCommandPalette: FC<{
   return (
     <div
       className="absolute bottom-full left-0 right-0 mb-1 border overflow-y-auto"
-      style={{ backgroundColor: '#111', borderColor: 'rgba(255,69,0,0.4)', borderRadius: 0, zIndex: 50, maxHeight: '280px' }}
+      style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.4)', borderRadius: 0, zIndex: 50, maxHeight: '280px' }}
       role="listbox"
       aria-label="Slash commands"
     >
@@ -78,11 +78,11 @@ const SlashCommandPalette: FC<{
           onMouseDown={(e) => { e.preventDefault(); onSelect(cmd); }}
           className="w-full flex items-center gap-3 px-3 py-2 text-left transition-colors"
           style={{
-            backgroundColor: i === selectedIndex ? 'rgba(255,69,0,0.12)' : 'transparent',
+            backgroundColor: i === selectedIndex ? 'rgba(124,58,237,0.12)' : 'transparent',
             borderBottom: i < filtered.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none',
           }}
         >
-          <span className="font-terminal text-[11px] tracking-wider shrink-0" style={{ color: '#ff4500', minWidth: 80 }}>
+          <span className="font-terminal text-[11px] tracking-wider shrink-0" style={{ color: '#7c3aed', minWidth: 80 }}>
             {cmd.cmd}
           </span>
           <span className="text-xs" style={{ color: '#a0a0a0' }}>{cmd.label}</span>
@@ -171,7 +171,7 @@ const ThreadWelcome: FC = () => {
       <div className="aui-thread-welcome-center flex w-full flex-col px-4 pb-8">
         {/* Brand label */}
         <m.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-3">
-          <span className="font-terminal text-[10px] tracking-[0.2em] uppercase" style={{ color: '#ff4500' }}>
+          <span className="font-terminal text-[10px] tracking-[0.2em] uppercase" style={{ color: '#7c3aed' }}>
             Pun
           </span>
         </m.div>
@@ -194,8 +194,8 @@ const ThreadWelcome: FC = () => {
           transition={{ delay: 0.08 }}
           className="flex items-center gap-2 mb-3"
         >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#ff4500', boxShadow: '0 0 4px rgba(255,69,0,0.6)' }} />
-          <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#ff4500' }}>
+          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#7c3aed', boxShadow: '0 0 4px rgba(124,58,237,0.6)' }} />
+          <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#7c3aed' }}>
             {markets.length > 0 ? `${markets.length} live markets` : 'Connecting...'}
           </span>
           {topMover && (
@@ -336,7 +336,7 @@ const ThreadSuggestions: FC = () => {
               className="panel-bracket w-full text-left border p-3 transition-all"
               style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255,69,0,0.35)';
+                e.currentTarget.style.borderColor = 'rgba(124,58,237,0.35)';
                 e.currentTarget.style.backgroundColor = '#161616';
               }}
               onMouseLeave={(e) => {
@@ -346,7 +346,7 @@ const ThreadSuggestions: FC = () => {
               aria-label={s.action}
             >
               {/* Category label */}
-              <span className="block font-terminal text-[9px] tracking-[0.15em] uppercase mb-1" style={{ color: '#ff4500' }}>
+              <span className="block font-terminal text-[9px] tracking-[0.15em] uppercase mb-1" style={{ color: '#7c3aed' }}>
                 {s.category}
               </span>
               {/* Title */}
@@ -483,7 +483,7 @@ const Composer: FC = () => {
     >
       <ThreadScrollToBottom />
       <ComposerPrimitive.Root
-        className="aui-composer-root relative flex w-full flex-col gap-2 border px-3 py-2.5 transition-colors focus-within:border-[rgba(255,69,0,0.5)]"
+        className="aui-composer-root relative flex w-full flex-col gap-2 border px-3 py-2.5 transition-colors focus-within:border-[rgba(124,58,237,0.5)]"
         style={{
           backgroundColor: '#111',
           borderColor: 'rgba(255,255,255,0.12)',
@@ -575,7 +575,7 @@ const Composer: FC = () => {
                   size="icon"
                   className="aui-composer-send size-8 shrink-0"
                   style={{ 
-                    backgroundColor: '#ff4500', 
+                    backgroundColor: '#7c3aed', 
                     color: '#000', 
                     borderRadius: 0,
                   }}
@@ -658,9 +658,9 @@ const TypingIndicator: FC = () => {
     <ThreadPrimitive.If running>
       <div className="aui-typing-indicator mx-auto flex w-full max-w-[var(--thread-max-width)] items-center gap-2 px-4 py-2">
         <div className="flex items-center gap-1">
-          <span className="size-1.5 animate-bounce rounded-full [animation-delay:0ms]" style={{ backgroundColor: '#ff4500' }} />
-          <span className="size-1.5 animate-bounce rounded-full [animation-delay:150ms]" style={{ backgroundColor: '#ff4500' }} />
-          <span className="size-1.5 animate-bounce rounded-full [animation-delay:300ms]" style={{ backgroundColor: '#ff4500' }} />
+          <span className="size-1.5 animate-bounce rounded-full [animation-delay:0ms]" style={{ backgroundColor: '#7c3aed' }} />
+          <span className="size-1.5 animate-bounce rounded-full [animation-delay:150ms]" style={{ backgroundColor: '#7c3aed' }} />
+          <span className="size-1.5 animate-bounce rounded-full [animation-delay:300ms]" style={{ backgroundColor: '#7c3aed' }} />
         </div>
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>Thinking</span>
       </div>
@@ -700,8 +700,8 @@ const AssistantMessage: FC = () => {
             className="flex items-center gap-2 px-4 py-2 border-b"
             style={{ borderColor: 'rgba(255,255,255,0.06)' }}
           >
-            <span className="w-1.5 h-1.5" style={{ backgroundColor: '#ff4500', boxShadow: '0 0 4px rgba(255,69,0,0.6)', flexShrink: 0 }} />
-            <span className="font-terminal text-[9px] tracking-[0.2em] uppercase" style={{ color: '#ff4500' }}>
+            <span className="w-1.5 h-1.5" style={{ backgroundColor: '#7c3aed', boxShadow: '0 0 4px rgba(124,58,237,0.6)', flexShrink: 0 }} />
+            <span className="font-terminal text-[9px] tracking-[0.2em] uppercase" style={{ color: '#7c3aed' }}>
               pun AI
             </span>
           </div>
@@ -843,7 +843,7 @@ const EditComposer: FC = () => {
           </ComposerPrimitive.Cancel>
           <ComposerPrimitive.Send asChild>
             <Button size="sm" aria-label="Update message"
-              style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}>
+              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}>
               Update
             </Button>
           </ComposerPrimitive.Send>

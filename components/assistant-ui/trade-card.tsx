@@ -140,7 +140,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
     return (
       <div
         className="my-3 border panel-bracket"
-        style={{ backgroundColor: '#111', borderColor: 'rgba(255,69,0,0.3)', borderRadius: 0 }}
+        style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.3)', borderRadius: 0 }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2.5 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
@@ -176,10 +176,10 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </div>
 
           {/* Payout */}
-          <div className="flex items-center justify-between border p-2.5" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,69,0,0.15)', borderRadius: 0 }}>
+          <div className="flex items-center justify-between border p-2.5" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(124,58,237,0.15)', borderRadius: 0 }}>
             <div>
               <p className="font-terminal text-[9px] tracking-widest uppercase mb-0.5" style={{ color: '#444' }}>If Correct</p>
-              <p className="font-terminal text-lg font-bold" style={{ color: '#ff4500' }}>${estimatedPayout.toFixed(2)}</p>
+              <p className="font-terminal text-lg font-bold" style={{ color: '#7c3aed' }}>${estimatedPayout.toFixed(2)}</p>
             </div>
             <div className="text-right">
               <p className="font-terminal text-[9px] tracking-widest uppercase mb-0.5" style={{ color: '#444' }}>Return</p>
@@ -189,7 +189,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
 
           {/* Reasoning */}
           {data.reasoning && (
-            <p className="text-xs italic border-l-2 pl-2" style={{ color: '#666', borderColor: 'rgba(255,69,0,0.3)' }}>
+            <p className="text-xs italic border-l-2 pl-2" style={{ color: '#666', borderColor: 'rgba(124,58,237,0.3)' }}>
               {data.reasoning}
             </p>
           )}
@@ -199,9 +199,9 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             <button
               onClick={() => setConfirmState('confirming')}
               className="flex-1 py-2 text-xs font-bold uppercase tracking-widest transition-all font-terminal"
-              style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ff6b35')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff4500')}
+              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#8b5cf6')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7c3aed')}
             >
               {isWalletConnected ? 'Execute Trade' : 'Paper Trade'}
             </button>
@@ -225,11 +225,11 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
     return (
       <div
         className="my-3 border panel-bracket"
-        style={{ backgroundColor: '#111', borderColor: 'rgba(255,69,0,0.5)', borderRadius: 0 }}
+        style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.5)', borderRadius: 0 }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2.5 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
-          <span className="font-terminal text-[9px] tracking-[0.2em] uppercase" style={{ color: '#ff4500' }}>
+          <span className="font-terminal text-[9px] tracking-[0.2em] uppercase" style={{ color: '#7c3aed' }}>
             Confirm Trade
           </span>
           <span className="font-terminal text-[9px] tracking-widest uppercase px-2 py-0.5 border"
@@ -240,7 +240,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
 
         <div className="px-4 py-3 space-y-3">
           {/* Market with left bar */}
-          <div className="border-l-2 pl-3" style={{ borderColor: '#ff4500' }}>
+          <div className="border-l-2 pl-3" style={{ borderColor: '#7c3aed' }}>
             <p className="text-sm leading-snug" style={{ color: '#f0f0f0' }}>{data.market}</p>
           </div>
 
@@ -260,11 +260,11 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </div>
 
           {/* Payout highlight */}
-          <div className="border p-3" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,69,0,0.2)', borderRadius: 0 }}>
+          <div className="border p-3" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(124,58,237,0.2)', borderRadius: 0 }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-1" style={{ color: '#444' }}>If Correct</p>
-                <p className="font-terminal text-2xl font-bold" style={{ color: '#ff4500', textShadow: '0 0 12px rgba(255,69,0,0.3)' }}>
+                <p className="font-terminal text-2xl font-bold" style={{ color: '#7c3aed', textShadow: '0 0 12px rgba(124,58,237,0.3)' }}>
                   ${estimatedPayout.toFixed(2)}
                 </p>
               </div>
@@ -298,9 +298,9 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             <button
               onClick={() => { void handleExecute(); }}
               className="flex-1 py-2.5 text-xs font-bold uppercase tracking-widest transition-all font-terminal"
-              style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#ff6b35')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ff4500')}
+              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#8b5cf6')}
+              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7c3aed')}
             >
               {isWalletConnected ? 'Confirm & Sign' : 'Confirm Paper Trade'}
             </button>
@@ -313,14 +313,14 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
   // Executing state
   if (confirmState === 'executing') {
     return (
-      <div className="my-3 border p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(255,69,0,0.3)', borderRadius: 0 }}>
+      <div className="my-3 border p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.3)', borderRadius: 0 }}>
         <div className="flex items-center gap-3">
           <div className="flex gap-1">
-            <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#ff4500', animationDelay: '0ms' }} />
-            <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#ff4500', animationDelay: '150ms' }} />
-            <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#ff4500', animationDelay: '300ms' }} />
+            <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#7c3aed', animationDelay: '0ms' }} />
+            <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#7c3aed', animationDelay: '150ms' }} />
+            <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#7c3aed', animationDelay: '300ms' }} />
           </div>
-          <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#ff4500' }}>
+          <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#7c3aed' }}>
             {isWalletConnected ? 'Routing to wallet...' : 'Recording trade...'}
           </span>
         </div>
@@ -362,7 +362,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
       <button
         onClick={() => { setConfirmState('idle'); setErrorMsg(null); }}
         className="text-xs font-terminal uppercase tracking-widest"
-        style={{ color: '#ff4500' }}
+        style={{ color: '#7c3aed' }}
       >
         Try Again
       </button>

@@ -106,7 +106,7 @@ The project is well-structured and largely functional. The issues identified bel
 
 **Accessible Focus and ARIA Labels**
 
-2.14 WHEN a keyboard user focuses any interactive element (button, input, link) THEN the system SHALL display a visible focus indicator using the brand orange (`#ff4500`) outline consistent with the design system, replacing suppressed browser defaults.
+2.14 WHEN a keyboard user focuses any interactive element (button, input, link) THEN the system SHALL display a visible focus indicator using the brand orange (`#7c3aed`) outline consistent with the design system, replacing suppressed browser defaults.
 
 2.15 WHEN the `OrderBookPanel` renders bid/ask rows THEN the system SHALL include `aria-label` attributes on the bid and ask sections (e.g., `aria-label="Ask prices"`, `aria-label="Bid prices"`) so screen reader users can distinguish the two sides.
 
@@ -154,7 +154,7 @@ The project is well-structured and largely functional. The issues identified bel
 
 **UI Design System**
 
-3.15 WHEN any component is modified THEN the system SHALL CONTINUE TO use zero border-radius, the `#ff4500` brand orange, the defined color palette, and the `panel-bracket` left-accent pattern — no Tailwind default color classes, no rounded corners, no gradients.
+3.15 WHEN any component is modified THEN the system SHALL CONTINUE TO use zero border-radius, the `#7c3aed` brand orange, the defined color palette, and the `panel-bracket` left-accent pattern — no Tailwind default color classes, no rounded corners, no gradients.
 
 3.16 WHEN the TopNav renders THEN the system SHALL CONTINUE TO display at `h-12` height with the correct active link indicator (2px solid orange bottom bar) and wallet status in the right status bar.
 

@@ -122,7 +122,7 @@ Complete the port of Pun from Polymarket to Mantle (chain ID 5000) for the Turin
 - [x] 6. Fix `components/AgentIdentityBadge.tsx` — design system and real RPC check
   - [x] 6.1 Replace Tailwind color classes with inline styles
     - Loading state: replace `bg-gray-800 border-gray-700` with inline `backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 0, fontFamily: 'var(--font-mono)', fontSize: 10, color: '#555'`
-    - Pending state: replace `bg-orange-900/30 border-orange-700/50 text-orange-400` with inline `backgroundColor: 'rgba(255,69,0,0.1)', border: '1px solid rgba(255,69,0,0.4)', color: '#ff4500'`; dot: `backgroundColor: '#ff4500'`; remove `rounded-full` from dot
+    - Pending state: replace `bg-orange-900/30 border-orange-700/50 text-orange-400` with inline `backgroundColor: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.4)', color: '#7c3aed'`; dot: `backgroundColor: '#7c3aed'`; remove `rounded-full` from dot
     - Registered state: replace `bg-green-900/30 border-green-700/50 text-green-400` with inline `backgroundColor: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.3)', color: '#4ade80'`; dot: `backgroundColor: '#4ade80'`; remove `rounded-full` from dot
     - _Requirements: 8.4_
   - [x] 6.2 Add real Mantle RPC check with zero-address demo-mode fallback
@@ -223,7 +223,7 @@ Complete the port of Pun from Polymarket to Mantle (chain ID 5000) for the Turin
 
 - [x] 19. Final checkpoint — submission readiness
   - Ensure all tests pass, ask the user if questions arise.
-  - Verify the brutalist terminal UI design system is intact: zero border-radius, `#ff4500` orange accent, `#0d0d0d` background, mono fonts
+  - Verify the brutalist terminal UI design system is intact: zero border-radius, `#7c3aed` orange accent, `#0d0d0d` background, mono fonts
   - Confirm the Markets page displays Mantle ecosystem pools (mETH-USDC, MNT-USDC, USDY-USDC, mETH-MNT)
   - Confirm the AI chat welcome screen shows "Pun" branding and Mantle-specific suggestion cards
   - _Requirements: 10.3, 10.4, 10.5_

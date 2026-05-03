@@ -33,9 +33,9 @@ These are the ONLY colors used in this codebase. Do not introduce new colors.
 | Secondary text | `#a0a0a0` |
 | Muted / disabled text | `#555555` |
 | Tertiary / very dim | `#333333` |
-| Brand orange | `#ff4500` |
-| Orange dim bg | `rgba(255, 69, 0, 0.15)` |
-| Orange glow shadow | `rgba(255, 69, 0, 0.5)` |
+| Brand orange | `#7c3aed` |
+| Orange dim bg | `rgba(124, 58, 237, 0.15)` |
+| Orange glow shadow | `rgba(124, 58, 237, 0.5)` |
 | Default border | `rgba(255, 255, 255, 0.08)` |
 | Hover border | `rgba(255, 255, 255, 0.15)` |
 | Active border | `rgba(255, 255, 255, 0.20)` |
@@ -48,8 +48,8 @@ CSS variables defined in `globals.css`:
 ```css
 --background: #0d0d0d
 --foreground: #ededed
---orange: #ff4500
---orange-dim: rgba(255, 69, 0, 0.15)
+--orange: #7c3aed
+--orange-dim: rgba(124, 58, 237, 0.15)
 --border: rgba(255, 255, 255, 0.08)
 --panel: #111111
 --text-primary: #ededed
@@ -89,12 +89,12 @@ CSS variables defined in `globals.css`:
 }
 
 .t-label-accent {
-  color: var(--orange); /* #ff4500 */
+  color: var(--orange); /* #7c3aed */
 }
 
 .orange-glow {
   color: var(--orange);
-  text-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
+  text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
 }
 ```
 
@@ -117,7 +117,7 @@ Every major panel/card uses this class. It adds a 3px orange left accent bar.
   position: absolute;
   top: 0; left: 0;
   width: 3px; height: 100%;
-  background: var(--orange); /* #ff4500 */
+  background: var(--orange); /* #7c3aed */
 }
 ```
 
@@ -145,7 +145,7 @@ onMouseLeave={(e) => {
 
 ### Primary CTA
 ```tsx
-style={{ backgroundColor: '#ff4500', color: '#000', borderRadius: 0 }}
+style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
 className="font-terminal text-xs font-bold uppercase tracking-widest"
 ```
 
@@ -171,16 +171,16 @@ onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1
 - Max width: `1400px` centered
 
 ### Logo
-- Small `PA` box: `w-5 h-5`, orange border, `rgba(255,69,0,0.1)` bg, orange mono `9px` text
-- Full name: `POLYMARKET` in `#f0f0f0`, `ALPHA` in `#ff4500` — both mono uppercase
+- Small `PA` box: `w-5 h-5`, orange border, `rgba(124,58,237,0.1)` bg, orange mono `9px` text
+- Full name: `POLYMARKET` in `#f0f0f0`, `ALPHA` in `#7c3aed` — both mono uppercase
 
 ### Nav Links
 - Font: mono, `11px`, `tracking-widest`, uppercase
 - Inactive: `#555`, hover `#a0a0a0`
-- Active: `#ff4500` with `2px` solid orange bottom bar
+- Active: `#7c3aed` with `2px` solid orange bottom bar
 
 ### Right Status Bar
-- Live dot: `1.5px` circle, orange `#ff4500` with `box-shadow: 0 0 6px rgba(255,69,0,0.6)` when live
+- Live dot: `1.5px` circle, orange `#7c3aed` with `box-shadow: 0 0 6px rgba(124,58,237,0.6)` when live
 - "LIVE" label: orange mono `10px`
 - Pipe separator: `#2a2a2a`
 - "PAPER MODE" label: `#444` mono
@@ -195,17 +195,17 @@ onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1
 - Heading "AI Market Intelligence": `font-terminal text-2xl font-bold`, color `#f0f0f0`
 - Subtitle: `text-sm`, color `#777`
 - Suggestion cards: 2×2 grid, `panel-bracket` style, title `#f0f0f0 text-xs font-semibold`, label `#555 text-xs`
-- Suggestion card hover: border shifts to `rgba(255,69,0,0.35)`, bg to `#161616`
+- Suggestion card hover: border shifts to `rgba(124,58,237,0.35)`, bg to `#161616`
 
 ### Messages
-- Assistant: left `2px` orange accent line at `rgba(255,69,0,0.25)`, text `#e0e0e0`, `text-sm leading-relaxed`
+- Assistant: left `2px` orange accent line at `rgba(124,58,237,0.25)`, text `#e0e0e0`, `text-sm leading-relaxed`
 - User: right-aligned bubble, `#161616` bg, `rgba(255,255,255,0.1)` border, `#f0f0f0` text
 
 ### Composer
 - Sticky bottom, `#0d0d0d` outer bg
 - Input box: `#111` bg, `rgba(255,255,255,0.12)` border, `border-radius: 0`
-- Focus: border shifts to `rgba(255,69,0,0.5)`
-- Send button: solid `#ff4500` square, `#000` icon, `border-radius: 0`
+- Focus: border shifts to `rgba(124,58,237,0.5)`
+- Send button: solid `#7c3aed` square, `#000` icon, `border-radius: 0`
 - Quick action buttons (Set Alert, Copy Link, Refresh): mono `text-xs`, transparent bg, `rgba(255,255,255,0.08)` border
 
 ### Typing Indicator
@@ -243,12 +243,12 @@ ENTRY PRICE   COST
 - All labels (`SIDE`, `SHARES`, `ENTRY PRICE`, `COST`, `IF CORRECT`, `RETURN`): mono uppercase `#555` or `#666`
 - `YES` value: `#4ade80` (green), `NO` value: `#f87171` (red)
 - Numbers: mono bold white `#f0f0f0`
-- "IF CORRECT" payout: `#ff4500` orange, large mono bold
+- "IF CORRECT" payout: `#7c3aed` orange, large mono bold
 - "RETURN" percentage: `#4ade80` green, large mono bold
 - Bottom highlight box: bordered `rgba(255,255,255,0.08)`, contains payout + return
-- "PAPER TRADE" badge: orange border `#ff4500`, orange text, mono uppercase
+- "PAPER TRADE" badge: orange border `#7c3aed`, orange text, mono uppercase
 - Footer: timestamp + "pun" in mono `#555`
-- Left border accent on market question block: `3px solid #ff4500`
+- Left border accent on market question block: `3px solid #7c3aed`
 
 ---
 
@@ -293,7 +293,7 @@ ENTRY PRICE   COST
 - Use `font-size` larger than `text-2xl` for UI chrome
 - Use `font-weight` lighter than `font-medium` for labels
 - Add gradients or box shadows (except orange-glow)
-- Change `#ff4500` to any other orange shade
+- Change `#7c3aed` to any other orange shade
 - Use Tailwind's default color classes (`blue-500`, `gray-300`, etc.) — always use inline styles with the palette values
 - Remove the `panel-bracket` left orange bar from panels
 - Change the nav link style (font, size, color, active indicator)

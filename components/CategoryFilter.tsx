@@ -98,9 +98,9 @@ export default function CategoryFilter({
             onClick={() => onChange(cat.value)}
             className="flex-none flex items-center gap-1.5 px-3 py-1.5 border font-terminal text-[10px] tracking-widest uppercase transition-all whitespace-nowrap"
             style={{
-              backgroundColor: isActive ? 'rgba(255,69,0,0.12)' : 'transparent',
-              borderColor: isActive ? '#ff4500' : 'rgba(255,255,255,0.10)',
-              color: isActive ? '#ff4500' : '#555',
+              backgroundColor: isActive ? 'rgba(124,58,237,0.12)' : 'transparent',
+              borderColor: isActive ? '#7c3aed' : 'rgba(255,255,255,0.10)',
+              color: isActive ? '#7c3aed' : '#555',
               borderRadius: 0,
             }}
             onMouseEnter={(e) => {
@@ -120,7 +120,7 @@ export default function CategoryFilter({
             {count !== null && count > 0 && (
               <span
                 className="font-terminal text-[9px]"
-                style={{ color: isActive ? '#ff4500' : '#444' }}
+                style={{ color: isActive ? '#7c3aed' : '#444' }}
               >
                 {count}
               </span>

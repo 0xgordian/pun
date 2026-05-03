@@ -91,7 +91,7 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
             color: '#f0f0f0',
             borderRadius: 0,
           }}
-          onFocus={(e) => (e.target.style.borderColor = 'rgba(255,69,0,0.5)')}
+          onFocus={(e) => (e.target.style.borderColor = 'rgba(124,58,237,0.5)')}
           onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
         />
         <button
@@ -99,7 +99,7 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
           disabled={loading || !input.trim()}
           className="absolute right-0 top-0 bottom-0 px-4 text-xs font-terminal font-bold tracking-widest uppercase transition-all flex items-center gap-2"
           style={{
-            backgroundColor: loading || !input.trim() ? '#1a1a1a' : '#ff4500',
+            backgroundColor: loading || !input.trim() ? '#1a1a1a' : '#7c3aed',
             color: loading || !input.trim() ? '#555' : '#000',
             borderRadius: 0,
           }}

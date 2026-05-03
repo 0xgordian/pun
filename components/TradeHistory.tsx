@@ -12,7 +12,7 @@ import { EmptyState } from '@/components/ui/empty-state';
 
 const MODE_COLORS: Record<TradeRecord['mode'], string> = {
   PAPER_TRADE: '#f59e0b',
-  SIGNING_REQUIRED: '#ff4500',
+  SIGNING_REQUIRED: '#7c3aed',
   EXECUTED: '#4ade80',
 };
 
@@ -62,7 +62,7 @@ export default function TradeHistory() {
       <div className="flex items-center justify-between px-4 py-3 border-b"
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
-          {'Trade History'} <span style={{ color: '#ff4500' }}>{'// All Trades'}</span>
+          {'Trade History'} <span style={{ color: '#7c3aed' }}>{'// All Trades'}</span>
           {records.length > 0 && (
             <span className="ml-2 font-terminal text-[9px]" style={{ color: '#444' }}>
               {records.length}
@@ -190,8 +190,8 @@ export default function TradeHistory() {
                     <button
                       onClick={() => setPnlTrade(r)}
                       className="font-terminal text-[9px] tracking-widest uppercase px-2 py-1 border transition-colors"
-                      style={{ borderColor: 'rgba(255,69,0,0.3)', color: '#ff4500', backgroundColor: 'transparent', borderRadius: 0 }}
-                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,69,0,0.08)'; }}
+                      style={{ borderColor: 'rgba(124,58,237,0.3)', color: '#7c3aed', backgroundColor: 'transparent', borderRadius: 0 }}
+                      onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.08)'; }}
                       onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
                     >
                       PnL
@@ -225,7 +225,7 @@ export default function TradeHistory() {
                   <button
                     onClick={() => setPnlTrade(r)}
                     className="font-terminal text-[9px] tracking-widest uppercase px-2 py-0.5 border"
-                    style={{ borderColor: 'rgba(255,69,0,0.3)', color: '#ff4500', backgroundColor: 'transparent', borderRadius: 0 }}
+                    style={{ borderColor: 'rgba(124,58,237,0.3)', color: '#7c3aed', backgroundColor: 'transparent', borderRadius: 0 }}
                   >
                     PnL
                   </button>

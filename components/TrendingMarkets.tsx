@@ -54,7 +54,7 @@ export default function TrendingMarkets({
                 const change = market.probabilityChange24h;
                 const hasChange = change !== null && change !== undefined;
                 const isSelected = selectedMarketId === market.id;
-                const probColor = prob >= 65 ? '#ff4500' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
+                const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
                 const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
 
                 return (
@@ -63,8 +63,8 @@ export default function TrendingMarkets({
                     onClick={() => onSelectMarket?.(market)}
                     className="flex items-center gap-3 p-2.5 border transition-all cursor-pointer"
                     style={{
-                      backgroundColor: isSelected ? 'rgba(255,69,0,0.1)' : 'transparent',
-                      borderColor: isSelected ? 'rgba(255,69,0,0.4)' : 'rgba(255,255,255,0.08)',
+                      backgroundColor: isSelected ? 'rgba(124,58,237,0.1)' : 'transparent',
+                      borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
                       borderRadius: 0,
                     }}
                     onMouseEnter={(e) => {
@@ -81,7 +81,7 @@ export default function TrendingMarkets({
                     }}
                   >
                     {/* Rank indicator */}
-                    <span className="font-terminal text-[10px] shrink-0 w-4 text-center" style={{ color: rank === 0 ? '#ff4500' : '#444' }}>
+                    <span className="font-terminal text-[10px] shrink-0 w-4 text-center" style={{ color: rank === 0 ? '#7c3aed' : '#444' }}>
                       {rank + 1}
                     </span>
 

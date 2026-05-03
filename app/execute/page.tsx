@@ -113,7 +113,7 @@ function OrderBookPanel({ book, isLoading }: { book: OrderBook | null; isLoading
 
 const STATUS_CONFIG: Record<OrderStatus, { color: string; label: string; pulse: boolean }> = {
   PENDING:   { color: '#f59e0b', label: 'Pending',   pulse: true  },
-  OPEN:      { color: '#ff4500', label: 'In Book',   pulse: true  },
+  OPEN:      { color: '#7c3aed', label: 'In Book',   pulse: true  },
   MATCHED:   { color: '#4ade80', label: 'Matched',   pulse: true  },
   FILLED:    { color: '#4ade80', label: 'Filled',    pulse: false },
   CANCELLED: { color: '#a0a0a0', label: 'Cancelled', pulse: false },
@@ -346,12 +346,12 @@ function ExecuteContent() {
         toast('Open your wallet to review and sign the order', {
           icon: (
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
-              <rect x="1" y="4" width="14" height="10" rx="0" stroke="#ff4500" strokeWidth="1.5"/>
-              <path d="M4 4V3a4 4 0 0 1 8 0v1" stroke="#ff4500" strokeWidth="1.5"/>
-              <circle cx="8" cy="9" r="1.5" fill="#ff4500"/>
+              <rect x="1" y="4" width="14" height="10" rx="0" stroke="#7c3aed" strokeWidth="1.5"/>
+              <path d="M4 4V3a4 4 0 0 1 8 0v1" stroke="#7c3aed" strokeWidth="1.5"/>
+              <circle cx="8" cy="9" r="1.5" fill="#7c3aed"/>
             </svg>
           ),
-          style: { background: '#111', color: '#f0f0f0', border: '1px solid rgba(255,69,0,0.4)', borderRadius: 0 },
+          style: { background: '#111', color: '#f0f0f0', border: '1px solid rgba(124,58,237,0.4)', borderRadius: 0 },
           duration: 6000,
         });
       } else {
@@ -435,7 +435,7 @@ function ExecuteContent() {
                   placeholder="Search markets…"
                   className="w-full font-terminal text-xs px-3 py-2 border bg-transparent outline-none"
                   style={{ borderColor: 'rgba(255,255,255,0.12)', color: '#f0f0f0', borderRadius: 0 }}
-                  onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,69,0,0.5)'; }}
+                  onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; }}
                   onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; }}
                 />
               </div>
@@ -459,8 +459,8 @@ function ExecuteContent() {
                         className="w-full text-left px-4 py-3 border-b transition-all"
                         style={{
                           borderColor: 'rgba(255,255,255,0.04)',
-                          backgroundColor: active ? 'rgba(255,69,0,0.08)' : 'transparent',
-                          borderLeft: active ? '3px solid #ff4500' : '3px solid transparent',
+                          backgroundColor: active ? 'rgba(124,58,237,0.08)' : 'transparent',
+                          borderLeft: active ? '3px solid #7c3aed' : '3px solid transparent',
                         }}
                         onMouseEnter={(e) => { if (!active) e.currentTarget.style.backgroundColor = '#161616'; }}
                         onMouseLeave={(e) => { if (!active) e.currentTarget.style.backgroundColor = 'transparent'; }}
@@ -578,7 +578,7 @@ function ExecuteContent() {
                         min="1"
                         className="w-full font-terminal text-sm px-3 py-2 border bg-transparent outline-none"
                         style={{ borderColor: 'rgba(255,255,255,0.12)', color: '#f0f0f0', borderRadius: 0 }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,69,0,0.5)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; }}
                         onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; }}
                       />
                     </div>
@@ -592,7 +592,7 @@ function ExecuteContent() {
                         max="99"
                         className="w-full font-terminal text-sm px-3 py-2 border bg-transparent outline-none"
                         style={{ borderColor: 'rgba(255,255,255,0.12)', color: '#f0f0f0', borderRadius: 0 }}
-                        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(255,69,0,0.5)'; }}
+                        onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(124,58,237,0.5)'; }}
                         onBlur={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; }}
                       />
                     </div>
@@ -606,7 +606,7 @@ function ExecuteContent() {
                     </div>
                     <div className="flex justify-between">
                       <span className="t-label">Payout if correct</span>
-                      <span className="font-terminal text-xs font-bold" style={{ color: '#ff4500' }}>${payout.toFixed(2)}</span>
+                      <span className="font-terminal text-xs font-bold" style={{ color: '#7c3aed' }}>${payout.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="t-label">Return</span>
@@ -632,9 +632,9 @@ function ExecuteContent() {
                   {/* Wallet status / connect prompt */}
                   {!isWalletConnected && (
                     <div className="border p-3 flex items-center justify-between gap-3"
-                      style={{ borderColor: 'rgba(255,69,0,0.25)', backgroundColor: 'rgba(255,69,0,0.05)', borderRadius: 0 }}>
+                      style={{ borderColor: 'rgba(124,58,237,0.25)', backgroundColor: 'rgba(124,58,237,0.05)', borderRadius: 0 }}>
                       <div>
-                        <p className="font-terminal text-[10px] tracking-widest uppercase mb-0.5" style={{ color: '#ff4500' }}>
+                        <p className="font-terminal text-[10px] tracking-widest uppercase mb-0.5" style={{ color: '#7c3aed' }}>
                           Paper Mode
                         </p>
                         <p className="text-xs" style={{ color: '#555' }}>
@@ -644,8 +644,8 @@ function ExecuteContent() {
                       <button
                         onClick={() => authAdapter.connect()}
                         className="shrink-0 font-terminal text-[10px] tracking-widest uppercase px-3 py-1.5 border transition-all"
-                        style={{ borderColor: '#ff4500', color: '#ff4500', backgroundColor: 'transparent', borderRadius: 0 }}
-                        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,69,0,0.15)'; }}
+                        style={{ borderColor: '#7c3aed', color: '#7c3aed', backgroundColor: 'transparent', borderRadius: 0 }}
+                        onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.15)'; }}
                         onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; }}
                       >
                         Connect
@@ -672,7 +672,7 @@ function ExecuteContent() {
                     disabled={submitting || sharesNum <= 0}
                     className="w-full py-3 font-terminal text-xs font-bold tracking-widest uppercase transition-all"
                     style={{
-                      backgroundColor: submitting ? '#333' : '#ff4500',
+                      backgroundColor: submitting ? '#333' : '#7c3aed',
                       color: submitting ? '#666' : '#000',
                       borderRadius: 0,
                       cursor: submitting ? 'not-allowed' : 'pointer',
@@ -754,7 +754,7 @@ export default function ExecutePage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0d0d0d' }}>
-        <div className="w-6 h-6 border-2 border-[#ff4500]/30 border-t-[#ff4500] rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[#7c3aed]/30 border-t-[#7c3aed] rounded-full animate-spin" />
       </div>
     }>
       <ExecuteContent />

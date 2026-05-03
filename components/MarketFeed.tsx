@@ -70,7 +70,7 @@ export default function MarketFeed({
               const change = market.probabilityChange24h;
               const hasChange = change !== null && change !== undefined;
               const isSelected = selectedMarketId === market.id;
-              const probColor = prob >= 65 ? '#ff4500' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
+              const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
               const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
               return (
                 <div
@@ -79,7 +79,7 @@ export default function MarketFeed({
                   className="border panel-bracket p-3 transition-all"
                   style={{
                     backgroundColor: isSelected ? '#1a1a1a' : 'transparent',
-                    borderColor: isSelected ? 'rgba(255,69,0,0.4)' : 'rgba(255,255,255,0.08)',
+                    borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
                     borderRadius: 0,
                     cursor: onSelectMarket ? 'pointer' : 'default',
                   }}
@@ -125,7 +125,7 @@ export default function MarketFeed({
               const change = market.probabilityChange24h;
               const hasChange = change !== null && change !== undefined;
               const isSelected = selectedMarketId === market.id;
-              const probColor = prob >= 65 ? '#ff4500' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
+              const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
               const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
               return (
                 <div
@@ -134,7 +134,7 @@ export default function MarketFeed({
                   className="flex-none w-44 border panel-bracket p-3 transition-all"
                   style={{
                     backgroundColor: isSelected ? '#1a1a1a' : '#111',
-                    borderColor: isSelected ? 'rgba(255,69,0,0.4)' : 'rgba(255,255,255,0.08)',
+                    borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
                     borderRadius: 0,
                     cursor: onSelectMarket ? 'pointer' : 'default',
                   }}

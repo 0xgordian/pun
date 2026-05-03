@@ -225,10 +225,10 @@ window.addEventListener('mantle:refresh-markets', ...)
 }}>
 
 // Pending state — orange
-border: '1px solid rgba(255,69,0,0.4)'
-backgroundColor: 'rgba(255,69,0,0.1)'
-color: '#ff4500'
-dot: backgroundColor: '#ff4500'
+border: '1px solid rgba(124,58,237,0.4)'
+backgroundColor: 'rgba(124,58,237,0.1)'
+color: '#7c3aed'
+dot: backgroundColor: '#7c3aed'
 
 // Registered state — green  
 border: '1px solid rgba(74,222,128,0.3)'

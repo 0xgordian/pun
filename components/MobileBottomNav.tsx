@@ -31,7 +31,7 @@ export function MobileBottomNav() {
             key={href}
             href={href}
             className="flex flex-col items-center gap-1 px-3 py-2.5 transition-colors min-w-[56px]"
-            style={{ color: isActive ? '#ff4500' : '#555' }}
+            style={{ color: isActive ? '#7c3aed' : '#555' }}
           >
             <Icon icon={icon} className="size-5" />
             <span className="text-[11px] font-terminal uppercase tracking-wider">{label}</span>

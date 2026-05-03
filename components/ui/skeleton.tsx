@@ -82,8 +82,8 @@ export function LoadingSpinner({ size = 20, className }: LoadingSpinnerProps) {
         style={{
           width: size,
           height: size,
-          borderColor: 'rgba(255,69,0,0.2)',
-          borderTopColor: '#ff4500',
+          borderColor: 'rgba(124,58,237,0.2)',
+          borderTopColor: '#7c3aed',
         }}
       />
     </div>

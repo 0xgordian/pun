@@ -43,7 +43,7 @@ export const PositionCard: FC = () => {
         <button
           onClick={() => router.push('/trade')}
           className="mt-3 text-xs font-bold uppercase"
-          style={{ color: '#ff4500' }}
+          style={{ color: '#7c3aed' }}
         >
           Explore Markets
         </button>
@@ -74,7 +74,7 @@ export const PositionCard: FC = () => {
   };
 
   return (
-    <div className="my-3 border p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(255,69,0,0.2)', borderRadius: 0 }}>
+    <div className="my-3 border p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.2)', borderRadius: 0 }}>
       <div className="flex items-center justify-between mb-3">
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
           Your Positions
@@ -116,8 +116,8 @@ export const PositionCard: FC = () => {
         onClick={() => router.push('/portfolio')}
         className="mt-3 w-full py-2 text-xs font-bold uppercase border transition-colors"
         style={{
-          borderColor: 'rgba(255,69,0,0.3)',
-          color: '#ff4500',
+          borderColor: 'rgba(124,58,237,0.3)',
+          color: '#7c3aed',
           borderRadius: 0,
         }}
       >

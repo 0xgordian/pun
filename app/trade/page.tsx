@@ -192,7 +192,7 @@ function HomeContent() {
     });
     toast.success(`Alert set: ${opp.market.question.slice(0, 50)}…`, {
       style: { background: '#111', color: '#f0f0f0', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 0 },
-      iconTheme: { primary: '#ff4500', secondary: '#000' },
+      iconTheme: { primary: '#7c3aed', secondary: '#000' },
     });
   }, []);
 
@@ -281,8 +281,8 @@ function HomeContent() {
                   onClick={() => setMobileTab(tab)}
                   className="flex-1 flex items-center justify-center py-3 font-terminal text-[11px] font-bold tracking-widest uppercase transition-colors"
                   style={{
-                    color: mobileTab === tab ? '#ff4500' : '#555',
-                    borderBottom: mobileTab === tab ? '2px solid #ff4500' : '2px solid transparent',
+                    color: mobileTab === tab ? '#7c3aed' : '#555',
+                    borderBottom: mobileTab === tab ? '2px solid #7c3aed' : '2px solid transparent',
                     backgroundColor: 'transparent',
                   }}
                 >
@@ -366,7 +366,7 @@ export default function TradePage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0d0d0d' }}>
-        <div className="w-6 h-6 border-2 border-[#ff4500]/30 border-t-[#ff4500] rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[#7c3aed]/30 border-t-[#7c3aed] rounded-full animate-spin" />
       </div>
     }>
       <HomeContent />

@@ -23,10 +23,10 @@ function formatVolume(v: number): string {
 // Strength config — orange only for STRONG, neutral for others
 const strengthConfig = {
   STRONG: {
-    borderColor: 'rgba(255,69,0,0.6)',
-    badgeColor: '#ff4500',
-    badgeBg: 'rgba(255,69,0,0.15)',
-    priceColor: '#ff4500',
+    borderColor: 'rgba(124,58,237,0.6)',
+    badgeColor: '#7c3aed',
+    badgeBg: 'rgba(124,58,237,0.15)',
+    priceColor: '#7c3aed',
     priceGlow: true,
     icon: '▲',
   },
@@ -100,7 +100,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
         <div className="text-right shrink-0">
           <p className="text-2xl font-terminal font-bold"
             style={cfg.priceGlow
-              ? { color: '#ff4500', textShadow: '0 0 16px rgba(255,69,0,0.35)' }
+              ? { color: '#7c3aed', textShadow: '0 0 16px rgba(124,58,237,0.35)' }
               : { color: cfg.priceColor }}>
             {opp.referencePrice}¢
           </p>
@@ -137,9 +137,9 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
           onClick={onPropose}
           disabled={isFetchingBet}
           className="flex-1 py-2.5 text-xs font-bold tracking-wide transition-all flex items-center justify-center gap-2"
-          style={{ backgroundColor: isFetchingBet ? '#1a1a1a' : '#ff4500', color: isFetchingBet ? '#555' : '#000', borderRadius: 0 }}
-          onMouseEnter={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#ff6b35'; }}
-          onMouseLeave={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#ff4500'; }}
+          style={{ backgroundColor: isFetchingBet ? '#1a1a1a' : '#7c3aed', color: isFetchingBet ? '#555' : '#000', borderRadius: 0 }}
+          onMouseEnter={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
+          onMouseLeave={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#7c3aed'; }}
         >
           {isFetchingBet ? (
             <>

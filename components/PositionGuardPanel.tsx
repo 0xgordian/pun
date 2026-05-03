@@ -107,7 +107,7 @@ export default function PositionGuardPanel({ markets }: PositionGuardPanelProps)
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
           Position Guard{' '}
-          <span style={{ color: '#ff4500' }}>{'// Auto Rules'}</span>
+          <span style={{ color: '#7c3aed' }}>{'// Auto Rules'}</span>
           {triggeredCount > 0 && (
             <span className="ml-2 px-1.5 py-0.5 font-terminal text-[9px]"
               style={{ backgroundColor: 'rgba(248,113,113,0.15)', color: '#f87171' }}>
@@ -119,8 +119,8 @@ export default function PositionGuardPanel({ markets }: PositionGuardPanelProps)
           onClick={() => { setShowForm((v) => !v); setValidationError(''); }}
           className="font-terminal text-[10px] tracking-widest uppercase px-2 py-1 border transition-colors"
           style={{
-            borderColor: showForm ? '#ff4500' : 'rgba(255,255,255,0.12)',
-            color: showForm ? '#ff4500' : '#555',
+            borderColor: showForm ? '#7c3aed' : 'rgba(255,255,255,0.12)',
+            color: showForm ? '#7c3aed' : '#555',
             backgroundColor: 'transparent',
             borderRadius: 0,
           }}
@@ -160,7 +160,7 @@ export default function PositionGuardPanel({ markets }: PositionGuardPanelProps)
                       onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#161616')}
                       onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
                     >
-                      <span className="font-terminal text-[10px] mr-2" style={{ color: '#ff4500' }}>
+                      <span className="font-terminal text-[10px] mr-2" style={{ color: '#7c3aed' }}>
                         {m.currentProbability}%
                       </span>
                       {m.question.slice(0, 70)}
@@ -202,7 +202,7 @@ export default function PositionGuardPanel({ markets }: PositionGuardPanelProps)
               disabled={!selectedMarket}
               className="w-full py-2 text-xs font-bold transition-all font-terminal tracking-widest uppercase"
               style={{
-                backgroundColor: selectedMarket ? '#ff4500' : '#1a1a1a',
+                backgroundColor: selectedMarket ? '#7c3aed' : '#1a1a1a',
                 color: selectedMarket ? '#000' : '#555',
                 borderRadius: 0,
               }}

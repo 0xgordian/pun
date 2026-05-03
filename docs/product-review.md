@@ -28,7 +28,7 @@ A full-stack AI-powered prediction market trading terminal. Not a demo. Not a pr
 1. Paper-trade first — everything works without a wallet or API key
 2. Live-ready — wallet + aomi API key enables real execution on Polygon
 3. Stateless backend — proxy pattern for market data + system prompt injection
-4. Terminal aesthetic — zero border-radius, monospace typography, orange accent #ff4500
+4. Terminal aesthetic — zero border-radius, monospace typography, orange accent #7c3aed
 5. Honest signals — no fabricated labels, only observable data
 
 ---

@@ -45,8 +45,8 @@ export default function PriceChart({ tokenId, marketQuestion }: PriceChartProps)
           horzLines: { color: 'rgba(255,255,255,0.04)' },
         },
         crosshair: {
-          vertLine: { color: 'rgba(255,69,0,0.4)', style: LineStyle.Dashed },
-          horzLine: { color: 'rgba(255,69,0,0.4)', style: LineStyle.Dashed },
+          vertLine: { color: 'rgba(124,58,237,0.4)', style: LineStyle.Dashed },
+          horzLine: { color: 'rgba(124,58,237,0.4)', style: LineStyle.Dashed },
         },
         rightPriceScale: {
           borderColor: 'rgba(255,255,255,0.08)',
@@ -61,9 +61,9 @@ export default function PriceChart({ tokenId, marketQuestion }: PriceChartProps)
       });
 
 const series = chart.addSeries('Area' as unknown as Parameters<typeof chart.addSeries>[0], {
-        lineColor: '#ff4500',
-        topColor: 'rgba(255,69,0,0.18)',
-        bottomColor: 'rgba(255,69,0,0.01)',
+        lineColor: '#7c3aed',
+        topColor: 'rgba(124,58,237,0.18)',
+        bottomColor: 'rgba(124,58,237,0.01)',
         lineWidth: 2,
       });
 
@@ -138,7 +138,7 @@ const series = chart.addSeries('Area' as unknown as Parameters<typeof chart.addS
       <div className="flex items-center justify-between px-4 py-3 border-b"
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
         <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
-          {'Price History'} <span style={{ color: '#ff4500' }}>{'// Chart'}</span>
+          {'Price History'} <span style={{ color: '#7c3aed' }}>{'// Chart'}</span>
         </span>
         <div className="flex items-center gap-1">
           {RANGES.map((r) => (
@@ -147,8 +147,8 @@ const series = chart.addSeries('Area' as unknown as Parameters<typeof chart.addS
               onClick={() => setRange(r.value)}
               className="font-terminal text-[10px] tracking-widest uppercase px-2 py-1 transition-colors"
               style={{
-                color: range === r.value ? '#ff4500' : '#555',
-                backgroundColor: range === r.value ? 'rgba(255,69,0,0.1)' : 'transparent',
+                color: range === r.value ? '#7c3aed' : '#555',
+                backgroundColor: range === r.value ? 'rgba(124,58,237,0.1)' : 'transparent',
                 borderRadius: 0,
               }}
             >
@@ -162,7 +162,7 @@ const series = chart.addSeries('Area' as unknown as Parameters<typeof chart.addS
       {currentPrice !== null && (
         <div className="flex items-center gap-4 px-4 pt-3">
           <span className="text-2xl font-terminal font-bold"
-            style={{ color: '#ff4500', textShadow: '0 0 12px rgba(255,69,0,0.3)' }}>
+            style={{ color: '#7c3aed', textShadow: '0 0 12px rgba(124,58,237,0.3)' }}>
             {currentPrice.toFixed(1)}%
           </span>
           {priceChange !== null && (

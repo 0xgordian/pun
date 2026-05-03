@@ -368,7 +368,7 @@ Add after the existing scrollbar styles:
 ```css
 /* Accessible focus ring — replaces suppressed browser default */
 :focus-visible {
-  outline: 2px solid #ff4500 !important;
+  outline: 2px solid #7c3aed !important;
   outline-offset: 2px;
 }
 

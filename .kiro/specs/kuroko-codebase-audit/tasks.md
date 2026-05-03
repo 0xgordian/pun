@@ -66,5 +66,5 @@
   - [x] 13.3 Add `role="listitem"` to each bid/ask row
 
 - [x] 14. Add accessible focus ring styles
-  - [x] 14.1 Add `:focus-visible` CSS rule with `2px solid #ff4500` outline to `app/globals.css`
+  - [x] 14.1 Add `:focus-visible` CSS rule with `2px solid #7c3aed` outline to `app/globals.css`
   - [x] 14.2 Add `:focus:not(:focus-visible)` rule to suppress ring for mouse users

@@ -4,7 +4,7 @@
 
 Pun is a Next.js 14 AI-native trading terminal being ported from the Polymarket prediction market ecosystem to the Mantle blockchain (chain ID 5000) for submission to the Turing Test Hackathon 2026 (deadline June 15, 2026, prize pool $100,000). The codebase has been partially migrated — config, layout, and Mantle DeFi data services are already updated. This spec covers the remaining work to make the app fully submission-ready: fixing the TypeScript build error in the aomi proxy route, removing dead Polymarket code and files, updating the AI system prompt to Mantle context, updating the market cache refresh event, updating the markets route test, updating the polymarketData test file, and verifying the full app works end-to-end before Vercel deployment.
 
-The brutalist terminal UI design system (zero border-radius, `#ff4500` orange accent, `#0d0d0d` background, mono fonts) MUST be preserved throughout all changes.
+The brutalist terminal UI design system (zero border-radius, `#7c3aed` orange accent, `#0d0d0d` background, mono fonts) MUST be preserved throughout all changes.
 
 ## Glossary
 
@@ -159,7 +159,7 @@ The brutalist terminal UI design system (zero border-radius, `#ff4500` orange ac
 
 1. WHEN `npm run build` is executed, THE System SHALL complete without TypeScript errors or build failures.
 2. WHEN `npm test` is executed, THE System SHALL pass all Vitest tests.
-3. WHEN the app is loaded in a browser, THE System SHALL display the Pun terminal UI with the brutalist design system intact (zero border-radius, `#ff4500` orange accent, `#0d0d0d` background).
+3. WHEN the app is loaded in a browser, THE System SHALL display the Pun terminal UI with the brutalist design system intact (zero border-radius, `#7c3aed` orange accent, `#0d0d0d` background).
 4. WHEN the Markets page is loaded, THE System SHALL display Mantle ecosystem pools (mETH-USDC, MNT-USDC, USDY-USDC, mETH-MNT) from the Mantle_DeFi_Service.
 5. WHEN the AI chat is opened, THE System SHALL display the Pun welcome screen with Mantle-specific suggestion cards.
 6. WHEN a message is sent in the AI chat, THE System SHALL inject the Mantle system prompt and live pool context into the request.

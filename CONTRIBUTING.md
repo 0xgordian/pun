@@ -36,7 +36,7 @@ All UI changes must follow the design system in `.kiro/steering/ui-design-system
 
 - Zero `border-radius` on everything
 - Only colors from the defined palette — no Tailwind default color classes
-- `#ff4500` brand orange — never substitute another shade
+- `#7c3aed` brand orange — never substitute another shade
 - `panel-bracket` left accent on all panels
 - Mono font for all labels, numbers, badges
 

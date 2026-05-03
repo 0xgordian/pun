@@ -119,8 +119,8 @@ function MarketSelect({
             }}
           >
             <span className="truncate text-left flex-1">{m.question.slice(0, 60)}{m.question.length > 60 ? '…' : ''}</span>
-            <span className="shrink-0 font-bold" style={{ color: '#ff4500' }}>{m.currentProbability}%</span>
-            {value?.id === m.id && <Icon icon="solar:check-circle-linear" className="w-3.5 h-3.5 shrink-0" style={{ color: '#ff4500' }} />}
+            <span className="shrink-0 font-bold" style={{ color: '#7c3aed' }}>{m.currentProbability}%</span>
+            {value?.id === m.id && <Icon icon="solar:check-circle-linear" className="w-3.5 h-3.5 shrink-0" style={{ color: '#7c3aed' }} />}
           </button>
         ))}
       </PopoverContent>
@@ -241,8 +241,8 @@ function PortfolioContent() {
               onClick={() => setMobileTab(tab.id)}
               className="flex-1 flex items-center justify-center py-3 font-terminal text-[11px] font-bold tracking-widest uppercase transition-colors"
               style={{
-                color: mobileTab === tab.id ? '#ff4500' : '#555',
-                borderBottom: mobileTab === tab.id ? '2px solid #ff4500' : '2px solid transparent',
+                color: mobileTab === tab.id ? '#7c3aed' : '#555',
+                borderBottom: mobileTab === tab.id ? '2px solid #7c3aed' : '2px solid transparent',
                 backgroundColor: 'transparent',
               }}
             >
@@ -402,7 +402,7 @@ export default function PortfolioPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0d0d0d' }}>
-        <div className="w-6 h-6 border-2 border-[#ff4500]/30 border-t-[#ff4500] rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-[#7c3aed]/30 border-t-[#7c3aed] rounded-full animate-spin" />
       </div>
     }>
       <PortfolioContent />

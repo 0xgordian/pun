@@ -68,13 +68,13 @@ export default function TopNav({
                 key={link.href}
                 href={link.href}
                 className="font-terminal text-[11px] font-bold tracking-widest uppercase px-3 py-1.5 transition-all relative"
-                style={{ color: active ? '#ff4500' : '#555' }}
+                style={{ color: active ? '#7c3aed' : '#555' }}
                 onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = '#a0a0a0'; }}
                 onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = '#555'; }}
               >
                 {link.label}
                 {active && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ backgroundColor: '#ff4500' }} />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ backgroundColor: '#7c3aed' }} />
                 )}
               </Link>
             );
@@ -87,12 +87,12 @@ export default function TopNav({
             <span
               className="w-1.5 h-1.5 rounded-full"
               style={{
-                backgroundColor: isFallback ? '#f59e0b' : isLoadingMarkets ? '#444' : '#ff4500',
-                boxShadow: !isFallback && !isLoadingMarkets ? '0 0 6px rgba(255,69,0,0.6)' : 'none',
+                backgroundColor: isFallback ? '#f59e0b' : isLoadingMarkets ? '#444' : '#7c3aed',
+                boxShadow: !isFallback && !isLoadingMarkets ? '0 0 6px rgba(124,58,237,0.6)' : 'none',
               }}
             />
             <span className="font-terminal text-[10px] tracking-widest uppercase hidden md:block"
-              style={{ color: isFallback ? '#f59e0b' : isLoadingMarkets ? '#444' : '#ff4500' }}>
+              style={{ color: isFallback ? '#f59e0b' : isLoadingMarkets ? '#444' : '#7c3aed' }}>
               {isLoadingMarkets ? 'Loading' : isFallback ? 'Fallback' : 'Live'}
             </span>
             <span className="hidden md:block font-terminal text-[10px]" style={{ color: '#2a2a2a' }}>|</span>
@@ -130,13 +130,13 @@ export default function TopNav({
               onClick={onConnectWallet}
               className="hidden sm:flex items-center gap-1.5 px-3 py-1 border font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
               style={{
-                borderColor: '#ff4500',
-                color: '#ff4500',
-                backgroundColor: 'rgba(255,69,0,0.08)',
+                borderColor: '#7c3aed',
+                color: '#7c3aed',
+                backgroundColor: 'rgba(124,58,237,0.08)',
                 borderRadius: 0,
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,69,0,0.18)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,69,0,0.08)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.18)'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.08)'; }}
             >
               Connect Wallet
             </button>
@@ -149,9 +149,9 @@ export default function TopNav({
               title={aiPanelOpen ? 'Hide AI panel' : 'Show AI panel'}
               className="hidden sm:flex items-center gap-1.5 px-2 py-1 border font-terminal text-[10px] tracking-widest uppercase transition-all"
               style={{
-                borderColor: aiPanelOpen ? 'rgba(255,69,0,0.5)' : 'rgba(255,255,255,0.12)',
-                color: aiPanelOpen ? '#ff4500' : '#555',
-                backgroundColor: aiPanelOpen ? 'rgba(255,69,0,0.08)' : 'transparent',
+                borderColor: aiPanelOpen ? 'rgba(124,58,237,0.5)' : 'rgba(255,255,255,0.12)',
+                color: aiPanelOpen ? '#7c3aed' : '#555',
+                backgroundColor: aiPanelOpen ? 'rgba(124,58,237,0.08)' : 'transparent',
                 borderRadius: 0,
               }}
               onMouseEnter={(e) => {
@@ -182,9 +182,9 @@ export default function TopNav({
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#ff4500' : '#a0a0a0' }} />
-            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#ff4500' : '#a0a0a0' }} />
-            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#ff4500' : '#a0a0a0' }} />
+            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : '#a0a0a0' }} />
+            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : '#a0a0a0' }} />
+            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : '#a0a0a0' }} />
           </button>
         </div>
       </div>
@@ -206,13 +206,13 @@ export default function TopNav({
                   onClick={() => setMobileMenuOpen(false)}
                   className="font-terminal text-[11px] font-bold tracking-widest uppercase px-4 py-3 border-b flex items-center justify-between"
                   style={{
-                    color: active ? '#ff4500' : '#a0a0a0',
+                    color: active ? '#7c3aed' : '#a0a0a0',
                     borderColor: 'rgba(255,255,255,0.06)',
-                    backgroundColor: active ? 'rgba(255,69,0,0.05)' : 'transparent',
+                    backgroundColor: active ? 'rgba(124,58,237,0.05)' : 'transparent',
                   }}
                 >
                   {link.label}
-                  {active && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#ff4500' }} />}
+                  {active && <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#7c3aed' }} />}
                 </Link>
               );
             })}
@@ -220,9 +220,9 @@ export default function TopNav({
           {/* Status row */}
           <div className="flex items-center gap-3 px-4 py-2.5">
             <span className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: isFallback ? '#f59e0b' : '#ff4500' }} />
+              style={{ backgroundColor: isFallback ? '#f59e0b' : '#7c3aed' }} />
             <span className="font-terminal text-[10px] tracking-widest uppercase"
-              style={{ color: isFallback ? '#f59e0b' : '#ff4500' }}>
+              style={{ color: isFallback ? '#f59e0b' : '#7c3aed' }}>
               {isFallback ? 'Fallback' : 'Live'}
             </span>
             <span className="font-terminal text-[10px]" style={{ color: '#2a2a2a' }}>·</span>
@@ -254,13 +254,13 @@ export default function TopNav({
                 onClick={() => { onConnectWallet(); setMobileMenuOpen(false); }}
                 className="w-full py-2.5 border font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
                 style={{
-                  borderColor: '#ff4500',
-                  color: '#ff4500',
-                  backgroundColor: 'rgba(255,69,0,0.08)',
+                  borderColor: '#7c3aed',
+                  color: '#7c3aed',
+                  backgroundColor: 'rgba(124,58,237,0.08)',
                   borderRadius: 0,
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,69,0,0.18)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255,69,0,0.08)'; }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.18)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.08)'; }}
               >
                 Connect Wallet
               </button>

@@ -139,7 +139,7 @@ Full sweep of all 152 files in the codebase covering:
 
 **Problem:** `outline-none` suppressed browser focus rings with no replacement — keyboard navigation was invisible.
 
-**Fix:** Added `:focus-visible { outline: 2px solid #ff4500; outline-offset: 2px; }` — shows brand orange ring for keyboard users, hidden for mouse users via `:focus:not(:focus-visible)`.
+**Fix:** Added `:focus-visible { outline: 2px solid #7c3aed; outline-offset: 2px; }` — shows brand orange ring for keyboard users, hidden for mouse users via `:focus:not(:focus-visible)`.
 
 ---
 
