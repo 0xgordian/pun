@@ -13,9 +13,7 @@ interface TopNavProps {
   rightSlot?: React.ReactNode;
   onToggleAI?: () => void;
   aiPanelOpen?: boolean;
-  /** When provided, shows a Connect Wallet button in the nav (used on AI page) */
   onConnectWallet?: () => void;
-  /** When provided, wallet address is clickable and opens Para account management */
   onManageWallet?: () => void;
 }
 
@@ -45,158 +43,184 @@ export default function TopNav({
   return (
     <div
       className="fixed top-0 left-0 right-0 z-50 border-b"
-      style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000' }}
+      style={{
+        borderColor: 'rgba(255,255,255,0.06)',
+        backgroundColor: 'rgba(0,0,0,0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+      }}
     >
-      <div className="relative max-w-[1400px] mx-auto px-4 h-12 flex items-center">
+      <div className="relative max-w-[1400px] mx-auto px-6 h-14 flex items-center gap-8">
 
         {/* LEFT — Logo */}
         <div className="flex items-center gap-2 shrink-0">
-          <span className="font-terminal text-sm font-bold tracking-tight hidden sm:block" style={{ color: '#f0f0f0' }}>
-            PUN
-          </span>
-          <span className="font-terminal text-xs font-bold tracking-tight sm:hidden" style={{ color: '#f0f0f0' }}>
-            PUN
+          <span
+            className="text-base font-extrabold tracking-tight"
+            style={{ color: '#ffffff', fontFamily: 'var(--font-sans)', letterSpacing: '-0.02em' }}
+          >
+            Pun
           </span>
         </div>
 
-        {/* CENTER — Nav links (absolutely centered, desktop only) */}
-        <nav className="absolute left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-1">
+        {/* CENTER — Nav links */}
+        <nav className="hidden sm:flex items-center gap-1 flex-1 justify-center">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-terminal text-[11px] font-bold tracking-widest uppercase px-3 py-1.5 transition-all relative"
-                style={{ color: active ? '#7c3aed' : '#555' }}
-                onMouseEnter={(e) => { if (!active) e.currentTarget.style.color = '#a0a0a0'; }}
-                onMouseLeave={(e) => { if (!active) e.currentTarget.style.color = '#555'; }}
+                className="text-sm font-medium px-3 py-1.5 rounded-md transition-all"
+                style={{
+                  color: active ? '#ffffff' : 'rgba(255,255,255,0.5)',
+                  backgroundColor: active ? 'rgba(255,255,255,0.08)' : 'transparent',
+                  fontFamily: 'var(--font-sans)',
+                }}
+                onMouseEnter={(e) => {
+                  if (!active) {
+                    e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+                    e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!active) {
+                    e.currentTarget.style.color = 'rgba(255,255,255,0.5)';
+                    e.currentTarget.style.backgroundColor = 'transparent';
+                  }
+                }}
               >
                 {link.label}
-                {active && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px]" style={{ backgroundColor: '#7c3aed' }} />
-                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* RIGHT — Status + wallet (desktop) */}
-        <div className="ml-auto flex items-center gap-2 shrink-0">
-          <div className="hidden sm:flex items-center gap-2">
+        {/* RIGHT — Status + wallet */}
+        <div className="ml-auto flex items-center gap-3 shrink-0">
+
+          {/* Live status pill */}
+          <div
+            className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.08)',
+              color: isFallback ? '#f59e0b' : isLoadingMarkets ? '#666' : '#7c3aed',
+              fontFamily: 'var(--font-sans)',
+            }}
+          >
             <span
               className="w-1.5 h-1.5 rounded-full"
               style={{
                 backgroundColor: isFallback ? '#f59e0b' : isLoadingMarkets ? '#444' : '#7c3aed',
-                boxShadow: !isFallback && !isLoadingMarkets ? '0 0 6px rgba(124,58,237,0.6)' : 'none',
+                boxShadow: !isFallback && !isLoadingMarkets ? '0 0 6px rgba(124,58,237,0.8)' : 'none',
               }}
             />
-            <span className="font-terminal text-[10px] tracking-widest uppercase hidden md:block"
-              style={{ color: isFallback ? '#f59e0b' : isLoadingMarkets ? '#444' : '#7c3aed' }}>
-              {isLoadingMarkets ? 'Loading' : isFallback ? 'Fallback' : 'Live'}
-            </span>
-            <span className="hidden md:block font-terminal text-[10px]" style={{ color: '#2a2a2a' }}>|</span>
-            <span className="hidden md:block font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#444' }}>
-              {liveModeLabel}
-            </span>
-            {isWalletConnected && walletAddress && (
-              <>
-                <span className="hidden md:block font-terminal text-[10px]" style={{ color: '#2a2a2a' }}>|</span>
-                {onManageWallet ? (
-                  <button
-                    onClick={onManageWallet}
-                    className="font-terminal text-[10px] tracking-widest uppercase transition-colors"
-                    style={{ color: '#4ade80', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#86efac'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#4ade80'; }}
-                    aria-label="Manage wallet"
-                  >
-                    ● {walletAddress.slice(0, 6)}…{walletAddress.slice(-4)}
-                  </button>
-                ) : (
-                  <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#4ade80' }}>
-                    ● {walletAddress.slice(0, 6)}…{walletAddress.slice(-4)}
-                  </span>
-                )}
-              </>
-            )}
+            {isLoadingMarkets ? 'Loading' : isFallback ? 'Fallback' : 'Live'}
           </div>
+
+          {/* Wallet address */}
+          {isWalletConnected && walletAddress && (
+            onManageWallet ? (
+              <button
+                onClick={onManageWallet}
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all"
+                style={{
+                  backgroundColor: 'rgba(74,222,128,0.1)',
+                  border: '1px solid rgba(74,222,128,0.2)',
+                  color: '#4ade80',
+                  fontFamily: 'var(--font-sans)',
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(74,222,128,0.18)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(74,222,128,0.1)'; }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#4ade80' }} />
+                {walletAddress.slice(0, 6)}…{walletAddress.slice(-4)}
+              </button>
+            ) : (
+              <span
+                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold"
+                style={{
+                  backgroundColor: 'rgba(74,222,128,0.1)',
+                  border: '1px solid rgba(74,222,128,0.2)',
+                  color: '#4ade80',
+                  fontFamily: 'var(--font-sans)',
+                }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: '#4ade80' }} />
+                {walletAddress.slice(0, 6)}…{walletAddress.slice(-4)}
+              </span>
+            )
+          )}
 
           {rightSlot}
 
-          {/* Connect Wallet CTA — shown on AI page when not connected */}
+          {/* Connect Wallet CTA */}
           {onConnectWallet && !isWalletConnected && (
             <button
               onClick={onConnectWallet}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1 border font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all"
               style={{
-                borderColor: '#7c3aed',
-                color: '#7c3aed',
-                backgroundColor: 'rgba(124,58,237,0.08)',
-                borderRadius: 0,
+                backgroundColor: '#7c3aed',
+                color: '#ffffff',
+                fontFamily: 'var(--font-sans)',
+                border: 'none',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.18)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.08)'; }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#7c3aed'; }}
             >
               Connect Wallet
             </button>
           )}
 
-          {/* AI panel toggle — only shown when onToggleAI is provided (trade page) */}
+          {/* AI panel toggle */}
           {onToggleAI && (
             <button
               onClick={onToggleAI}
               title={aiPanelOpen ? 'Hide AI panel' : 'Show AI panel'}
-              className="hidden sm:flex items-center gap-1.5 px-2 py-1 border font-terminal text-[10px] tracking-widest uppercase transition-all"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all"
               style={{
-                borderColor: aiPanelOpen ? 'rgba(124,58,237,0.5)' : 'rgba(255,255,255,0.12)',
-                color: aiPanelOpen ? '#7c3aed' : '#555',
-                backgroundColor: aiPanelOpen ? 'rgba(124,58,237,0.08)' : 'transparent',
-                borderRadius: 0,
+                backgroundColor: aiPanelOpen ? 'rgba(124,58,237,0.15)' : 'rgba(255,255,255,0.06)',
+                border: `1px solid ${aiPanelOpen ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)'}`,
+                color: aiPanelOpen ? '#a78bfa' : 'rgba(255,255,255,0.5)',
+                fontFamily: 'var(--font-sans)',
               }}
               onMouseEnter={(e) => {
                 if (!aiPanelOpen) {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)';
-                  e.currentTarget.style.color = '#a0a0a0';
+                  e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)';
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!aiPanelOpen) {
-                  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
-                  e.currentTarget.style.color = '#555';
+                  e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.06)';
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.5)';
                 }
               }}
             >
-              {/* Simple panel icon — two vertical bars */}
-              <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none">
-                <rect x="1" y="2" width="5" height="12" rx="0" stroke="currentColor" strokeWidth="1.5" />
-                <rect x="9" y="2" width="6" height="12" rx="0" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-              <span>Agent</span>
+              Agent
             </button>
           )}
 
           {/* Mobile hamburger */}
           <button
-            className="sm:hidden flex flex-col gap-1 p-3 ml-1 min-w-[44px] min-h-[44px] items-center justify-center"
+            className="sm:hidden flex flex-col gap-1.5 p-2 items-center justify-center"
             onClick={() => setMobileMenuOpen((v) => !v)}
             aria-label="Toggle menu"
           >
-            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : '#a0a0a0' }} />
-            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : '#a0a0a0' }} />
-            <span className="w-4 h-[1.5px]" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : '#a0a0a0' }} />
+            <span className="w-5 h-[1.5px] rounded-full" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : 'rgba(255,255,255,0.6)' }} />
+            <span className="w-5 h-[1.5px] rounded-full" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : 'rgba(255,255,255,0.6)' }} />
+            <span className="w-5 h-[1.5px] rounded-full" style={{ backgroundColor: mobileMenuOpen ? '#7c3aed' : 'rgba(255,255,255,0.6)' }} />
           </button>
         </div>
       </div>
 
-      {/* Mobile dropdown menu */}
+      {/* Mobile dropdown */}
       {mobileMenuOpen && (
         <div
           className="sm:hidden border-t"
-          style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000' }}
+          style={{ borderColor: 'rgba(255,255,255,0.06)', backgroundColor: '#000000' }}
         >
-          {/* Nav links */}
-          <div className="flex flex-col">
+          <div className="flex flex-col px-4 py-3 gap-1">
             {NAV_LINKS.map((link) => {
               const active = pathname === link.href;
               return (
@@ -204,11 +228,11 @@ export default function TopNav({
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-terminal text-[11px] font-bold tracking-widest uppercase px-4 py-3 border-b flex items-center justify-between"
+                  className="text-sm font-medium px-3 py-2.5 rounded-lg flex items-center justify-between"
                   style={{
-                    color: active ? '#7c3aed' : '#a0a0a0',
-                    borderColor: 'rgba(255,255,255,0.06)',
-                    backgroundColor: active ? 'rgba(124,58,237,0.05)' : 'transparent',
+                    color: active ? '#ffffff' : 'rgba(255,255,255,0.6)',
+                    backgroundColor: active ? 'rgba(124,58,237,0.12)' : 'transparent',
+                    fontFamily: 'var(--font-sans)',
                   }}
                 >
                   {link.label}
@@ -217,50 +241,13 @@ export default function TopNav({
               );
             })}
           </div>
-          {/* Status row */}
-          <div className="flex items-center gap-3 px-4 py-2.5">
-            <span className="w-1.5 h-1.5 rounded-full"
-              style={{ backgroundColor: isFallback ? '#f59e0b' : '#7c3aed' }} />
-            <span className="font-terminal text-[10px] tracking-widest uppercase"
-              style={{ color: isFallback ? '#f59e0b' : '#7c3aed' }}>
-              {isFallback ? 'Fallback' : 'Live'}
-            </span>
-            <span className="font-terminal text-[10px]" style={{ color: '#2a2a2a' }}>·</span>
-            <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#444' }}>
-              {liveModeLabel}
-            </span>
-            {isWalletConnected && walletAddress && (
-              <span className="font-terminal text-[10px] ml-auto" style={{ color: '#4ade80' }}>
-                {onManageWallet ? (
-                  <button
-                    onClick={onManageWallet}
-                    style={{ color: '#4ade80', background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit', fontSize: 'inherit', letterSpacing: 'inherit', textTransform: 'inherit' }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#86efac'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#4ade80'; }}
-                  >
-                    ● {walletAddress.slice(0, 6)}…{walletAddress.slice(-4)}
-                  </button>
-                ) : (
-                  <>● {walletAddress.slice(0, 6)}…{walletAddress.slice(-4)}</>
-                )}
-              </span>
-            )}
-          </div>
 
-          {/* Mobile wallet connect / manage */}
           {onConnectWallet && !isWalletConnected && (
-            <div className="px-4 pb-3">
+            <div className="px-4 pb-4">
               <button
                 onClick={() => { onConnectWallet(); setMobileMenuOpen(false); }}
-                className="w-full py-2.5 border font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
-                style={{
-                  borderColor: '#7c3aed',
-                  color: '#7c3aed',
-                  backgroundColor: 'rgba(124,58,237,0.08)',
-                  borderRadius: 0,
-                }}
-                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.18)'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(124,58,237,0.08)'; }}
+                className="w-full py-3 rounded-full text-sm font-semibold"
+                style={{ backgroundColor: '#7c3aed', color: '#ffffff', fontFamily: 'var(--font-sans)' }}
               >
                 Connect Wallet
               </button>

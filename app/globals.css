@@ -2,26 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Design tokens ───────────────────────────────────────────────────────── */
+/* ── Kiro Design System ──────────────────────────────────────────────────── */
 :root {
-  /* Colors */
+  /* Backgrounds — Kiro uses pure black with subtle layering */
   --background: #000000;
-  --foreground: #ffffff;
-  --panel: #111111;
-  --panel-hover: #1a1a1a;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  --surface-1: #0a0a0a;   /* slightly lifted surface */
+  --surface-2: #111111;   /* card background */
+  --surface-3: #1a1a1a;   /* hover state */
 
-  /* Brand */
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.12);
+  --border-active: rgba(255, 255, 255, 0.18);
+
+  /* Brand — Kiro purple */
   --brand: #7c3aed;
   --brand-hover: #8b5cf6;
-  --brand-dim: rgba(124, 58, 237, 0.15);
-  --brand-glow: rgba(124, 58, 237, 0.4);
+  --brand-light: #a78bfa;
+  --brand-dim: rgba(124, 58, 237, 0.12);
+  --brand-glow: rgba(124, 58, 237, 0.5);
 
-  /* Text */
+  /* Text — Kiro uses high contrast white with grey secondaries */
   --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-tertiary: #555555;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-tertiary: rgba(255, 255, 255, 0.3);
+  --text-muted: rgba(255, 255, 255, 0.15);
 
   /* Status */
   --positive: #4ade80;
@@ -32,11 +37,17 @@
   --font-sans: var(--font-sans, 'Plus Jakarta Sans'), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Radius — Kiro uses rounded corners */
-  --radius-sm: 6px;
+  /* Radius — Kiro uses generous rounding */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
   --radius: 12px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-brand: 0 0 20px rgba(124, 58, 237, 0.15);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 /* ── Reset ───────────────────────────────────────────────────────────────── */
@@ -46,30 +57,128 @@
   padding: 0;
 }
 
-/* ── Base ────────────────────────────────────────────────────────────────── */
 html {
   background: var(--background);
+  color-scheme: dark;
 }
 
+/* ── Base typography — Kiro style ────────────────────────────────────────── */
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   font-size: 15px;
   line-height: 1.6;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Typography ──────────────────────────────────────────────────────────── */
+/* Kiro headings — heavy weight, tight tracking */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-sans);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   color: var(--text-primary);
 }
 
-/* Mono / terminal labels */
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h3 { font-size: 1.25rem; font-weight: 700; }
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--brand-light);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+/* ── Kiro card / panel system ────────────────────────────────────────────── */
+.panel-bracket {
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.panel-bracket:hover {
+  border-color: var(--border-hover);
+  background-color: var(--surface-3);
+}
+
+/* Highlighted / active panel */
+.panel-strong {
+  border-color: rgba(124, 58, 237, 0.35) !important;
+  box-shadow: var(--shadow-brand);
+}
+
+@keyframes pulse-brand {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.panel-strong-pulse {
+  animation: pulse-brand 2.5s ease-in-out infinite;
+}
+
+/* ── Kiro button styles ──────────────────────────────────────────────────── */
+/* Primary — purple pill */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--brand);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--brand-hover);
+  transform: translateY(-1px);
+}
+
+/* Secondary — outlined pill */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── Mono / terminal labels (kept for data display) ──────────────────────── */
 .font-terminal {
   font-family: var(--font-mono);
   letter-spacing: 0.05em;
@@ -85,41 +194,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .t-label-accent {
-  color: var(--brand);
+  color: var(--brand-light);
 }
 
-/* ── Panel / card system ─────────────────────────────────────────────────── */
-.panel-bracket {
-  background-color: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: border-color 0.15s ease, background-color 0.15s ease;
-}
-
-.panel-bracket:hover {
-  border-color: rgba(124, 58, 237, 0.25);
-  background-color: var(--panel-hover);
-}
-
-/* Strong / highlighted panel */
-.panel-strong {
-  border-color: rgba(124, 58, 237, 0.4) !important;
-  box-shadow: 0 0 24px rgba(124, 58, 237, 0.08);
-}
-
-@keyframes pulse-brand {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-.panel-strong-pulse {
-  animation: pulse-brand 2.5s ease-in-out infinite;
-}
-
-/* ── Brand glow ──────────────────────────────────────────────────────────── */
+/* ── Glow effect ─────────────────────────────────────────────────────────── */
 .orange-glow {
-  color: var(--brand);
-  text-shadow: 0 0 12px var(--brand-glow);
+  color: var(--brand-light);
+  text-shadow: 0 0 16px var(--brand-glow);
 }
 
 /* ── Text utilities ──────────────────────────────────────────────────────── */
@@ -127,11 +208,32 @@ h1, h2, h3, h4, h5, h6 {
 .text-text-secondary { color: var(--text-secondary); }
 .text-text-tertiary  { color: var(--text-tertiary); }
 
+/* ── Kiro-style pill badge ───────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+.badge-brand {
+  background: var(--brand-dim);
+  border-color: rgba(124, 58, 237, 0.25);
+  color: var(--brand-light);
+}
+
 /* ── Accessibility ───────────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--brand) !important;
+  outline: 2px solid var(--brand);
   outline-offset: 2px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 :focus:not(:focus-visible) {
@@ -139,37 +241,66 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Scrollbar ───────────────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.15); }
 
 /* ── Animations ──────────────────────────────────────────────────────────── */
 @keyframes spin { to { transform: rotate(360deg); } }
 .animate-spin { animation: spin 1s linear infinite; }
 
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in { animation: fade-in 0.2s ease forwards; }
+
 /* ── Para Wallet Modal ───────────────────────────────────────────────────── */
 [class*="para-modal-overlay"],
 [class*="ParaModal-overlay"],
 [class*="para-overlay"] {
-  background: rgba(0, 0, 0, 0.9) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
 }
 
 [class*="para-modal-content"],
 [class*="ParaModal-content"],
 [class*="para-content"] {
-  background: #111 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
-  border-radius: var(--radius) !important;
-  color: #f0f0f0 !important;
+  background: var(--surface-2) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius-lg) !important;
+  color: var(--text-primary) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8) !important;
 }
 
 .para-sdk span, .para-sdk p, .para-sdk div, .para-sdk button, .para-sdk a,
 [id*="para-"] span, [id*="para-"] p, [id*="para-"] div, [id*="para-"] button,
 [data-para-modal] span, [data-para-modal] p, [data-para-modal] div, [data-para-modal] button,
 div[class*="psdk"] span, div[class*="psdk"] p, div[class*="psdk"] div, div[class*="psdk"] button {
-  color: #f0f0f0 !important;
-  fill: #f0f0f0 !important;
+  color: var(--text-primary) !important;
+  fill: var(--text-primary) !important;
+}
+
+/* ── Kiro-style input ────────────────────────────────────────────────────── */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  transition: border-color 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: rgba(124, 58, 237, 0.5);
+  outline: none;
 }
