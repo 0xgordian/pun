@@ -86,7 +86,7 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
           placeholder="Search markets or ask a question..."
           className="w-full text-sm border px-3 py-3 pr-20 transition-colors focus:outline-none"
           style={{
-            backgroundColor: '#0d0d0d',
+            backgroundColor: '#000000',
             borderColor: 'rgba(255,255,255,0.12)',
             color: '#f0f0f0',
             borderRadius: 0,

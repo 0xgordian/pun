@@ -45,7 +45,7 @@ export default function TopNav({
   return (
     <div
       className="fixed top-0 left-0 right-0 z-50 border-b"
-      style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#0d0d0d' }}
+      style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000' }}
     >
       <div className="relative max-w-[1400px] mx-auto px-4 h-12 flex items-center">
 
@@ -193,7 +193,7 @@ export default function TopNav({
       {mobileMenuOpen && (
         <div
           className="sm:hidden border-t"
-          style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#0d0d0d' }}
+          style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000' }}
         >
           {/* Nav links */}
           <div className="flex flex-col">

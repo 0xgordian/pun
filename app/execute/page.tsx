@@ -375,7 +375,7 @@ function ExecuteContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col pt-12 pb-16 lg:pb-0" style={{ backgroundColor: '#0d0d0d' }}>
+    <div className="min-h-screen flex flex-col pt-12 pb-16 lg:pb-0" style={{ backgroundColor: '#000000' }}>
       <TopNav
         isFallback={isFallback}
         isLoadingMarkets={loadingMarkets}
@@ -753,7 +753,7 @@ function ExecuteContent() {
 export default function ExecutePage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0d0d0d' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#000000' }}>
         <div className="w-6 h-6 border-2 border-[#7c3aed]/30 border-t-[#7c3aed] rounded-full animate-spin" />
       </div>
     }>

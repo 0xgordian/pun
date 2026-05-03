@@ -10,13 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        terminal: ['Geist Mono', 'JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
-        sans: ['Geist', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'system-ui', 'sans-serif'],
+        terminal: ['var(--font-mono)', 'JetBrains Mono', 'Fira Code', 'Courier New', 'monospace'],
+        sans: ['var(--font-sans)', 'Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'Fira Code', 'monospace'],
       },
       colors: {
-        border: 'rgba(255,255,255,0.10)',
-        background: '#0d0d0d',
-        foreground: '#f0f0f0',
+        border: 'rgba(255,255,255,0.08)',
+        background: '#000000',
+        foreground: '#ffffff',
         sidebar: {
           DEFAULT: '#0d0d0d',
           foreground: '#a0a0a0',

@@ -133,7 +133,7 @@ export default function PositionGuardPanel({ markets }: PositionGuardPanelProps)
         {/* Add guard form */}
         {showForm && (
           <div className="border p-3 space-y-3"
-            style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#0d0d0d', borderRadius: 0 }}>
+            style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000', borderRadius: 0 }}>
             <p className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
               New Guard
             </p>
@@ -229,7 +229,7 @@ export default function PositionGuardPanel({ markets }: PositionGuardPanelProps)
                 <div key={guard.id} className="border p-3 space-y-2"
                   style={{
                     borderColor: analysis?.action !== 'HOLD' ? actionCfg.border : 'rgba(255,255,255,0.08)',
-                    backgroundColor: analysis?.action !== 'HOLD' ? actionCfg.bg : '#0d0d0d',
+                    backgroundColor: analysis?.action !== 'HOLD' ? actionCfg.bg : '#000000',
                     borderRadius: 0,
                     opacity: guard.active ? 1 : 0.5,
                   }}>

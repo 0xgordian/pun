@@ -252,7 +252,7 @@ export default function EdgeResults({ result, isLoading, isQuerying, onProposeBe
     <div className="space-y-4">
       {/* Summary card */}
       <div className="border panel-bracket p-3 space-y-1"
-        style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+        style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
         <p className="font-terminal text-[10px] tracking-wider" style={{ color: '#555' }}>
           QUERY: <span style={{ color: '#a0a0a0' }}>{result.query}</span>
         </p>

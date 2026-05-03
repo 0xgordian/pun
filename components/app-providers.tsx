@@ -146,7 +146,7 @@ export function AppProviders({ children }: PropsWithChildren<{}>) {
             theme: {
               mode: 'dark',
               foregroundColor: '#f0f0f0',
-              backgroundColor: '#111111',
+              backgroundColor: '#111',
               accentColor: '#7c3aed',
               borderRadius: 'none',
               customPalette: {
@@ -169,7 +169,7 @@ export function AppProviders({ children }: PropsWithChildren<{}>) {
                 },
                 input: {
                   surface: {
-                    default: '#0d0d0d',
+                    default: '#000000',
                   },
                   border: {
                     placeholder: 'rgba(255,255,255,0.15)',
@@ -185,7 +185,7 @@ export function AppProviders({ children }: PropsWithChildren<{}>) {
                 },
                 modal: {
                   surface: {
-                    main: '#111111',
+                    main: '#111',
                   },
                 },
               },

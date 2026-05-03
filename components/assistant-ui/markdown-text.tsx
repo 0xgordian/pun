@@ -39,7 +39,7 @@ const CodeHeader: FC<CodeHeaderProps> = ({ language, code }) => {
   return (
     <div
       className="flex items-center justify-between px-3 py-1.5 border-b"
-      style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,255,255,0.08)' }}
+      style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.08)' }}
     >
       <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#7c3aed' }}>
         {language ?? 'code'}
@@ -159,7 +159,7 @@ const defaultComponents = memoizeMarkdownComponents({
     >
       <table
         className={cn("w-full text-xs border-collapse", className)}
-        style={{ backgroundColor: '#0d0d0d' }}
+        style={{ backgroundColor: '#000000' }}
         {...props}
       />
     </div>
@@ -213,7 +213,7 @@ const defaultComponents = memoizeMarkdownComponents({
     <pre
       className={cn("overflow-x-auto border my-2 text-xs leading-relaxed", className)}
       style={{
-        backgroundColor: '#0d0d0d',
+        backgroundColor: '#000000',
         borderColor: 'rgba(255,255,255,0.08)',
         borderRadius: 0,
         color: '#a0a0a0',

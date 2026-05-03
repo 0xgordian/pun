@@ -2,163 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design tokens ───────────────────────────────────────────────────────── */
 :root {
-  --background: #0d0d0d;
-  --foreground: #ededed;
-  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), 'JetBrains Mono', 'Fira Code', monospace;
+  /* Colors */
+  --background: #000000;
+  --foreground: #ffffff;
+  --panel: #111111;
+  --panel-hover: #1a1a1a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+
+  /* Brand */
   --brand: #7c3aed;
+  --brand-hover: #8b5cf6;
   --brand-dim: rgba(124, 58, 237, 0.15);
-  --border: #1a1a1a;
-  --panel: #0f0f0f;
-  --text-primary: #ededed;
-  --text-secondary: #999999;
-  --text-tertiary: #666666;
+  --brand-glow: rgba(124, 58, 237, 0.4);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-tertiary: #555555;
+
+  /* Status */
+  --positive: #4ade80;
+  --negative: #f87171;
+  --warning: #f59e0b;
+
+  /* Fonts */
+  --font-sans: var(--font-sans, 'Plus Jakarta Sans'), -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Radius — Kiro uses rounded corners */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
 }
 
-* {
+/* ── Reset ───────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+html {
+  background: var(--background);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Typography ──────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Mono / terminal labels */
 .font-terminal {
   font-family: var(--font-mono);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
-.panel-bracket {
-  position: relative;
-  background-color: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 0;
-}
-
-.panel-bracket::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: -1px;
-  width: 8px;
-  height: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.panel-bracket::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  right: -1px;
-  width: 8px;
-  height: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.panel-bracket .corner-tr {
-  position: absolute;
-  top: -1px;
-  right: -1px;
-  width: 8px;
-  height: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.panel-bracket .corner-bl {
-  position: absolute;
-  bottom: -1px;
-  left: -1px;
-  width: 8px;
-  height: 8px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border-left: 1px solid rgba(255, 255, 255, 0.5);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.panel-bracket:hover::before,
-.panel-bracket:hover::after,
-.panel-bracket:hover .corner-tr,
-.panel-bracket:hover .corner-bl {
-  border-color: var(--brand);
-}
-
-.panel-bracket:hover::before,
-.panel-bracket:hover::after,
-.panel-bracket-left:hover::before,
-.panel-bracket-left:hover::after {
-  border-color: var(--brand);
-}
-
-/* Text utility classes using CSS variables */
-.text-text-primary {
-  color: var(--text-primary);
-}
-
-.text-text-secondary {
-  color: var(--text-secondary);
-}
-
-.text-text-tertiary {
-  color: var(--text-tertiary);
-}
-
-/* Accessibility — keyboard focus ring */
-:focus-visible {
-  outline: 2px solid #7c3aed !important;
-  outline-offset: 2px;
-}
-
-:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Animations */
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-/* Tailwind utility overrides for brutalist design */
 .t-label {
   font-family: var(--font-mono);
   font-size: 10px;
@@ -171,29 +88,67 @@ body {
   color: var(--brand);
 }
 
-.orange-glow {
-  color: var(--brand);
-  text-shadow: 0 0 8px rgba(124, 58, 237, 0.5);
+/* ── Panel / card system ─────────────────────────────────────────────────── */
+.panel-bracket {
+  background-color: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
-/* ── STRONG edge card glow ──────────────────────────────────────────────── */
+.panel-bracket:hover {
+  border-color: rgba(124, 58, 237, 0.25);
+  background-color: var(--panel-hover);
+}
+
+/* Strong / highlighted panel */
 .panel-strong {
-  border-left-color: #7c3aed !important;
-  box-shadow: inset 2px 0 12px rgba(255, 69, 0, 0.08);
+  border-color: rgba(124, 58, 237, 0.4) !important;
+  box-shadow: 0 0 24px rgba(124, 58, 237, 0.08);
 }
 
-/* ── Dim orange pulse on STRONG cards ──────────────────────────────────── */
-@keyframes pulse-orange {
+@keyframes pulse-brand {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.6; }
 }
 
 .panel-strong-pulse {
-  animation: pulse-orange 2.5s ease-in-out infinite;
+  animation: pulse-brand 2.5s ease-in-out infinite;
 }
 
-/* ── Para Wallet Modal Fix ──────────────────────────────────────────────── */
-/* Dark blurred overlay */
+/* ── Brand glow ──────────────────────────────────────────────────────────── */
+.orange-glow {
+  color: var(--brand);
+  text-shadow: 0 0 12px var(--brand-glow);
+}
+
+/* ── Text utilities ──────────────────────────────────────────────────────── */
+.text-text-primary   { color: var(--text-primary); }
+.text-text-secondary { color: var(--text-secondary); }
+.text-text-tertiary  { color: var(--text-tertiary); }
+
+/* ── Accessibility ───────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.02); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes spin { to { transform: rotate(360deg); } }
+.animate-spin { animation: spin 1s linear infinite; }
+
+/* ── Para Wallet Modal ───────────────────────────────────────────────────── */
 [class*="para-modal-overlay"],
 [class*="ParaModal-overlay"],
 [class*="para-overlay"] {
@@ -202,48 +157,19 @@ body {
   -webkit-backdrop-filter: blur(8px) !important;
 }
 
-/* Match modal content to your terminal design */
 [class*="para-modal-content"],
 [class*="ParaModal-content"],
 [class*="para-content"] {
   background: #111 !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: var(--radius) !important;
   color: #f0f0f0 !important;
 }
 
-/* Force ALL text inside Para modal to be light */
-.para-sdk span,
-.para-sdk p,
-.para-sdk div,
-.para-sdk button,
-.para-sdk a,
-.para-sdk svg,
-.para-sdk path,
-.para-sdk img,
-[id*="para-"] span,
-[id*="para-"] p,
-[id*="para-"] div,
-[id*="para-"] button,
-[id*="para-"] a,
-[id*="para-"] svg,
-[id*="para-"] path,
-[data-para-modal] span,
-[data-para-modal] p,
-[data-para-modal] div,
-[data-para-modal] button,
-[data-para-modal] a,
-[data-para-modal] svg,
-[data-para-modal] path,
-div[class*="psdk"] span,
-div[class*="psdk"] p,
-div[class*="psdk"] div,
-div[class*="psdk"] button,
-div[class*="psdk"] a,
-div[class*="psdk"] svg,
-div[class*="psdk"] path {
+.para-sdk span, .para-sdk p, .para-sdk div, .para-sdk button, .para-sdk a,
+[id*="para-"] span, [id*="para-"] p, [id*="para-"] div, [id*="para-"] button,
+[data-para-modal] span, [data-para-modal] p, [data-para-modal] div, [data-para-modal] button,
+div[class*="psdk"] span, div[class*="psdk"] p, div[class*="psdk"] div, div[class*="psdk"] button {
   color: #f0f0f0 !important;
   fill: #f0f0f0 !important;
-  stroke: #f0f0f0 !important;
-  text-shadow: none !important;
 }

@@ -158,7 +158,7 @@ export default function PositionPanel({ walletAddress = null, isConnected = fals
                   key={`${pos.market_id}-${i}`}
                   className="border p-3 space-y-2"
                   style={{
-                    backgroundColor: '#0d0d0d',
+                    backgroundColor: '#000000',
                     borderColor: 'rgba(255,255,255,0.08)',
                     borderRadius: 0,
                   }}

@@ -56,7 +56,7 @@ function FilterSelect<T extends string>({
       <PopoverTrigger asChild>
         <button
           className="w-full flex items-center justify-between gap-2 h-7 px-2.5 text-xs border transition-colors hover:border-white/20 hover:text-[#f0f0f0]"
-          style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', borderRadius: 0, fontFamily: MONO_FONT }}
+          style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', borderRadius: 0, fontFamily: MONO_FONT }}
         >
           <span className="truncate">{current?.label ?? value}</span>
           <Icon icon="solar:alt-arrow-down-linear" className="w-3 h-3 shrink-0 opacity-50" />
@@ -258,7 +258,7 @@ function MarketsContent() {
           placeholder="Filter markets..."
           className="w-full text-xs px-3 py-2 border outline-none"
           style={{
-            backgroundColor: '#0d0d0d',
+            backgroundColor: '#000000',
             borderColor: 'rgba(255,255,255,0.12)',
             color: '#f0f0f0',
             borderRadius: 0,
@@ -280,7 +280,7 @@ function MarketsContent() {
             onChange={(e) => setMinProb(Number(e.target.value))}
             className="w-full text-xs px-2 py-2 border outline-none font-terminal"
             style={{
-              backgroundColor: '#0d0d0d',
+              backgroundColor: '#000000',
               borderColor: 'rgba(255,255,255,0.12)',
               color: '#f0f0f0',
               borderRadius: 0,
@@ -296,7 +296,7 @@ function MarketsContent() {
             onChange={(e) => setMaxProb(Number(e.target.value))}
             className="w-full text-xs px-2 py-2 border outline-none font-terminal"
             style={{
-              backgroundColor: '#0d0d0d',
+              backgroundColor: '#000000',
               borderColor: 'rgba(255,255,255,0.12)',
               color: '#f0f0f0',
               borderRadius: 0,
@@ -338,7 +338,7 @@ function MarketsContent() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col pt-12 pb-16 lg:pb-0" style={{ backgroundColor: '#0d0d0d' }}>
+    <div className="min-h-screen flex flex-col pt-12 pb-16 lg:pb-0" style={{ backgroundColor: '#000000' }}>
       <TopNav
         isFallback={isFallback}
         isLoadingMarkets={isLoading}
@@ -598,7 +598,7 @@ function MarketCard({ market, onSetAlert }: { market: Market; onSetAlert: (m: Ma
 export default function MarketsPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0d0d0d' }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#000000' }}>
         <div className="w-6 h-6 border-2 border-[#7c3aed]/30 border-t-[#7c3aed] rounded-full animate-spin" />
       </div>
     }>

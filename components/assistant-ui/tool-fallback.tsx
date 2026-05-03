@@ -15,7 +15,7 @@ export const ToolFallback: ToolCallMessagePartComponent = ({
     <div
       className="aui-tool-fallback-root mb-3 flex w-full flex-col border"
       style={{
-        backgroundColor: '#0d0d0d',
+        backgroundColor: '#000000',
         borderColor: 'rgba(255,255,255,0.08)',
         borderRadius: 0,
         borderLeft: '3px solid rgba(124,58,237,0.4)',

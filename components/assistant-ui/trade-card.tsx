@@ -168,7 +168,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
               { label: 'Price', value: `${data.price}¢` },
               { label: 'Cost', value: `$${totalCost.toFixed(2)}` },
             ].map(({ label, value }) => (
-              <div key={label} className="border p-2" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div key={label} className="border p-2" style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-0.5" style={{ color: '#444' }}>{label}</p>
                 <p className="font-terminal text-xs font-bold" style={{ color: '#f0f0f0' }}>{value}</p>
               </div>
@@ -176,7 +176,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </div>
 
           {/* Payout */}
-          <div className="flex items-center justify-between border p-2.5" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(124,58,237,0.15)', borderRadius: 0 }}>
+          <div className="flex items-center justify-between border p-2.5" style={{ backgroundColor: '#000000', borderColor: 'rgba(124,58,237,0.15)', borderRadius: 0 }}>
             <div>
               <p className="font-terminal text-[9px] tracking-widest uppercase mb-0.5" style={{ color: '#444' }}>If Correct</p>
               <p className="font-terminal text-lg font-bold" style={{ color: '#7c3aed' }}>${estimatedPayout.toFixed(2)}</p>
@@ -252,7 +252,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
               { label: 'Entry Price', value: `${data.price}¢`, color: '#f0f0f0' },
               { label: 'Total Cost', value: `$${totalCost.toFixed(2)}`, color: '#f0f0f0' },
             ].map(({ label, value, color }) => (
-              <div key={label} className="border p-2.5" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div key={label} className="border p-2.5" style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-1" style={{ color: '#444' }}>{label}</p>
                 <p className="font-terminal text-sm font-bold" style={{ color }}>{value}</p>
               </div>
@@ -260,7 +260,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </div>
 
           {/* Payout highlight */}
-          <div className="border p-3" style={{ backgroundColor: '#0d0d0d', borderColor: 'rgba(124,58,237,0.2)', borderRadius: 0 }}>
+          <div className="border p-3" style={{ backgroundColor: '#000000', borderColor: 'rgba(124,58,237,0.2)', borderRadius: 0 }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-1" style={{ color: '#444' }}>If Correct</p>

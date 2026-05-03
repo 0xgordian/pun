@@ -19,7 +19,7 @@ export function MobileBottomNav() {
     <div
       className="fixed bottom-0 left-0 right-0 flex items-center justify-around border-t py-3 px-2 lg:hidden z-50"
       style={{
-        backgroundColor: '#0d0d0d',
+        backgroundColor: '#000000',
         borderColor: 'rgba(255,255,255,0.08)',
         zIndex: 50,
       }}

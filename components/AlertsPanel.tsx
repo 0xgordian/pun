@@ -163,7 +163,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
         {/* Add alert form */}
         {showForm && (
           <div className="border p-3 space-y-3"
-            style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#0d0d0d', borderRadius: 0 }}>
+            style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000', borderRadius: 0 }}>
             <p className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
               New Alert
             </p>
@@ -266,7 +266,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
           <div className="space-y-2">
             {activeAlerts.map((alert) => (
               <div key={alert.id} className="flex items-start justify-between gap-2 border p-2.5"
-                style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#0d0d0d', borderRadius: 0 }}>
+                style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000', borderRadius: 0 }}>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs line-clamp-1 mb-1" style={{ color: '#a0a0a0' }}>
                     {alert.marketQuestion}
@@ -305,7 +305,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
             <div className="space-y-1.5">
               {triggeredAlerts.slice(0, 3).map((alert) => (
                 <div key={alert.id} className="flex items-center gap-2 px-2.5 py-2 border"
-                  style={{ borderColor: 'rgba(255,255,255,0.05)', backgroundColor: '#0d0d0d', borderRadius: 0 }}>
+                  style={{ borderColor: 'rgba(255,255,255,0.05)', backgroundColor: '#000000', borderRadius: 0 }}>
                   <span className="font-terminal text-[10px]" style={{ color: '#444' }}>✓</span>
                   <p className="text-xs line-clamp-1 flex-1" style={{ color: '#555' }}>
                     {alert.marketQuestion.slice(0, 50)}

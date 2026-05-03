@@ -204,14 +204,14 @@ const resolvedBackendUrl =
         {/* Outer container — clips the overlay sidebar, scoped to chat area only */}
         <div
           className={cn("relative flex h-full w-full overflow-hidden", className)}
-          style={{ height: frameStyle.height, width: frameStyle.width, backgroundColor: '#0d0d0d', ...style }}
+          style={{ height: frameStyle.height, width: frameStyle.width, backgroundColor: '#000000', ...style }}
         >
           {/* Sidebar — scoped to this container, never bleeds into TopNav */}
           {showSidebar && (
             <ThreadListSidebar walletPosition={walletPosition} />
           )}
           {/* Main content */}
-          <div className="flex h-full w-full flex-col min-w-0" style={{ backgroundColor: '#0d0d0d' }}>
+          <div className="flex h-full w-full flex-col min-w-0" style={{ backgroundColor: '#000000' }}>
             {children}
           </div>
           <NotificationToaster />
@@ -244,7 +244,7 @@ const Header: FC<HeaderProps> = ({
         "flex h-12 shrink-0 items-center gap-2 px-3 border-b",
         className,
       )}
-      style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#0d0d0d', ...style }}
+      style={{ borderColor: 'rgba(255,255,255,0.08)', backgroundColor: '#000000', ...style }}
     >
       {showSidebarTrigger && (
         <>

@@ -112,10 +112,10 @@ export const Thread: FC = () => {
           className="aui-root aui-thread-root @container flex h-full flex-col"
           style={{
             ["--thread-max-width" as string]: "52rem",
-            backgroundColor: '#0d0d0d',
+            backgroundColor: '#000000',
           }}
         >
-          <ThreadPrimitive.Viewport className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll" style={{ backgroundColor: '#0d0d0d' }}>
+          <ThreadPrimitive.Viewport className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll" style={{ backgroundColor: '#000000' }}>
             <ThreadPrimitive.If empty>
               <ThreadWelcome />
             </ThreadPrimitive.If>
@@ -479,7 +479,7 @@ const Composer: FC = () => {
   return (
     <div
       className="aui-composer-wrapper sticky bottom-0 mx-auto flex w-full max-w-[var(--thread-max-width)] flex-col px-4 pb-16 sm:pb-4 pt-2"
-      style={{ backgroundColor: '#0d0d0d' }}
+      style={{ backgroundColor: '#000000' }}
     >
       <ThreadScrollToBottom />
       <ComposerPrimitive.Root

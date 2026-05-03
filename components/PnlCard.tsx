@@ -109,7 +109,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
 
           {/* P&L highlight */}
           <div className="border p-4"
-            style={{ backgroundColor: '#0d0d0d', borderColor: isProfit ? 'rgba(74,222,128,0.2)' : 'rgba(248,113,113,0.2)', borderRadius: 0 }}>
+            style={{ backgroundColor: '#000000', borderColor: isProfit ? 'rgba(74,222,128,0.2)' : 'rgba(248,113,113,0.2)', borderRadius: 0 }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-terminal text-[10px] tracking-widest uppercase mb-1" style={{ color: '#555' }}>
