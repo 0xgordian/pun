@@ -47,6 +47,11 @@ const nextConfig = {
       ...config.resolve.alias,
       '@farcaster/mini-app-solana': false,
     };
+
+    // Suppress viem/ox dynamic require warning — known issue, doesn't affect runtime
+    config.module = config.module || {};
+    config.module.exprContextCritical = false;
+
     return config;
   },
 }
