@@ -33,9 +33,9 @@
   --negative: #f87171;
   --warning: #f59e0b;
 
-  /* Fonts */
+  /* Fonts - Plus Jakarta Sans globally (loaded via Google Fonts link tag) */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-mono: 'Geist Mono', 'JetBrains Mono', 'Fira Code', monospace;
+  --font-mono: var(--font-geist-mono), 'JetBrains Mono', 'Fira Code', monospace;
 
   /* Radius */
   --radius-xs: 4px;
