@@ -137,7 +137,7 @@ export function WalletConnectPrompt({ className }: WalletConnectPromptProps) {
   return (
     <div
       className={cn('flex flex-col items-center justify-center py-10 px-6 text-center gap-4 border', className)}
-      style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}
+      style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}
     >
       <svg className="w-10 h-10" viewBox="0 0 40 40" fill="none">
         <rect x="2" y="8" width="36" height="24" rx="0" stroke="#2a2a2a" strokeWidth="1.5" />

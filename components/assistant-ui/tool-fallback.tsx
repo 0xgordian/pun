@@ -17,7 +17,7 @@ export const ToolFallback: ToolCallMessagePartComponent = ({
       style={{
         backgroundColor: '#000000',
         borderColor: 'rgba(255,255,255,0.08)',
-        borderRadius: 0,
+        borderRadius: 12,
         borderLeft: '3px solid rgba(124,58,237,0.4)',
       }}
     >

@@ -40,7 +40,7 @@ export default function TrendingMarkets({
               <div
                 key={i}
                 className="h-14 animate-pulse border"
-                style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.05)', borderRadius: 0 }}
+                style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.05)', borderRadius: 12 }}
               />
             ))
           : top5.length === 0
@@ -65,7 +65,7 @@ export default function TrendingMarkets({
                     style={{
                       backgroundColor: isSelected ? 'rgba(124,58,237,0.1)' : 'transparent',
                       borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
-                      borderRadius: 0,
+                      borderRadius: 12,
                     }}
                     onMouseEnter={(e) => {
                       if (!isSelected) {

@@ -75,7 +75,7 @@ const MobileSettingsDrawer: FC<{ controlBarProps?: Omit<ControlBarProps, "childr
       <button
         onClick={() => setOpen(true)}
         className="flex items-center justify-center h-7 w-7 border transition-colors hover:border-white/20"
-        style={{ borderColor: 'rgba(255,255,255,0.12)', borderRadius: 0, backgroundColor: 'transparent', color: '#a0a0a0' }}
+        style={{ borderColor: 'rgba(255,255,255,0.12)', borderRadius: 12, backgroundColor: 'transparent', color: '#a0a0a0' }}
         aria-label="Settings"
       >
         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

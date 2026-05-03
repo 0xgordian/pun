@@ -133,7 +133,7 @@ const series = chart.addSeries('Area' as unknown as Parameters<typeof chart.addS
   const changePositive = priceChange !== null && priceChange >= 0;
 
   return (
-    <div style={{ backgroundColor: '#111', borderRadius: 0 }}>
+    <div style={{ backgroundColor: '#111', borderRadius: 12 }}>
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b"
         style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
@@ -149,7 +149,7 @@ const series = chart.addSeries('Area' as unknown as Parameters<typeof chart.addS
               style={{
                 color: range === r.value ? '#7c3aed' : '#555',
                 backgroundColor: range === r.value ? 'rgba(124,58,237,0.1)' : 'transparent',
-                borderRadius: 0,
+                borderRadius: 12,
               }}
             >
               {r.label}

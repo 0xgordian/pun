@@ -70,7 +70,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
 
   return (
     <div className={`border panel-bracket p-4 space-y-4${opp.edgeStrength === 'STRONG' ? ' panel-strong' : ''}`}
-      style={{ backgroundColor: '#111', borderColor: cfg.borderColor, borderRadius: 0 }}>
+      style={{ backgroundColor: '#111', borderColor: cfg.borderColor, borderRadius: 12 }}>
 
       {/* Header row */}
       <div className="flex items-start justify-between gap-4">
@@ -82,7 +82,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
                 color: cfg.badgeColor,
                 backgroundColor: cfg.badgeBg,
                 borderColor: cfg.borderColor,
-                borderRadius: 0,
+                borderRadius: 12,
               }}>
               {cfg.icon} {opp.edgeStrength}
             </span>
@@ -137,7 +137,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
           onClick={onPropose}
           disabled={isFetchingBet}
           className="flex-1 py-2.5 text-xs font-bold tracking-wide transition-all flex items-center justify-center gap-2"
-          style={{ backgroundColor: isFetchingBet ? '#1a1a1a' : '#7c3aed', color: isFetchingBet ? '#555' : '#000', borderRadius: 0 }}
+          style={{ backgroundColor: isFetchingBet ? '#1a1a1a' : '#7c3aed', color: isFetchingBet ? '#555' : '#000', borderRadius: 12 }}
           onMouseEnter={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
           onMouseLeave={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#7c3aed'; }}
         >
@@ -169,7 +169,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
               backgroundColor: 'transparent',
               borderColor: 'rgba(255,255,255,0.15)',
               color: '#a0a0a0',
-              borderRadius: 0,
+              borderRadius: 12,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'rgba(255,255,255,0.30)';
@@ -198,7 +198,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
               backgroundColor: 'transparent',
               borderColor: 'rgba(255,255,255,0.15)',
               color: '#a0a0a0',
-              borderRadius: 0,
+              borderRadius: 12,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.borderColor = 'rgba(255,255,255,0.30)';
@@ -229,7 +229,7 @@ export default function EdgeResults({ result, isLoading, isQuerying, onProposeBe
         <div className="h-3 w-40 animate-pulse" style={{ backgroundColor: '#161616' }} />
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="h-40 animate-pulse border panel-bracket"
-            style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }} />
+            style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }} />
         ))}
       </div>
     );
@@ -252,7 +252,7 @@ export default function EdgeResults({ result, isLoading, isQuerying, onProposeBe
     <div className="space-y-4">
       {/* Summary card */}
       <div className="border panel-bracket p-3 space-y-1"
-        style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+        style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
         <p className="font-terminal text-[10px] tracking-wider" style={{ color: '#555' }}>
           QUERY: <span style={{ color: '#a0a0a0' }}>{result.query}</span>
         </p>

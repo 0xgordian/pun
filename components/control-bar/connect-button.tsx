@@ -89,7 +89,7 @@ export const ConnectButton: FC<ConnectButtonProps> = ({
           : "bg-transparent border-[#7c3aed]/60 text-[#7c3aed] hover:border-[#7c3aed] hover:bg-[#7c3aed]/5",
         className,
       )}
-      style={{ borderRadius: 0, fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace" }}
+      style={{ borderRadius: 12, fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace" }}
       aria-label={ariaLabel}
     >
       <span className="max-w-[140px] truncate">{primaryLabel}</span>

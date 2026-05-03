@@ -81,7 +81,7 @@ export default function PositionPanel({ walletAddress = null, isConnected = fals
   }, [isConnected, walletAddress, load]);
 
   return (
-    <div style={{ backgroundColor: '#111', borderRadius: 0 }}>
+    <div style={{ backgroundColor: '#111', borderRadius: 12 }}>
       {/* Header */}
       <div
         className="flex items-center justify-between px-4 py-3 border-b"
@@ -136,7 +136,7 @@ export default function PositionPanel({ walletAddress = null, isConnected = fals
               <button
                 onClick={load}
                 className="font-terminal text-[10px] tracking-widest uppercase px-3 py-1.5 border transition-colors"
-                style={{ borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', backgroundColor: 'transparent', borderRadius: 0 }}
+                style={{ borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', backgroundColor: 'transparent', borderRadius: 12 }}
                 onMouseEnter={(e) => { e.currentTarget.style.color = '#f0f0f0'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.color = '#a0a0a0'; }}
               >
@@ -160,7 +160,7 @@ export default function PositionPanel({ walletAddress = null, isConnected = fals
                   style={{
                     backgroundColor: '#000000',
                     borderColor: 'rgba(255,255,255,0.08)',
-                    borderRadius: 0,
+                    borderRadius: 12,
                   }}
                 >
                   {/* Question + outcome badge */}
@@ -177,7 +177,7 @@ export default function PositionPanel({ walletAddress = null, isConnected = fals
                         color: outcomeColor,
                         borderColor: outcomeColor,
                         backgroundColor: `${outcomeColor}18`,
-                        borderRadius: 0,
+                        borderRadius: 12,
                       }}
                     >
                       {pos.outcome}

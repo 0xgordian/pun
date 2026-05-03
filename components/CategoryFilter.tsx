@@ -101,7 +101,7 @@ export default function CategoryFilter({
               backgroundColor: isActive ? 'rgba(124,58,237,0.12)' : 'transparent',
               borderColor: isActive ? '#7c3aed' : 'rgba(255,255,255,0.10)',
               color: isActive ? '#7c3aed' : '#555',
-              borderRadius: 0,
+              borderRadius: 12,
             }}
             onMouseEnter={(e) => {
               if (!isActive) {

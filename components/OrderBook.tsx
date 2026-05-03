@@ -87,7 +87,7 @@ export default function OrderBook({ tokenId = null, marketQuestion = '' }: Order
   const topAsks = book ? book.asks.slice(0, 5) : [];
 
   return (
-    <div style={{ backgroundColor: '#111', borderRadius: 0 }}>
+    <div style={{ backgroundColor: '#111', borderRadius: 12 }}>
       {/* Header */}
       <div
         className="flex items-center justify-between px-4 py-3 border-b"
@@ -127,7 +127,7 @@ export default function OrderBook({ tokenId = null, marketQuestion = '' }: Order
               <div
                 key={i}
                 className="h-6 animate-pulse"
-                style={{ backgroundColor: '#161616', borderRadius: 0 }}
+                style={{ backgroundColor: '#161616', borderRadius: 12 }}
               />
             ))}
           </div>
@@ -145,7 +145,7 @@ export default function OrderBook({ tokenId = null, marketQuestion = '' }: Order
 
             {/* Key stats */}
             <div className="grid grid-cols-3 gap-3">
-              <div className="border p-2" style={{ borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div className="border p-2" style={{ borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}>
                 <p className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
                   Best Bid
                 </p>
@@ -153,7 +153,7 @@ export default function OrderBook({ tokenId = null, marketQuestion = '' }: Order
                   {Math.round(book.best_bid * 100)}¢
                 </p>
               </div>
-              <div className="border p-2" style={{ borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div className="border p-2" style={{ borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}>
                 <p className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
                   Best Ask
                 </p>
@@ -161,7 +161,7 @@ export default function OrderBook({ tokenId = null, marketQuestion = '' }: Order
                   {Math.round(book.best_ask * 100)}¢
                 </p>
               </div>
-              <div className="border p-2" style={{ borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div className="border p-2" style={{ borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}>
                 <p className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#555' }}>
                   Spread
                 </p>

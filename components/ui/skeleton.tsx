@@ -11,7 +11,7 @@ export function Skeleton({ className, style }: SkeletonProps) {
   return (
     <div
       className={cn('animate-pulse', className)}
-      style={{ backgroundColor: '#161616', borderRadius: 0, ...style }}
+      style={{ backgroundColor: '#161616', borderRadius: 12, ...style }}
     />
   );
 }
@@ -36,7 +36,7 @@ export function SkeletonCard({ className }: SkeletonProps) {
   return (
     <div
       className={cn('border p-4 space-y-3', className)}
-      style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}
+      style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}
     >
       <div className="flex justify-between items-start">
         <Skeleton style={{ height: 10, width: '60%' }} />

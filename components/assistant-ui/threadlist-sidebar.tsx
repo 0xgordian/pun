@@ -38,7 +38,7 @@ export function ThreadListSidebar({
             {/* Close sidebar — X button */}
             <SidebarTrigger
               className="flex items-center justify-center w-5 h-5 transition-colors hover:text-white"
-              style={{ color: '#555', backgroundColor: 'transparent', border: 'none', borderRadius: 0, padding: 0 }}
+              style={{ color: '#555', backgroundColor: 'transparent', border: 'none', borderRadius: 12, padding: 0 }}
             />
           </div>
         </div>

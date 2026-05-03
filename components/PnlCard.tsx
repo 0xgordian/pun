@@ -51,7 +51,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
         <div
           ref={cardRef}
           className="border panel-bracket p-6 space-y-5"
-          style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.12)', borderRadius: 0 }}
+          style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.12)', borderRadius: 12 }}
         >
           {/* Header */}
           <div className="flex items-center justify-between">
@@ -65,7 +65,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
             </div>
             <span
               className="font-terminal text-[10px] font-bold tracking-widest uppercase px-2 py-1 border"
-              style={{ color: modeColor, borderColor: modeColor, backgroundColor: `${modeColor}15`, borderRadius: 0 }}
+              style={{ color: modeColor, borderColor: modeColor, backgroundColor: `${modeColor}15`, borderRadius: 12 }}
             >
               {modeLabel}
             </span>
@@ -109,7 +109,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
 
           {/* P&L highlight */}
           <div className="border p-4"
-            style={{ backgroundColor: '#000000', borderColor: isProfit ? 'rgba(74,222,128,0.2)' : 'rgba(248,113,113,0.2)', borderRadius: 0 }}>
+            style={{ backgroundColor: '#000000', borderColor: isProfit ? 'rgba(74,222,128,0.2)' : 'rgba(248,113,113,0.2)', borderRadius: 12 }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-terminal text-[10px] tracking-widest uppercase mb-1" style={{ color: '#555' }}>
@@ -151,7 +151,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
           <button
             onClick={handleDownload}
             className="flex-1 py-2.5 text-xs font-terminal font-bold tracking-widest uppercase transition-all"
-            style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+            style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 12 }}
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#8b5cf6')}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7c3aed')}
           >
@@ -164,7 +164,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
               window.open(url, '_blank', 'noopener,noreferrer');
             }}
             className="py-2.5 px-3 text-xs font-terminal font-bold tracking-widest uppercase transition-all border"
-            style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.15)', color: '#a0a0a0', borderRadius: 0 }}
+            style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.15)', color: '#a0a0a0', borderRadius: 12 }}
             title="Share on X"
             onMouseEnter={(e) => { e.currentTarget.style.color = '#f0f0f0'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = '#a0a0a0'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}
@@ -174,7 +174,7 @@ export default function PnlCard({ trade: record, onClose }: PnlCardProps) {
           <button
             onClick={onClose}
             className="flex-1 py-2.5 text-xs font-terminal font-medium border transition-all"
-            style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', borderRadius: 0 }}
+            style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', borderRadius: 12 }}
             onMouseEnter={(e) => { e.currentTarget.style.color = '#f0f0f0'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = '#a0a0a0'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; }}
           >

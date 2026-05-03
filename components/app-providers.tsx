@@ -106,7 +106,7 @@ const toastStyle = {
   background: '#111',
   color: '#f0f0f0',
   border: '1px solid rgba(124,58,237,0.3)',
-  borderRadius: 0,
+  borderRadius: 12,
   fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace",
   fontSize: '12px',
   letterSpacing: '0.05em',

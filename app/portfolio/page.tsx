@@ -85,7 +85,7 @@ function MarketSelect({
             backgroundColor: 'transparent',
             borderColor: 'rgba(255,255,255,0.12)',
             color: value ? '#f0f0f0' : '#555',
-            borderRadius: 0,
+            borderRadius: 12,
             fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace",
           }}
         >
@@ -97,12 +97,12 @@ function MarketSelect({
         align="start"
         sideOffset={4}
         className="w-[min(420px,calc(100vw-32px))] max-h-[320px] overflow-y-auto p-1 border z-[9999]"
-        style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.12)', borderRadius: 0 }}
+        style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.12)', borderRadius: 12 }}
       >
         <button
           onClick={() => { onChange(null); setOpen(false); }}
           className="flex w-full items-center gap-2 px-3 py-2 text-xs hover:bg-[#161616] transition-colors"
-          style={{ color: '#555', borderRadius: 0, fontFamily: "var(--font-geist-mono), monospace" }}
+          style={{ color: '#555', borderRadius: 12, fontFamily: "var(--font-geist-mono), monospace" }}
         >
           Clear selection
         </button>
@@ -114,7 +114,7 @@ function MarketSelect({
             style={{
               color: value?.id === m.id ? '#f0f0f0' : '#a0a0a0',
               backgroundColor: value?.id === m.id ? '#161616' : 'transparent',
-              borderRadius: 0,
+              borderRadius: 12,
               fontFamily: "var(--font-geist-mono), monospace",
             }}
           >
@@ -213,7 +213,7 @@ function PortfolioContent() {
     onChange: (tab) => setMobileTab(tab as PortfolioTab),
   });
 
-  const panel = { backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 };
+  const panel = { backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 };
 
   return (
     <div className="min-h-screen flex flex-col pt-12 pb-16 lg:pb-0" style={{ backgroundColor: '#000000' }}>
@@ -269,7 +269,7 @@ function PortfolioContent() {
                 ) : isLoadingPositions ? (
                   <div className="space-y-2">
                     {[1, 2, 3].map((i) => (
-                      <div key={i} className="h-8 animate-pulse" style={{ backgroundColor: '#161616', borderRadius: 0 }} />
+                      <div key={i} className="h-8 animate-pulse" style={{ backgroundColor: '#161616', borderRadius: 12 }} />
                     ))}
                   </div>
                 ) : (

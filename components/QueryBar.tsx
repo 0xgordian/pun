@@ -89,7 +89,7 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
             backgroundColor: '#000000',
             borderColor: 'rgba(255,255,255,0.12)',
             color: '#f0f0f0',
-            borderRadius: 0,
+            borderRadius: 12,
           }}
           onFocus={(e) => (e.target.style.borderColor = 'rgba(124,58,237,0.5)')}
           onBlur={(e) => (e.target.style.borderColor = 'rgba(255,255,255,0.12)')}
@@ -101,7 +101,7 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
           style={{
             backgroundColor: loading || !input.trim() ? '#1a1a1a' : '#7c3aed',
             color: loading || !input.trim() ? '#555' : '#000',
-            borderRadius: 0,
+            borderRadius: 12,
           }}
         >
           {loading ? (
@@ -126,7 +126,7 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
               backgroundColor: 'transparent',
               borderColor: 'rgba(255,255,255,0.10)',
               color: '#a0a0a0',
-              borderRadius: 0,
+              borderRadius: 12,
             }}
             onMouseEnter={(e) => {
               (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.25)';

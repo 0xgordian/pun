@@ -46,11 +46,16 @@
   --radius-pill: 9999px;
 }
 
-/* Reset */
+/* Global Kiro-style overrides — rounded corners everywhere */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* Force rounded corners on all interactive elements */
+button, input, select, textarea, [role="button"] {
+  border-radius: 8px;
 }
 
 html {

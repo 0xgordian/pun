@@ -140,7 +140,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
     return (
       <div
         className="my-3 border panel-bracket"
-        style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.3)', borderRadius: 0 }}
+        style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.3)', borderRadius: 12 }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2.5 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
@@ -149,7 +149,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </span>
           <span
             className="font-terminal text-[10px] px-2 py-0.5 border"
-            style={{ backgroundColor: `${sideColor}15`, color: sideColor, borderColor: `${sideColor}40`, borderRadius: 0 }}
+            style={{ backgroundColor: `${sideColor}15`, color: sideColor, borderColor: `${sideColor}40`, borderRadius: 12 }}
           >
             {data.side}
           </span>
@@ -168,7 +168,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
               { label: 'Price', value: `${data.price}¢` },
               { label: 'Cost', value: `$${totalCost.toFixed(2)}` },
             ].map(({ label, value }) => (
-              <div key={label} className="border p-2" style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div key={label} className="border p-2" style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-0.5" style={{ color: '#444' }}>{label}</p>
                 <p className="font-terminal text-xs font-bold" style={{ color: '#f0f0f0' }}>{value}</p>
               </div>
@@ -176,7 +176,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </div>
 
           {/* Payout */}
-          <div className="flex items-center justify-between border p-2.5" style={{ backgroundColor: '#000000', borderColor: 'rgba(124,58,237,0.15)', borderRadius: 0 }}>
+          <div className="flex items-center justify-between border p-2.5" style={{ backgroundColor: '#000000', borderColor: 'rgba(124,58,237,0.15)', borderRadius: 12 }}>
             <div>
               <p className="font-terminal text-[9px] tracking-widest uppercase mb-0.5" style={{ color: '#444' }}>If Correct</p>
               <p className="font-terminal text-lg font-bold" style={{ color: '#7c3aed' }}>${estimatedPayout.toFixed(2)}</p>
@@ -199,7 +199,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             <button
               onClick={() => setConfirmState('confirming')}
               className="flex-1 py-2 text-xs font-bold uppercase tracking-widest transition-all font-terminal"
-              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 12 }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#8b5cf6')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7c3aed')}
             >
@@ -208,7 +208,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             <button
               onClick={() => setConfirmState('confirming')}
               className="px-4 py-2 text-xs font-bold uppercase tracking-widest border transition-all font-terminal"
-              style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.15)', color: '#a0a0a0', borderRadius: 0 }}
+              style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.15)', color: '#a0a0a0', borderRadius: 12 }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; e.currentTarget.style.color = '#f0f0f0'; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; e.currentTarget.style.color = '#a0a0a0'; }}
             >
@@ -225,7 +225,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
     return (
       <div
         className="my-3 border panel-bracket"
-        style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.5)', borderRadius: 0 }}
+        style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.5)', borderRadius: 12 }}
       >
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-2.5 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
@@ -233,7 +233,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             Confirm Trade
           </span>
           <span className="font-terminal text-[9px] tracking-widest uppercase px-2 py-0.5 border"
-            style={{ color: isWalletConnected ? '#4ade80' : '#f59e0b', borderColor: isWalletConnected ? 'rgba(74,222,128,0.3)' : 'rgba(245,158,11,0.3)', backgroundColor: isWalletConnected ? 'rgba(74,222,128,0.08)' : 'rgba(245,158,11,0.08)', borderRadius: 0 }}>
+            style={{ color: isWalletConnected ? '#4ade80' : '#f59e0b', borderColor: isWalletConnected ? 'rgba(74,222,128,0.3)' : 'rgba(245,158,11,0.3)', backgroundColor: isWalletConnected ? 'rgba(74,222,128,0.08)' : 'rgba(245,158,11,0.08)', borderRadius: 12 }}>
             {isWalletConnected ? 'Live' : 'Paper'}
           </span>
         </div>
@@ -252,7 +252,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
               { label: 'Entry Price', value: `${data.price}¢`, color: '#f0f0f0' },
               { label: 'Total Cost', value: `$${totalCost.toFixed(2)}`, color: '#f0f0f0' },
             ].map(({ label, value, color }) => (
-              <div key={label} className="border p-2.5" style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+              <div key={label} className="border p-2.5" style={{ backgroundColor: '#000000', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-1" style={{ color: '#444' }}>{label}</p>
                 <p className="font-terminal text-sm font-bold" style={{ color }}>{value}</p>
               </div>
@@ -260,7 +260,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
           </div>
 
           {/* Payout highlight */}
-          <div className="border p-3" style={{ backgroundColor: '#000000', borderColor: 'rgba(124,58,237,0.2)', borderRadius: 0 }}>
+          <div className="border p-3" style={{ backgroundColor: '#000000', borderColor: 'rgba(124,58,237,0.2)', borderRadius: 12 }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-terminal text-[9px] tracking-widest uppercase mb-1" style={{ color: '#444' }}>If Correct</p>
@@ -289,7 +289,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             <button
               onClick={() => setConfirmState('idle')}
               className="flex-1 py-2.5 text-xs font-bold uppercase tracking-widest border transition-all font-terminal"
-              style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', borderRadius: 0 }}
+              style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.12)', color: '#a0a0a0', borderRadius: 12 }}
               onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'; e.currentTarget.style.color = '#f0f0f0'; }}
               onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = '#a0a0a0'; }}
             >
@@ -298,7 +298,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
             <button
               onClick={() => { void handleExecute(); }}
               className="flex-1 py-2.5 text-xs font-bold uppercase tracking-widest transition-all font-terminal"
-              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 12 }}
               onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#8b5cf6')}
               onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#7c3aed')}
             >
@@ -313,7 +313,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
   // Executing state
   if (confirmState === 'executing') {
     return (
-      <div className="my-3 border p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.3)', borderRadius: 0 }}>
+      <div className="my-3 border p-4" style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.3)', borderRadius: 12 }}>
         <div className="flex items-center gap-3">
           <div className="flex gap-1">
             <span className="w-1.5 h-1.5 animate-bounce rounded-full" style={{ backgroundColor: '#7c3aed', animationDelay: '0ms' }} />
@@ -331,7 +331,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
   // Done state
   if (confirmState === 'done') {
     return (
-      <div className="my-3 border p-4 space-y-2" style={{ backgroundColor: '#111', borderColor: 'rgba(74,222,128,0.3)', borderRadius: 0 }}>
+      <div className="my-3 border p-4 space-y-2" style={{ backgroundColor: '#111', borderColor: 'rgba(74,222,128,0.3)', borderRadius: 12 }}>
         <div className="flex items-center gap-2">
           <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#4ade80' }}>
             Trade Confirmed
@@ -354,7 +354,7 @@ export const TradeCard: FC<TradeCardProps> = ({ data }) => {
 
   // Error state
   return (
-    <div className="my-3 border p-4 space-y-2" style={{ backgroundColor: '#111', borderColor: 'rgba(248,113,113,0.3)', borderRadius: 0 }}>
+    <div className="my-3 border p-4 space-y-2" style={{ backgroundColor: '#111', borderColor: 'rgba(248,113,113,0.3)', borderRadius: 12 }}>
       <span className="font-terminal text-[10px] tracking-widest uppercase" style={{ color: '#f87171' }}>
         Execution Failed
       </span>

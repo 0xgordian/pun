@@ -63,7 +63,7 @@ export default function MarketFeed({
         {isLoading
           ? Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="h-[72px] animate-pulse border"
-                style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.05)', borderRadius: 0 }} />
+                style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.05)', borderRadius: 12 }} />
             ))
           : markets.map((market) => {
               const prob = market.currentProbability;
@@ -80,7 +80,7 @@ export default function MarketFeed({
                   style={{
                     backgroundColor: isSelected ? '#1a1a1a' : 'transparent',
                     borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
-                    borderRadius: 0,
+                    borderRadius: 12,
                     cursor: onSelectMarket ? 'pointer' : 'default',
                   }}
                   onMouseEnter={(e) => {
@@ -118,7 +118,7 @@ export default function MarketFeed({
         {isLoading
           ? Array.from({ length: 4 }).map((_, i) => (
               <div key={i} className="flex-none w-44 h-20 animate-pulse border"
-                style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }} />
+                style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }} />
             ))
           : markets.map((market) => {
               const prob = market.currentProbability;
@@ -135,7 +135,7 @@ export default function MarketFeed({
                   style={{
                     backgroundColor: isSelected ? '#1a1a1a' : '#111',
                     borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
-                    borderRadius: 0,
+                    borderRadius: 12,
                     cursor: onSelectMarket ? 'pointer' : 'default',
                   }}
                 >

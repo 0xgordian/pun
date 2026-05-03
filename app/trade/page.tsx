@@ -191,7 +191,7 @@ function HomeContent() {
       threshold: opp.market.currentProbability,
     });
     toast.success(`Alert set: ${opp.market.question.slice(0, 50)}…`, {
-      style: { background: '#111', color: '#f0f0f0', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 0 },
+      style: { background: '#111', color: '#f0f0f0', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12 },
       iconTheme: { primary: '#7c3aed', secondary: '#000' },
     });
   }, []);
@@ -226,7 +226,7 @@ function HomeContent() {
 
             {queryResult && (
               <div className="border panel-bracket"
-                style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+                style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
                 <EdgeResults
                   result={queryResult}
                   isQuerying={isQuerying}
@@ -239,7 +239,7 @@ function HomeContent() {
             )}
 
             <div className="border panel-bracket"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
               <MarketFeed
                 markets={categoryFilteredMarkets}
                 isLoading={isLoadingMarkets}
@@ -250,7 +250,7 @@ function HomeContent() {
             </div>
 
             <div className="border panel-bracket"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
               <TrendingMarkets markets={visibleMarkets} isLoading={isLoadingMarkets} />
             </div>
           </div>
@@ -259,12 +259,12 @@ function HomeContent() {
           {aiPanelOpen && (
           <div className="col-span-5 space-y-5 sticky top-12">
             <div className="border panel-bracket"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
               <AomiWidget height="400px" />
             </div>
 
             <div className="border panel-bracket"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
               <PositionPanel walletAddress={authAdapter.identity.address} isConnected={isWalletConnected} />
             </div>
           </div>
@@ -302,7 +302,7 @@ function HomeContent() {
               />
               <QueryBar onQuery={handleQuery} isQuerying={isQuerying} />
               <div className="border panel-bracket"
-                style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+                style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
                 <MarketFeed
                   markets={categoryFilteredMarkets}
                   isLoading={isLoadingMarkets}
@@ -316,7 +316,7 @@ function HomeContent() {
 
           {mobileTab === 'trending' && (
             <div className="border panel-bracket"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
               <TrendingMarkets markets={visibleMarkets} isLoading={isLoadingMarkets} />
             </div>
           )}
@@ -324,7 +324,7 @@ function HomeContent() {
           {mobileTab === 'analysis' && (
             <div className="space-y-4">
               <div className="border panel-bracket"
-                style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+                style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
                 <EdgeResults
                   result={queryResult}
                   isQuerying={isQuerying}
@@ -339,7 +339,7 @@ function HomeContent() {
 
           {mobileTab === 'ai' && (
             <div className="border panel-bracket"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}>
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}>
               <AomiWidget height="60vh" />
             </div>
           )}

@@ -29,7 +29,7 @@ export default function ExecutionBadge({ mode }: ExecutionBadgeProps) {
       style={{
         borderColor: palette.borderColor,
         color: palette.color,
-        borderRadius: 0,
+        borderRadius: 12,
       }}>
       <span className="w-1.5 h-1.5 rounded-full"
         style={{ backgroundColor: palette.dot }} />

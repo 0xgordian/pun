@@ -155,7 +155,7 @@ const defaultComponents = memoizeMarkdownComponents({
   table: ({ className, ...props }) => (
     <div
       className="my-3 overflow-x-auto border"
-      style={{ borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}
+      style={{ borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}
     >
       <table
         className={cn("w-full text-xs border-collapse", className)}
@@ -215,7 +215,7 @@ const defaultComponents = memoizeMarkdownComponents({
       style={{
         backgroundColor: '#000000',
         borderColor: 'rgba(255,255,255,0.08)',
-        borderRadius: 0,
+        borderRadius: 12,
         color: '#a0a0a0',
         fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace",
         padding: 0,
@@ -241,7 +241,7 @@ const defaultComponents = memoizeMarkdownComponents({
         style={{
           backgroundColor: '#161616',
           color: '#7c3aed',
-          borderRadius: 0,
+          borderRadius: 12,
           border: '1px solid rgba(255,255,255,0.08)',
           fontFamily: "var(--font-geist-mono), 'JetBrains Mono', monospace",
         }}

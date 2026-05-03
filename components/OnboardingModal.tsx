@@ -140,7 +140,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
         style={{
           backgroundColor: '#0a0a0a',
           borderColor: 'rgba(255,255,255,0.08)',
-          borderRadius: 0,
+          borderRadius: 12,
           transform: exiting ? 'translateY(8px)' : 'translateY(0)',
           transition: 'transform 0.25s ease',
         }}
@@ -208,7 +208,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
           </div>
 
           {/* Terminal window */}
-          <div className="border" style={{ backgroundColor: '#080808', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 0 }}>
+          <div className="border" style={{ backgroundColor: '#080808', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }}>
             {/* Terminal chrome */}
             <div className="flex items-center gap-2 px-4 py-2 border-b"
               style={{ borderColor: 'rgba(255,255,255,0.06)', backgroundColor: '#000000' }}>
@@ -262,7 +262,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
                   backgroundColor: i === step ? '#7c3aed' : i < step ? 'rgba(124,58,237,0.35)' : 'rgba(255,255,255,0.08)',
                   boxShadow: i === step ? '0 0 6px rgba(124,58,237,0.4)' : 'none',
                   transition: 'all 0.3s ease',
-                  borderRadius: 0,
+                  borderRadius: 12,
                   border: 'none',
                   cursor: 'pointer',
                 }}
@@ -276,7 +276,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
               <button
                 onClick={goPrev}
                 className="h-8 px-4 font-terminal text-[10px] tracking-widest uppercase border transition-all"
-                style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#555', borderRadius: 0 }}
+                style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#555', borderRadius: 12 }}
                 onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; e.currentTarget.style.color = '#a0a0a0'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#555'; }}
               >
@@ -289,7 +289,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
                 <button
                   onClick={dismiss}
                   className="h-8 px-4 font-terminal text-[10px] tracking-widest uppercase border transition-all"
-                  style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#555', borderRadius: 0 }}
+                  style={{ backgroundColor: 'transparent', borderColor: 'rgba(255,255,255,0.1)', color: '#555', borderRadius: 12 }}
                   onMouseEnter={(e) => { e.currentTarget.style.color = '#a0a0a0'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.2)'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.color = '#555'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; }}
                 >
@@ -298,7 +298,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
                 <button
                   onClick={handleConnectWallet}
                   className="h-8 px-5 font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
-                  style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+                  style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 12 }}
                   onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
                   onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#7c3aed'; }}
                 >
@@ -309,7 +309,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
               <button
                 onClick={goNext}
                 className="h-8 px-5 font-terminal text-[10px] tracking-widest uppercase font-bold transition-all"
-                style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}
+                style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 12 }}
                 onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
                 onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#7c3aed'; }}
               >

@@ -66,7 +66,7 @@ const SlashCommandPalette: FC<{
   return (
     <div
       className="absolute bottom-full left-0 right-0 mb-1 border overflow-y-auto"
-      style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.4)', borderRadius: 0, zIndex: 50, maxHeight: '280px' }}
+      style={{ backgroundColor: '#111', borderColor: 'rgba(124,58,237,0.4)', borderRadius: 12, zIndex: 50, maxHeight: '280px' }}
       role="listbox"
       aria-label="Slash commands"
     >
@@ -334,7 +334,7 @@ const ThreadSuggestions: FC = () => {
             <button
               onClick={() => handleSuggestionClick(s.action)}
               className="panel-bracket w-full text-left border p-3 transition-all"
-              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}
+              style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'rgba(124,58,237,0.35)';
                 e.currentTarget.style.backgroundColor = '#161616';
@@ -487,7 +487,7 @@ const Composer: FC = () => {
         style={{
           backgroundColor: '#111',
           borderColor: 'rgba(255,255,255,0.12)',
-          borderRadius: 0,
+          borderRadius: 12,
         }}
       >
         {/* Slash command palette */}
@@ -553,7 +553,7 @@ const Composer: FC = () => {
               backgroundColor: isListening ? '#ef4444' : 'rgba(255,255,255,0.08)',
               border: '1px solid',
               borderColor: isListening ? '#ef4444' : 'rgba(255,255,255,0.12)',
-              borderRadius: 0,
+              borderRadius: 12,
             }}
             aria-label={isListening ? "Stop recording" : "Voice input"}
           >
@@ -577,7 +577,7 @@ const Composer: FC = () => {
                   style={{ 
                     backgroundColor: '#7c3aed', 
                     color: '#000', 
-                    borderRadius: 0,
+                    borderRadius: 12,
                   }}
                   aria-label="Send message"
                 >
@@ -591,7 +591,7 @@ const Composer: FC = () => {
                   type="button"
                   size="icon"
                   className="aui-composer-cancel size-8 border shrink-0"
-                  style={{ borderRadius: 0, borderColor: 'rgba(255,255,255,0.2)', backgroundColor: 'transparent', color: '#f0f0f0' }}
+                  style={{ borderRadius: 12, borderColor: 'rgba(255,255,255,0.2)', backgroundColor: 'transparent', color: '#f0f0f0' }}
                   aria-label="Stop generating"
                 >
                   <Icon icon="solar:stop-linear" className="size-3" />
@@ -623,7 +623,7 @@ const QuickActionButton: FC<{
         backgroundColor: isHovered ? 'rgba(255,255,255,0.08)' : 'transparent',
         border: '1px solid',
         borderColor: isHovered ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.08)',
-        borderRadius: 0,
+        borderRadius: 12,
         color: '#888',
       }}
     >
@@ -672,7 +672,7 @@ const MessageError: FC = () => {
   return (
     <MessagePrimitive.Error>
       <ErrorPrimitive.Root className="aui-message-error-root mt-2 border p-3 text-sm"
-        style={{ borderColor: 'rgba(255,0,0,0.3)', backgroundColor: 'rgba(255,0,0,0.05)', color: '#f87171', borderRadius: 0 }}>
+        style={{ borderColor: 'rgba(255,0,0,0.3)', backgroundColor: 'rgba(255,0,0,0.05)', color: '#f87171', borderRadius: 12 }}>
         <ErrorPrimitive.Message className="aui-message-error-message line-clamp-2" />
       </ErrorPrimitive.Root>
     </MessagePrimitive.Error>
@@ -693,7 +693,7 @@ const AssistantMessage: FC = () => {
       >
         <div
           className="panel-bracket border"
-          style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 0 }}
+          style={{ backgroundColor: '#111', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12 }}
         >
           {/* Header label */}
           <div
@@ -792,7 +792,7 @@ const UserMessage: FC = () => {
             style={{
               backgroundColor: '#161616',
               borderColor: 'rgba(255,255,255,0.1)',
-              borderRadius: 0,
+              borderRadius: 12,
               color: '#f0f0f0',
             }}
           >
@@ -829,7 +829,7 @@ const EditComposer: FC = () => {
   return (
     <div className="aui-edit-composer-wrapper mx-auto flex w-full max-w-[var(--thread-max-width)] flex-col gap-4 px-4 first:mt-4">
       <ComposerPrimitive.Root className="aui-edit-composer-root ml-auto flex w-full max-w-[90%] sm:max-w-[80%] flex-col border"
-        style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.1)', borderRadius: 0 }}>
+        style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.1)', borderRadius: 12 }}>
         <ComposerPrimitive.Input
           className="aui-edit-composer-input flex min-h-[60px] w-full resize-none bg-transparent p-4 text-sm outline-none"
           style={{ color: '#f0f0f0' }}
@@ -837,13 +837,13 @@ const EditComposer: FC = () => {
         />
         <div className="aui-edit-composer-footer mx-3 mb-3 flex items-center justify-end gap-2">
           <ComposerPrimitive.Cancel asChild>
-            <Button variant="ghost" size="sm" aria-label="Cancel edit" style={{ borderRadius: 0 }}>
+            <Button variant="ghost" size="sm" aria-label="Cancel edit" style={{ borderRadius: 12 }}>
               Cancel
             </Button>
           </ComposerPrimitive.Cancel>
           <ComposerPrimitive.Send asChild>
             <Button size="sm" aria-label="Update message"
-              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 0 }}>
+              style={{ backgroundColor: '#7c3aed', color: '#000', borderRadius: 12 }}>
               Update
             </Button>
           </ComposerPrimitive.Send>
