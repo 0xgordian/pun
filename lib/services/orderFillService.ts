@@ -1,16 +1,14 @@
 /**
- * Order Fill Service — polls the CLOB API after signing to confirm
- * whether an order reached the book and was filled.
+ * Order Fill Service — tracks order status after submission.
  *
- * Polymarket CLOB order states:
- *   OPEN      — in the book, waiting for a match
- *   MATCHED   — matched, pending settlement
- *   FILLED    — fully filled
- *   CANCELLED — cancelled by user or expired
- *   REJECTED  — rejected by the exchange (bad params, insufficient balance, etc.)
+ * On Mantle, there is no CLOB. This service is kept for compatibility
+ * with the Execute page UI but `pollOrderFill` will only be called if
+ * `sendLiveOrder` returns an `orderId` — which it currently does not on Mantle.
+ *
+ * If a real Mantle DEX order tracking API becomes available, update
+ * `fetchOrderStatus` to call it.
  */
 
-const CLOB_PROXY = '/api/clob';
 const POLL_INTERVAL_MS = 3_000;
 const MAX_POLLS = 20; // 60s total
 
@@ -44,17 +42,11 @@ async function fetchOrderStatus(
   orderId: string,
   signal?: AbortSignal,
 ): Promise<ClobOrderResponse | null> {
-  try {
-    const res = await fetch(`${CLOB_PROXY}/orders/${encodeURIComponent(orderId)}`, {
-      cache: 'no-store',
-      headers: { Accept: 'application/json' },
-      signal,
-    });
-    if (!res.ok) return null;
-    return await res.json() as ClobOrderResponse;
-  } catch {
-    return null;
-  }
+  // No CLOB on Mantle — order status tracking is not available.
+  // Return null so the poller falls through to UNKNOWN / timedOut.
+  void orderId;
+  void signal;
+  return null;
 }
 
 function parseStatus(raw: string | undefined): OrderStatus {

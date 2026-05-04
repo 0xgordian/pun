@@ -168,8 +168,13 @@ function getMantleStaticPools(): MantlePool[] {
 
 /**
  * Fetch top pools from Agni Finance subgraph (Requirement 11.1)
+ *
+ * APY calculation: we request poolDayData for the last 1 day to get actual
+ * 24h fees rather than dividing cumulative feesUSD by 30 (which is inaccurate
+ * for pools that have been running for varying durations).
  */
 async function fetchAgniPools(): Promise<MantlePool[]> {
+  // Request both pool-level data and the most recent day's fee data
   const query = `{
     pools(first: 20, orderBy: totalValueLockedUSD, orderDirection: desc) {
       id
@@ -180,6 +185,10 @@ async function fetchAgniPools(): Promise<MantlePool[]> {
       feesUSD
       token0Price
       token1Price
+      poolDayData(first: 1, orderBy: date, orderDirection: desc) {
+        feesUSD
+        volumeUSD
+      }
     }
   }`;
 
@@ -206,16 +215,25 @@ async function fetchAgniPools(): Promise<MantlePool[]> {
       feesUSD: string;
       token0Price: string;
       token1Price: string;
+      poolDayData?: Array<{ feesUSD: string; volumeUSD: string }>;
     }> = json?.data?.pools ?? [];
 
     return pools
       .map((p): MantlePool | null => {
         const tvl = parseFloat(p.totalValueLockedUSD) || 0;
-        const feesUSD = parseFloat(p.feesUSD) || 0;
-        // Estimate 24h fees as monthly average (feesUSD / 30)
-        const feesUSD24h = feesUSD / 30;
+
+        // Prefer actual 24h fees from poolDayData; fall back to cumulative/30 estimate
+        const dayData = p.poolDayData?.[0];
+        const feesUSD24h = dayData
+          ? parseFloat(dayData.feesUSD) || 0
+          : (parseFloat(p.feesUSD) || 0) / 30;
+
         const apy = tvl > 0 ? (feesUSD24h / tvl) * 365 * 100 : 0;
-        const volume24h = parseFloat(p.volumeUSD) / 30 || 0;
+
+        // Prefer actual 24h volume from poolDayData
+        const volume24h = dayData
+          ? parseFloat(dayData.volumeUSD) || 0
+          : (parseFloat(p.volumeUSD) || 0) / 30;
 
         const token0 = p.token0?.symbol ?? 'TOKEN0';
         const token1 = p.token1?.symbol ?? 'TOKEN1';
@@ -242,6 +260,8 @@ async function fetchAgniPools(): Promise<MantlePool[]> {
 
 /**
  * Fetch top pools from Merchant Moe subgraph (Requirement 11.2)
+ *
+ * Uses lbPairDayData for accurate 24h fees instead of cumulative/30 estimate.
  */
 async function fetchMerchantMoePools(): Promise<MantlePool[]> {
   const query = `{
@@ -254,6 +274,10 @@ async function fetchMerchantMoePools(): Promise<MantlePool[]> {
       feesUSD
       reserveX
       reserveY
+      lbPairDayData(first: 1, orderBy: date, orderDirection: desc) {
+        feesUSD
+        volumeUSD
+      }
     }
   }`;
 
@@ -280,15 +304,24 @@ async function fetchMerchantMoePools(): Promise<MantlePool[]> {
       feesUSD: string;
       reserveX: string;
       reserveY: string;
+      lbPairDayData?: Array<{ feesUSD: string; volumeUSD: string }>;
     }> = json?.data?.lbPairs ?? [];
 
     return pairs
       .map((p): MantlePool | null => {
         const tvl = parseFloat(p.totalValueLockedUSD) || 0;
-        const feesUSD = parseFloat(p.feesUSD) || 0;
-        const feesUSD24h = feesUSD / 30;
+
+        // Prefer actual 24h fees from lbPairDayData
+        const dayData = p.lbPairDayData?.[0];
+        const feesUSD24h = dayData
+          ? parseFloat(dayData.feesUSD) || 0
+          : (parseFloat(p.feesUSD) || 0) / 30;
+
         const apy = tvl > 0 ? (feesUSD24h / tvl) * 365 * 100 : 0;
-        const volume24h = parseFloat(p.volumeUSD) / 30 || 0;
+
+        const volume24h = dayData
+          ? parseFloat(dayData.volumeUSD) || 0
+          : (parseFloat(p.volumeUSD) || 0) / 30;
 
         const tokenX = p.tokenX?.symbol ?? 'TOKENX';
         const tokenY = p.tokenY?.symbol ?? 'TOKENY';
@@ -506,14 +539,17 @@ async function fetchFluxionPools(): Promise<MantlePool[]> {
  * (Requirement 11.5)
  */
 export async function fetchLiveMantleData(): Promise<MantlePool[]> {
-  const [agniResult, moeResult, lendleResult, methResult, fluxionResult] = await Promise.allSettled([
+  const [agniResult, moeResult, lendleResult, methResult, fluxionResult, pricesResult] = await Promise.allSettled([
     fetchAgniPools(),
     fetchMerchantMoePools(),
     fetchLendlePools(),
     fetchMethStakingYield(),
     fetchFluxionPools(),
-    fetchTokenPrices(), // side-effect: warms price cache
+    fetchTokenPrices(),
   ]);
+
+  // Apply live token prices to pool TVL display if available
+  const livePrices: Record<string, number> = pricesResult.status === 'fulfilled' ? pricesResult.value : {};
 
   const merged: MantlePool[] = [];
 
@@ -522,6 +558,16 @@ export async function fetchLiveMantleData(): Promise<MantlePool[]> {
   if (lendleResult.status === 'fulfilled') merged.push(...lendleResult.value);
   if (methResult.status === 'fulfilled') merged.push(...methResult.value);
   if (fluxionResult.status === 'fulfilled') merged.push(...fluxionResult.value);
+
+  // Annotate pools with live price data where available (used for display context)
+  if (Object.keys(livePrices).length > 0) {
+    merged.forEach((pool) => {
+      // Store MNT price on MNT-containing pools for downstream display
+      if ((pool.token0 === 'MNT' || pool.token1 === 'MNT') && livePrices['MNT']) {
+        (pool as MantlePool & { mntPriceUsd?: number }).mntPriceUsd = livePrices['MNT'];
+      }
+    });
+  }
 
   // Deduplicate by pool id
   const seen = new Set<string>();
