@@ -17,6 +17,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { LazyMotion, MotionConfig, domAnimation } from 'motion/react';
+import * as m from 'motion/react-m';
 
 type SortKey = 'volume_desc' | 'prob_asc' | 'prob_desc' | 'change_desc' | 'change7d_desc' | 'change30d_desc' | 'expiry_asc';
 type VolumeFilter = 'all' | '10k' | '100k' | '1m';
@@ -469,11 +471,22 @@ function MarketGrid({
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
-        {visible.map((market) => (
-          <MarketCard key={market.id} market={market} onSetAlert={onSetAlert} />
-        ))}
-      </div>
+      <LazyMotion features={domAnimation}>
+        <MotionConfig reducedMotion="user">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+            {visible.map((market, index) => (
+              <m.div
+                key={market.id}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(index, 11) * 0.03, duration: 0.2, ease: 'easeOut' }}
+              >
+                <MarketCard market={market} onSetAlert={onSetAlert} />
+              </m.div>
+            ))}
+          </div>
+        </MotionConfig>
+      </LazyMotion>
       {hasMore && (
         <div className="flex items-center justify-center pt-2">
           <button

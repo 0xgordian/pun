@@ -46,16 +46,11 @@
   --radius-pill: 9999px;
 }
 
-/* Global Kiro-style overrides — rounded corners everywhere */
+/* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-/* Force rounded corners on all interactive elements */
-button, input, select, textarea, [role="button"] {
-  border-radius: 8px;
 }
 
 html {
@@ -109,6 +104,7 @@ a:hover {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden; /* prevents ::before bar from overflowing rounded corners */
 }
 
 .panel-bracket:hover {
