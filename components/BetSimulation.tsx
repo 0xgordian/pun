@@ -228,7 +228,10 @@ export default function BetSimulation({ proposal, isSubmitting: externalSubmitti
                     color: dollarAmount === String(amt) ? '#7c3aed' : '#555',
                     backgroundColor: dollarAmount === String(amt) ? 'rgba(124,58,237,0.08)' : 'transparent',
                     borderRadius: 12,
+                    transition: 'all 0.15s ease',
                   }}
+                  onMouseDown={(e) => { e.currentTarget.style.transform = 'scale(0.96)'; }}
+                  onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
                 >
                   ${amt}
                 </button>

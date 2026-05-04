@@ -2,6 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import type { EdgeQueryResult, EdgeOpportunity } from '@/types';
+import { LazyMotion, MotionConfig, domAnimation } from 'motion/react';
+import * as m from 'motion/react-m';
 
 interface EdgeResultsProps {
   result: EdgeQueryResult | null;
@@ -140,6 +142,8 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
           style={{ backgroundColor: isFetchingBet ? '#1a1a1a' : '#7c3aed', color: isFetchingBet ? '#555' : '#000', borderRadius: 12 }}
           onMouseEnter={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#8b5cf6'; }}
           onMouseLeave={(e) => { if (!isFetchingBet) e.currentTarget.style.backgroundColor = '#7c3aed'; }}
+          onMouseDown={(e) => { if (!isFetchingBet) e.currentTarget.style.transform = 'scale(0.98)'; }}
+          onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
         >
           {isFetchingBet ? (
             <>
@@ -264,16 +268,26 @@ export default function EdgeResults({ result, isLoading, isQuerying, onProposeBe
           No opportunities found — try a different query
         </p>
       ) : (
-        result.opportunities.map((opp, i) => (
-          <OpportunityCard
-            key={`${opp.market.id}-${i}`}
-            opp={opp}
-            onPropose={onProposeBet ? () => onProposeBet(opp) : undefined}
-            onAskAomi={onAskAomi ? () => onAskAomi(opp) : undefined}
-            onSetAlert={onSetAlert ? () => onSetAlert(opp) : undefined}
-            isFetchingBet={fetchingBetId === opp.market.id}
-          />
-        ))
+        <LazyMotion features={domAnimation}>
+          <MotionConfig reducedMotion="user">
+            {result.opportunities.map((opp, i) => (
+              <m.div
+                key={`${opp.market.id}-${i}`}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.06, duration: 0.2, ease: 'easeOut' }}
+              >
+                <OpportunityCard
+                  opp={opp}
+                  onPropose={onProposeBet ? () => onProposeBet(opp) : undefined}
+                  onAskAomi={onAskAomi ? () => onAskAomi(opp) : undefined}
+                  onSetAlert={onSetAlert ? () => onSetAlert(opp) : undefined}
+                  isFetchingBet={fetchingBetId === opp.market.id}
+                />
+              </m.div>
+            ))}
+          </MotionConfig>
+        </LazyMotion>
       )}
 
       <p className="font-terminal text-[10px] text-right" style={{ color: '#555' }}>

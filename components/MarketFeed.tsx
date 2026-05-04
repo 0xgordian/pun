@@ -2,6 +2,8 @@
 
 import type { Market } from '@/types';
 import StatusIndicator from './StatusIndicator';
+import { LazyMotion, MotionConfig, domAnimation } from 'motion/react';
+import * as m from 'motion/react-m';
 
 interface MarketFeedProps {
   markets?: Market[];
@@ -65,52 +67,61 @@ export default function MarketFeed({
               <div key={i} className="h-[72px] animate-pulse border"
                 style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.05)', borderRadius: 12 }} />
             ))
-          : markets.map((market) => {
-              const prob = market.currentProbability;
-              const change = market.probabilityChange24h;
-              const hasChange = change !== null && change !== undefined;
-              const isSelected = selectedMarketId === market.id;
-              const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
-              const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
-              return (
-                <div
-                  key={market.id}
-                  onClick={() => onSelectMarket?.(market)}
-                  className="border panel-bracket p-3 transition-all"
-                  style={{
-                    backgroundColor: isSelected ? '#1a1a1a' : 'transparent',
-                    borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
-                    borderRadius: 12,
-                    cursor: onSelectMarket ? 'pointer' : 'default',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isSelected) {
-                      e.currentTarget.style.backgroundColor = '#161616';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isSelected) {
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                    }
-                  }}
-                >
-                  <p className="text-xs leading-snug line-clamp-2 mb-2" style={{ color: '#a0a0a0' }}>
-                    {market.question}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-terminal font-bold" style={{ color: probColor }}>{prob}%</span>
-                    <div className="text-right">
-                      <p className="font-terminal text-[11px] font-bold" style={{ color: changeColor }}>
-                        {hasChange ? `${change! > 0 ? '+' : ''}${change!.toFixed(1)}%` : '—'}
+          : (
+            <LazyMotion features={domAnimation}>
+              <MotionConfig reducedMotion="user">
+                {markets.map((market, index) => {
+                  const prob = market.currentProbability;
+                  const change = market.probabilityChange24h;
+                  const hasChange = change !== null && change !== undefined;
+                  const isSelected = selectedMarketId === market.id;
+                  const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
+                  const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
+                  return (
+                    <m.div
+                      key={market.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: Math.min(index, 9) * 0.04, duration: 0.2, ease: 'easeOut' }}
+                      onClick={() => onSelectMarket?.(market)}
+                      className="border panel-bracket p-3 transition-all"
+                      style={{
+                        backgroundColor: isSelected ? '#1a1a1a' : 'transparent',
+                        borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
+                        borderRadius: 12,
+                        cursor: onSelectMarket ? 'pointer' : 'default',
+                      }}
+                      onMouseEnter={(e) => {
+                        if (!isSelected) {
+                          e.currentTarget.style.backgroundColor = '#161616';
+                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                        }
+                      }}
+                      onMouseLeave={(e) => {
+                        if (!isSelected) {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                        }
+                      }}
+                    >
+                      <p className="text-xs leading-snug line-clamp-2 mb-2" style={{ color: '#a0a0a0' }}>
+                        {market.question}
                       </p>
-                      <p className="font-terminal text-[10px]" style={{ color: '#555' }}>{formatVolume(market.volume)}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-terminal font-bold" style={{ color: probColor }}>{prob}%</span>
+                        <div className="text-right">
+                          <p className="font-terminal text-[11px] font-bold" style={{ color: changeColor }}>
+                            {hasChange ? `${change! > 0 ? '+' : ''}${change!.toFixed(1)}%` : '—'}
+                          </p>
+                          <p className="font-terminal text-[10px]" style={{ color: '#555' }}>{formatVolume(market.volume)}</p>
+                        </div>
+                      </div>
+                    </m.div>
+                  );
+                })}
+              </MotionConfig>
+            </LazyMotion>
+          )}
       </div>
 
       {/* Mobile: horizontal scroll */}
@@ -120,37 +131,46 @@ export default function MarketFeed({
               <div key={i} className="flex-none w-44 h-20 animate-pulse border"
                 style={{ backgroundColor: '#161616', borderColor: 'rgba(255,255,255,0.06)', borderRadius: 12 }} />
             ))
-          : markets.map((market) => {
-              const prob = market.currentProbability;
-              const change = market.probabilityChange24h;
-              const hasChange = change !== null && change !== undefined;
-              const isSelected = selectedMarketId === market.id;
-              const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
-              const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
-              return (
-                <div
-                  key={market.id}
-                  onClick={() => onSelectMarket?.(market)}
-                  className="flex-none w-44 border panel-bracket p-3 transition-all"
-                  style={{
-                    backgroundColor: isSelected ? '#1a1a1a' : '#111',
-                    borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
-                    borderRadius: 12,
-                    cursor: onSelectMarket ? 'pointer' : 'default',
-                  }}
-                >
-                  <p className="text-xs leading-snug line-clamp-2 mb-2 min-h-[2rem]" style={{ color: '#a0a0a0' }}>
-                    {market.question}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-base font-terminal font-bold" style={{ color: probColor }}>{prob}%</span>
-                    <p className="font-terminal text-xs font-bold" style={{ color: changeColor }}>
-                      {hasChange ? `${change! > 0 ? '+' : ''}${change!.toFixed(1)}%` : '—'}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+          : (
+            <LazyMotion features={domAnimation}>
+              <MotionConfig reducedMotion="user">
+                {markets.map((market, index) => {
+                  const prob = market.currentProbability;
+                  const change = market.probabilityChange24h;
+                  const hasChange = change !== null && change !== undefined;
+                  const isSelected = selectedMarketId === market.id;
+                  const probColor = prob >= 65 ? '#7c3aed' : prob >= 40 ? '#f0f0f0' : '#a0a0a0';
+                  const changeColor = !hasChange ? '#444' : change! > 0 ? '#4ade80' : '#f87171';
+                  return (
+                    <m.div
+                      key={market.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: Math.min(index, 9) * 0.04, duration: 0.2, ease: 'easeOut' }}
+                      onClick={() => onSelectMarket?.(market)}
+                      className="flex-none w-44 border panel-bracket p-3 transition-all"
+                      style={{
+                        backgroundColor: isSelected ? '#1a1a1a' : '#111',
+                        borderColor: isSelected ? 'rgba(124,58,237,0.4)' : 'rgba(255,255,255,0.08)',
+                        borderRadius: 12,
+                        cursor: onSelectMarket ? 'pointer' : 'default',
+                      }}
+                    >
+                      <p className="text-xs leading-snug line-clamp-2 mb-2 min-h-[2rem]" style={{ color: '#a0a0a0' }}>
+                        {market.question}
+                      </p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-base font-terminal font-bold" style={{ color: probColor }}>{prob}%</span>
+                        <p className="font-terminal text-xs font-bold" style={{ color: changeColor }}>
+                          {hasChange ? `${change! > 0 ? '+' : ''}${change!.toFixed(1)}%` : '—'}
+                        </p>
+                      </div>
+                    </m.div>
+                  );
+                })}
+              </MotionConfig>
+            </LazyMotion>
+          )}
       </div>
 
     </div>

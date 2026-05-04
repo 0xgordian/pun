@@ -120,6 +120,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
               borderColor: notifEnabled ? 'rgba(74,222,128,0.3)' : 'rgba(255,255,255,0.1)',
               borderRadius: 12,
               backgroundColor: notifEnabled ? 'rgba(74,222,128,0.08)' : 'transparent',
+              transition: 'all 0.15s ease',
             }}
             title={notifEnabled ? 'Notifications on' : 'Notifications off'}
           >
@@ -150,6 +151,7 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
               color: showForm ? '#7c3aed' : '#555',
               backgroundColor: 'transparent',
               borderRadius: 12,
+              transition: 'all 0.15s ease',
             }}
           >
             {showForm ? '✕ Cancel' : '+ Add Alert'}
@@ -253,6 +255,8 @@ export default function AlertsPanel({ markets }: AlertsPanelProps) {
                 color: selectedMarket && threshold ? '#000' : '#555',
                 borderRadius: 12,
               }}
+              onMouseDown={(e) => { if (selectedMarket && threshold) e.currentTarget.style.transform = 'scale(0.98)'; }}
+              onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
             >
               Save Alert
             </button>

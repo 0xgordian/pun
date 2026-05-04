@@ -101,8 +101,10 @@ export default function QueryBar({ onQuery, isLoading, isQuerying, compact }: Qu
           style={{
             backgroundColor: loading || !input.trim() ? '#1a1a1a' : '#7c3aed',
             color: loading || !input.trim() ? '#555' : '#000',
-            borderRadius: 12,
+            borderRadius: '0 12px 12px 0',
           }}
+          onMouseDown={(e) => { if (!loading && input.trim()) e.currentTarget.style.transform = 'scale(0.98)'; }}
+          onMouseUp={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
         >
           {loading ? (
             <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">

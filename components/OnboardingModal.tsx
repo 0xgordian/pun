@@ -213,9 +213,9 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
             <div className="flex items-center gap-2 px-4 py-2 border-b"
               style={{ borderColor: 'rgba(255,255,255,0.06)', backgroundColor: '#000000' }}>
               <div className="flex gap-1.5">
-                <div className="w-2 h-2" style={{ backgroundColor: '#2a2a2a' }} />
-                <div className="w-2 h-2" style={{ backgroundColor: '#2a2a2a' }} />
-                <div className="w-2 h-2" style={{ backgroundColor: '#7c3aed', boxShadow: '0 0 4px rgba(124,58,237,0.4)' }} />
+                <div className="w-2 h-2" style={{ backgroundColor: '#2a2a2a', borderRadius: '50%' }} />
+                <div className="w-2 h-2" style={{ backgroundColor: '#2a2a2a', borderRadius: '50%' }} />
+                <div className="w-2 h-2" style={{ backgroundColor: '#7c3aed', boxShadow: '0 0 4px rgba(124,58,237,0.4)', borderRadius: '50%' }} />
               </div>
               <span className="font-terminal text-[10px] tracking-widest uppercase ml-2" style={{ color: '#2a2a2a' }}>
                 pun
@@ -261,7 +261,7 @@ export function OnboardingModal({ onComplete }: OnboardingModalProps) {
                   height: 6,
                   backgroundColor: i === step ? '#7c3aed' : i < step ? 'rgba(124,58,237,0.35)' : 'rgba(255,255,255,0.08)',
                   boxShadow: i === step ? '0 0 6px rgba(124,58,237,0.4)' : 'none',
-                  transition: 'all 0.3s ease',
+                  transition: 'width 0.3s ease, background-color 0.3s ease',
                   borderRadius: 12,
                   border: 'none',
                   cursor: 'pointer',
