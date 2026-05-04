@@ -6,7 +6,7 @@
 
 ## What This Is
 
-A full-stack AI-powered prediction market trading terminal. Not a demo. Not a prototype. A real product with 5 pages, 15+ services, and a coherent architecture that combines real-time market data, intelligent edge detection, wallet-integrated trade execution, and automated risk management — all inside a brutalist terminal UI. Built in 3 days. Production-ready.
+A full-stack AI-powered DeFi trading terminal for Mantle Network. Not a demo. Not a prototype. A real product with 5 pages, 15+ services, and a coherent architecture that combines live Mantle DeFi pool data, intelligent yield opportunity detection, wallet-integrated trade execution, and automated position management — all inside a dark terminal UI built on Kiro's design system. Built for the Turing Test Hackathon 2026.
 
 ---
 
@@ -16,20 +16,21 @@ A full-stack AI-powered prediction market trading terminal. Not a demo. Not a pr
 |---|---|
 | Frontend | Next.js 14 App Router, React 18, TypeScript |
 | AI | aomi-widget (embedded chat) + aomi-sdk Session (trade routing) |
-| Wallet | Para SDK (Google, Twitter, Discord, email auth) |
-| Markets | Polymarket Gamma API (live data) + CLOB proxy (order books) |
+| Wallet | Para SDK (Google, Twitter, Discord, email auth) — Mantle chain ID 5000 |
+| DeFi Data | Agni Finance + Merchant Moe subgraphs via `graph.mantle.xyz`, Lendle API, mETH staking API |
+| On-chain | ERC-8004 agent identity, RealClaw API for decision logging |
 | Storage | localStorage (trades, alerts, guards, bankroll) |
-| Styling | Tailwind CSS + inline styles (brutalist design system) |
+| Styling | Tailwind CSS + inline styles (Kiro design system — `#7c3aed` purple, `border-radius: 12px`) |
 
 ---
 
 ## Design Principles
 
 1. Paper-trade first — everything works without a wallet or API key
-2. Live-ready — wallet + aomi API key enables real execution on Polygon
+2. Live-ready — wallet + aomi API key enables real execution on Mantle
 3. Stateless backend — proxy pattern for market data + system prompt injection
-4. Terminal aesthetic — zero border-radius, monospace typography, orange accent #7c3aed
-5. Honest signals — no fabricated labels, only observable data
+4. Terminal aesthetic — `border-radius: 12px` cards, Plus Jakarta Sans body, Geist Mono labels, `#7c3aed` purple accent
+5. Honest signals — no fabricated labels, only observable data from on-chain sources
 
 ---
 
@@ -37,66 +38,70 @@ A full-stack AI-powered prediction market trading terminal. Not a demo. Not a pr
 
 ### / — AI Chat
 
-The core of the product. A full-screen AI assistant with live Polymarket data injected into every message.
+The core of the product. A full-screen AI assistant with live Mantle DeFi pool data injected into every message.
 
 What it does:
 - Embedded AomiFrame chat interface with custom thread rendering
 - System prompt injected once per session (survives navigation via sessionStorage)
-- Every message enriched server-side with top 10 markets by volume, 24h/7d/30d probability changes, biggest movers, and user open positions if wallet connected
-- ?q= URL param auto-sends a query on load — enables deep linking from other pages
-- AI can return trade_card JSON which renders as an interactive confirmation card inline in chat
-- shareToChat integration — trade confirmations flow back into the thread automatically
+- Every message enriched server-side with top 10 Mantle pools by TVL, APY, 24h volume from Agni Finance and Merchant Moe subgraphs
+- User positions injected into AI context when wallet connected
+- `?q=` URL param auto-sends a query on load — enables deep linking from other pages
+- AI can return `trade_card` JSON which renders as an interactive confirmation card inline in chat
+- `shareToChat` integration — trade confirmations flow back into the thread automatically
 - Wallet status shown in TopNav: Signing Ready (connected) or Paper Mode (no wallet)
+- Slash command palette: `/trade`, `/movers`, `/analyze`, `/positions`, `/alert`, `/guard`, `/simulate`, `/execute`, `/portfolio`
+- Voice input via Web Speech API
 
 Data flow:
-1. Markets load from /api/markets on mount
-2. User sends message — proxy enriches with live context — aomi backend processes
-3. AI responds with analysis or trade_card JSON
-4. User confirms trade — sendLiveOrder or paper trade recorded
-5. Result shared back to chat thread via shareToChat
+1. Mantle pools load from `/api/markets` on mount (Agni + Merchant Moe subgraphs, 2min cache)
+2. User sends message — proxy enriches with live pool context — aomi backend processes
+3. AI responds with yield analysis or `trade_card` JSON
+4. User confirms strategy — `sendLiveOrder` or paper trade recorded
+5. Result shared back to chat thread via `shareToChat`
 
 ---
 
 ### /trade — Market Dashboard
 
-Where traders hunt for opportunities. 1000+ live markets scored and filtered.
+Where traders find yield opportunities. Live Mantle DeFi pools scored and filtered.
 
 What it does:
-- Live market feed refreshed every 15s active / 60s idle
-- Edge engine scores every market 0-100 on volume, liquidity, uncertainty, 24h movement
-- Category filters: Elections, Crypto, Sports, Economics, Tech, World
-- Natural language query bar — findEdges() filters and scores, returns top 3 opportunities
-- Simulate Bet fetches real CLOB best-ask price before opening the modal
+- Live pool feed refreshed every 15s active / 60s idle
+- Edge engine scores every pool 0–100 on TVL, APY, liquidity, 24h movement
+- Category filters: Agni, Moe, Lendle, RWA, Stable, mETH
+- Natural language query bar — `findEdges()` filters and scores, returns top 3 opportunities
+- Simulate yield strategy with real pool data before committing
 - AI widget embedded on right column, toggleable on desktop
 - Position panel shows open positions if wallet connected
-- Deep link support: /trade?simulate=MARKET_ID&side=YES&shares=50 auto-opens simulation modal
+- Deep link support: `/trade?simulate=POOL_ID&side=YES&shares=50` auto-opens simulation modal
 
 Layout:
-- Desktop: 3-column (markets + trending + AI panel) or 2-column when AI closed
+- Desktop: 12-column grid (7/5 split) or full-width when AI panel closed
 - Mobile: Tab-based (Markets, Trending, Analysis, AI)
 
 Edge scoring algorithm:
 - Volume: >$1M = 30pts, >$500K = 20pts, >$100K = 10pts, else 5pts
 - Liquidity: >$100K = 20pts, >$50K = 12pts, >$10K = 6pts
-- Uncertainty: near 50% = 30pts, within 20pp = 20pts, within 30pp = 10pts, else 5pts
+- APY proximity to 50%: near 50% = 30pts, within 20pp = 20pts, within 30pp = 10pts, else 5pts
 - 24h movement: >10pp = 20pts, >5pp = 12pts, >2pp = 6pts
-- Result: 0-100 score mapped to STRONG / MODERATE / WEAK
+- Result: 0–100 score mapped to STRONG / MODERATE / WEAK
 
 ---
 
-### /markets — Market Browser
+### /markets — Pool Browser
 
-Full catalog with advanced filtering. The Bloomberg terminal view.
+Full catalog with advanced filtering. The Bloomberg terminal view for Mantle DeFi.
 
 What it does:
-- Real-time text search across all market questions
-- Category filter: 7 categories
-- Probability range filter: min/max 1-99%
+- Real-time text search across all pool names and protocols
+- Category filter: 7 Mantle-specific categories (Agni, Moe, Lendle, RWA, Stable, mETH, All)
+- Probability range filter: min/max 1–99% (maps to APY range)
 - Volume filter: All, >$10K, >$100K, >$1M
-- Sort options: Volume, Probability, 24h/7d/30d change, Expiry
-- Market cards show: question, probability, 24h/7d/30d changes, volume, liquidity, expiry
-- Set price alerts directly from any market card
-- Analyze button links to /trade with market pre-selected
+- Sort options: Volume, APY, 24h/7d/30d change, Expiry
+- Pool cards show: name, APY, 24h/7d/30d changes, volume, liquidity, expiry
+- Set price alerts directly from any pool card
+- Analyze button links to `/trade` with pool pre-selected
+- Staggered entrance animations on card grid
 
 Persistence:
 - Active category and sort saved to localStorage
@@ -110,8 +115,8 @@ Where you manage what you own and protect it.
 
 What it does:
 - Summary: total value, unrealized P&L, position count
-- Live positions from Polymarket Gamma API (wallet required)
-- Price chart: lightweight-charts + CLOB history for any selected market
+- Live positions from Para wallet on Mantle (wallet required)
+- Price chart: lightweight-charts + price history for any selected pool
 - Price alerts: threshold-based with browser notifications, 60s polling
 - Position guards: automated stop-loss and take-profit rules
 - Trade history: all paper and live trades with resolved P&L
@@ -123,157 +128,143 @@ Layout:
 - Mobile: 5-tab layout (Portfolio, Chart, Alerts, Guards, History)
 
 Key services:
-- fetchUserPositions() — fetches open positions from Polymarket
-- checkTradeOutcomes() — polls Gamma API for resolved markets, updates paper trade P&L
-- checkAlerts() — evaluates price alerts every 60s
-- checkGuards() — evaluates position guards every 60s
+- `fetchUserPositions()` — fetches open positions via `/api/positions` proxy
+- `checkAlerts()` — evaluates price alerts every 60s
+- `checkGuards()` — evaluates position guards every 60s
 
 ---
 
 ### /execute — Order Terminal
 
-The most sophisticated page. Direct order execution with live order book and fill tracking.
+Direct order execution with liquidity depth and fill tracking.
 
 What it does:
-- Market picker: search and select from 1000+ markets
-- Live order book: top 5 bids/asks with depth visualization and spread in bps
+- Pool picker: search and select from all live Mantle pools
+- Liquidity depth: synthesized bid/ask depth from pool TVL and APY data
 - Market signals: TIGHT_SPREAD, HIGH_ACTIVITY, MOVING, LIQUID, NEAR_RESOLUTION, WIDE_SPREAD, LOW_VOLUME
 - Order form: side YES/NO, shares, limit price
 - Order summary: cost, payout if correct, return %, slippage estimate, bankroll sizing warning
 - Bankroll tracking: user-set bankroll with position sizing context
-- Live execution: routes to aomi Session then Para wallet signing
-- Fill tracking: polls CLOB API every 3s for order status PENDING to OPEN to MATCHED to FILLED
+- Live execution: routes to aomi Session then Para wallet signing on Mantle
+- Fill tracking: PENDING → OPEN → MATCHED → FILLED
 - Wallet connect prompt inline when not connected
 - Paper trade fallback when no wallet
 
 Order flow:
-1. User selects market — fetches order book + analyzes signals
+1. User selects pool — analyzes signals
 2. User enters shares + limit price — calculates cost/payout/return
-3. User clicks Submit — sendLiveOrder() builds EIP-712 payload
-4. aomi Session routes to wallet — user signs
-5. Order submitted to CLOB — pollOrderFill() tracks status every 3s
-6. Trade recorded to history
+3. User clicks Submit — `sendLiveOrder()` builds EIP-712 payload
+4. aomi Session routes to Para wallet — user signs on Mantle (chain 5000)
+5. Trade recorded to history
 
 ---
 
 ## Services
 
+### mantleDeFiService.ts
+
+- `fetchMantlePools()` — server-side 2min cache, calls `fetchLiveMantleData()` on miss
+- `fetchLiveMantleData()` — parallel fetch from Agni, Merchant Moe, Lendle, mETH staking, Fluxion via `Promise.allSettled`; falls back to 4 static pools if all fail
+- `fetchAgniPools()` — GraphQL query to Agni Finance subgraph, uses `poolDayData` for accurate 24h APY
+- `fetchMerchantMoePools()` — GraphQL query to Merchant Moe subgraph, uses `lbPairDayData` for accurate 24h APY
+- `fetchTokenPrices()` — CoinGecko price API for MNT, mETH, USDC
+- `fetchMantleTokenPrices(tokens)` — public price lookup with fallback values
+
 ### marketService.ts
 
-- fetchActiveMarkets() — hits /api/markets with 2min TTL cache
-- onMarketsRefresh() — subscription pattern for market updates
-- initMarketService() — starts adaptive polling (15s active / 60s idle)
-- Returns markets with 24h/7d/30d probability changes enriched from CLOB
-
-### clobService.ts
-
-- fetchOrderBook(tokenId) — fetches live order book from CLOB proxy
-- fetchUserPositions(walletAddress) — fetches open positions from Gamma API
-- fetchTokenPrice(tokenId) — fetches current price for a token
-- Returns structured OrderBook and UserPosition[]
+- `fetchActiveMarkets()` — hits `/api/markets` with 5min client cache
+- `mantlePoolToMarket(pool)` — adapter: `MantlePool` → `Market` type (APY capped to [1, 99] as `currentProbability`)
+- `onMarketsRefresh()` — subscription pattern for market updates
+- `initMarketService()` — starts adaptive polling (15s active / 60s idle), listens for `mantle:refresh-markets` event
 
 ### edgeEngine.ts
 
-- scoreMarket(market) — deterministic scoring 0-100
-- findEdges(markets, query) — filters by category/keywords, scores, returns top 3
-- explainScore(market) — generates human-readable breakdown e.g. "vol $2.3M · near 50% · +4.1pp 24h"
+- `scoreMarket(market)` — deterministic scoring 0–100
+- `findEdges(markets, query)` — filters by category/keywords, scores, returns top 3
+- `explainScore(market)` — generates human-readable breakdown
 - Philosophy: observable signals only, no fabricated labels
 
 ### signalEngine.ts
 
-- analyseMarket(market, orderBook) — generates honest market signals
+- `analyseMarket(market, orderBook)` — generates honest market signals
 - Signal types: TIGHT_SPREAD, HIGH_ACTIVITY, MOVING, LIQUID, NEAR_RESOLUTION, WIDE_SPREAD, LOW_VOLUME
-- estimateSlippage(orderBook, side, dollarSize) — walks order book, calculates volume-weighted avg fill price
-- Returns execution score 0-100 and activity score 0-100
+- `estimateSlippage(orderBook, side, dollarSize)` — walks order book, calculates volume-weighted avg fill price
+- Returns execution score 0–100 and activity score 0–100
 
 ### tradeIntentService.ts
 
-- constructBetIntent(proposal) — builds natural-language trade intent
-- sendTradeIntent(intent, options) — routes to aomi Session, paper-trade fallback if no wallet
-- sendLiveOrder(params) — builds EIP-712 Polymarket order, sends via aomi Session
+- `constructBetIntent(proposal)` — builds natural-language trade intent
+- `sendLiveOrder(params)` — builds EIP-712 order, sends via aomi Session to Para wallet on Mantle
 - Modes: PAPER_TRADE (no wallet), SIGNING_REQUIRED (wallet connected), EXECUTED (tx confirmed)
 
 ### orderFillService.ts
 
-- pollOrderFill(orderId, onUpdate) — polls CLOB API every 3s for up to 60s
-- Emits PENDING to OPEN to MATCHED to FILLED or CANCELLED/REJECTED
-- Calls onUpdate callback on every poll for live UI updates
+- `pollOrderFill(orderId, onUpdate)` — polls every 3s for up to 60s
+- Emits PENDING → OPEN → MATCHED → FILLED or CANCELLED/REJECTED
 
 ### positionGuardService.ts
 
-- addGuard(guard) — creates stop-loss / take-profit rule
-- analyseGuard(guard, currentProbability) — evaluates if rule triggered
-- checkGuards(marketProbabilities) — checks all active guards, returns triggered analyses
-- calculateDefaultThresholds(probability) — take-profit = min(P+10, 99), stop-loss = max(P-10, 1)
-- validateGuardThresholds(stopLoss, takeProfit) — validates stop-loss < take-profit
-- Actions: HOLD (no action), SELL (40% of position at take-profit), REDUCE (65% of position at stop-loss)
-- Storage: localStorage, no server state
+- `addGuard(guard)` — creates stop-loss / take-profit rule
+- `analyseGuard(guard, currentProbability)` — evaluates if rule triggered
+- `checkGuards(marketProbabilities)` — checks all active guards, returns triggered analyses
+- Actions: HOLD, SELL (40% at take-profit), REDUCE (65% at stop-loss)
+- Storage: localStorage
 
 ### alertService.ts
 
-- addAlert(alert) — creates price alert above/below threshold
-- checkAlerts(marketProbabilities) — evaluates all alerts, fires browser notifications
-- requestNotificationPermission() — requests browser notification permission
+- `addAlert(alert)` — creates price alert above/below threshold
+- `checkAlerts(marketProbabilities)` — evaluates all alerts, fires browser notifications
 - Storage: localStorage, 60s polling interval
 
 ### bankrollService.ts
 
-- getBankroll() — retrieves user-set bankroll from localStorage
-- getBankrollContext() — calculates total deployed, P&L, win rate, category breakdown
-- getSizingContext(proposedCost) — returns % of bankroll warning if >10% or >20%
+- `getBankrollContext()` — calculates total deployed, P&L, win rate, category breakdown
+- `getSizingContext(proposedCost)` — returns % of bankroll warning if >10% or >20%
 
 ### tradeHistoryService.ts
 
-- addTradeRecord(record) — logs every paper and live trade
-- checkTradeOutcomes() — polls Gamma API for resolved markets, updates paper trade P&L
-- exportTradeHistoryCSV(records) — downloads trade history as CSV
+- `addTradeRecord(record)` — logs every paper and live trade
+- `exportTradeHistoryCSV(records)` — downloads trade history as CSV
 - Storage: localStorage, max 200 records
-
-### orderBuilder.ts
-
-- buildLimitOrder(params) — constructs EIP-712 Polymarket limit order payload
-- buildOrderIntent(params) — constructs natural-language order intent string
 
 ---
 
 ## Components
 
 ### Navigation
-- TopNav — fixed header with logo, nav links (AI, Trade, Markets, Portfolio, Execute), status indicators, wallet address
-- MobileBottomNav — mobile-only bottom navigation with 5 tabs
-- Footer — links and branding
+- `TopNav` — fixed header, `h-14`, backdrop blur, nav links, live status pill, wallet badge, Connect Wallet button
+- `MobileBottomNav` — mobile-only bottom navigation with 5 tabs
+- `Footer` — GitHub + X links
 
 ### Trade Flow
-- QueryBar — text input for natural language queries with suggestion chips
-- EdgeResults — displays top 3 opportunities with scores, reasoning, and action buttons
-- BetSimulation — modal for trade confirmation (paper or live) with dollar-based sizing
-- PnlCard — receipt-style card showing trade details and P&L
+- `QueryBar` — natural language input with dynamic suggestion chips
+- `EdgeResults` — opportunity cards with scores, reasoning, action buttons; staggered entrance animations
+- `BetSimulation` — modal for trade confirmation (paper or live) with dollar-based sizing
+- `PnlCard` — receipt-style trade card with download + share to X
 
 ### Market Discovery
-- MarketFeed — paginated market list
-- TrendingMarkets — top 10 markets by activity
-- CategoryFilter — 7-category filter buttons with counts
-- PriceChart — lightweight-charts integration for CLOB price history
-- OrderBook — live order book visualization
+- `MarketFeed` — paginated pool list with staggered entrance animations
+- `TrendingMarkets` — top 10 by activity
+- `CategoryFilter` — Mantle-specific category filter with counts
+- `PriceChart` — lightweight-charts integration for price history
+- `OrderBook` — Mantle pool liquidity depth display (synthesized from TVL/APY)
 
 ### Portfolio Management
-- PositionPanel — open positions table (wallet required)
-- AlertsPanel — price alert manager with browser notification toggle
-- PositionGuardPanel — stop-loss / take-profit rule manager with live analysis
-- TradeHistory — full trade log with aggregate stats and CSV export
+- `PositionPanel` — open positions table (wallet required)
+- `AlertsPanel` — price alert manager with browser notification toggle
+- `PositionGuardPanel` — stop-loss / take-profit rule manager with live analysis
+- `TradeHistory` — full trade log with aggregate stats and CSV export
 
 ### AI Integration
-- AomiWidget — embedded aomi-widget with custom styling
-- AomiFrame — compound component (Root, Header, Composer, ControlBar)
-- ThreadPersist — persists chat thread to localStorage
-- RuntimeAgentBridge — bridges aomi runtime events to app state (Zustand)
-- TradeCard — renders trade_card JSON from AI into interactive confirmation UI
+- `AomiWidget` — embedded aomi-widget with error boundary
+- `AomiFrame` — compound component (Root, Header, Composer, ControlBar)
+- `ThreadPersist` — persists chat thread to localStorage
+- `RuntimeAgentBridge` — bridges aomi runtime events to Zustand store
+- `TradeCard` — renders `trade_card` JSON from AI into interactive confirmation UI
 
-### UI Primitives
-- Button, Input, Dialog, Popover, Tooltip, Sidebar, Sheet
-- EmptyState — contextual empty states for alerts, history, guards
-- ErrorBoundary — catches component errors gracefully
-- Skeleton — loading placeholder
+### Hackathon-Specific
+- `AgentIdentityBadge` — ERC-8004 on-chain agent identity badge with real Mantle RPC check
+- `OnboardingModal` — 3-step welcome modal with terminal window, keyboard/swipe navigation
 
 ---
 
@@ -282,44 +273,55 @@ Order flow:
 ### /api/aomi/[...path]
 
 Proxy to aomi backend. On every chat POST:
-- Fetches live market context (top 10 by volume, 24h/7d/30d changes, biggest movers)
+- Fetches live Mantle pool context (top 10 by TVL, APY, 24h volume)
 - Injects user positions if wallet address provided
-- Injects trade history if provided by client
-- Enriches system prompt with POLYMARKET_SYSTEM_PROMPT
+- Enriches system prompt with `MANTLE_SYSTEM_PROMPT`
 - Rate limited: 30 requests/min per IP
-- Market context cached server-side for 5 minutes
+- Pool context cached server-side for 5 minutes
 
 ### /api/markets
 
-Proxy to Polymarket Gamma API with 2min TTL cache. Returns enriched market data.
+Calls `fetchMantlePools()` from `mantleDeFiService`. Returns `MantlePool[]` with 2min server-side cache.
 
 ### /api/markets/[id]
 
-Single market lookup for outcome resolution.
+Single pool lookup for outcome resolution.
 
 ### /api/markets/search
 
-Market search endpoint.
+Pool search endpoint.
 
-### /api/clob/[...path]
+### /api/mantle/log
 
-Proxy to Polymarket CLOB API for order books and price history.
+On-chain agent decision logging. Accepts `{ agentId, action, details }`. Calls RealClaw API if `REALCLAW_API_KEY` is set; falls back to mock tx hash. Always returns `{ success, txHash, chainId: 5000 }`.
 
 ### /api/positions
 
-Proxy to Gamma API for user positions (avoids CORS).
+Proxy to wallet positions API (avoids CORS).
+
+---
+
+## Mantle Hackathon Integration
+
+| Requirement | Implementation |
+|---|---|
+| Mantle Network (chain ID 5000) | Para wallet defaults to Mantle, all trades on chain 5000 |
+| ERC-8004 agent identity | `AgentIdentityBadge` component, real `eth_call` RPC check with 3s timeout, demo mode for zero address |
+| On-chain agent decision logging | `/api/mantle/log` endpoint, RealClaw API integration, mock fallback |
+| Live DeFi data | Agni Finance + Merchant Moe subgraphs via `graph.mantle.xyz`, Lendle API, mETH staking API |
+| AI agent | aomi SDK with live Mantle pool context injected server-side per message |
 
 ---
 
 ## Security
 
 - Rate limiting: 30/min on aomi proxy, 60/min on markets API
-- Max request body: 20k chars
-- Referrer check on ?simulate= URL params (prevents cross-site trade injection)
-- Para SDK handles key management — no private keys stored in app
-- EIP-712 signing — user reviews transaction before confirming
-- Max shares: 10,000 per trade
-- Max cost: $10,000 per trade
+- SSRF protection: upstream URL validated against ALLOWED_HOSTS allowlist
+- Wallet address validation: ETH_ADDRESS_RE regex prevents prompt injection
+- Security headers: X-Frame-Options DENY, CSP, X-Content-Type-Options
+- Max request body: 20k chars on all proxies
+- No private keys stored — Para SDK handles all signing
+- Max shares: 10,000 per trade; max cost: $10,000 per trade
 - Bankroll sizing warnings at >10% and >20% of bankroll
 
 ---
@@ -331,34 +333,27 @@ User query
     |
     v
 /api/aomi proxy
-    |-- fetches /api/markets (cached 5min)
-    |-- fetches CLOB history for top 3 markets
-    |-- fetches user positions from Gamma API
-    |-- injects trade history from client
+    |-- fetches /api/markets (Mantle pools, cached 5min)
+    |-- injects user positions from /api/positions
+    |-- injects MANTLE_SYSTEM_PROMPT
     |
     v
 aomi backend (https://api.aomi.dev)
     |
     v
-AI response (analysis or trade_card JSON)
+AI response (yield analysis or trade_card JSON)
     |
     v
 TradeCard component
     |
     v
-sendLiveOrder() -- builds EIP-712 payload
+sendLiveOrder() — builds EIP-712 payload
     |
     v
-aomi Session -- routes to Para wallet
+aomi Session — routes to Para wallet on Mantle (chain 5000)
     |
     v
 User signs transaction
-    |
-    v
-CLOB order submitted
-    |
-    v
-pollOrderFill() -- 3s polling for 60s
     |
     v
 Trade recorded to localStorage
@@ -372,34 +367,36 @@ Alerts fire on threshold cross
 
 ---
 
-## PMF and Why This Matters
+## Code Quality
 
-### The User
+### Strengths
 
-Active Polymarket traders. People who already know what prediction markets are, already have positions, and are frustrated by the native Polymarket UI — which is a market browser, not a trading tool. No edge detection. No AI analysis. No position guards. No order book signals. No slippage estimates.
+- Consistent service layer abstraction — pure functions, no React, no side effects at import time
+- Type-safe throughout (TypeScript strict mode)
+- Deterministic algorithms (edge scoring, signal generation)
+- Graceful error handling and fallbacks at every layer
+- `Promise.allSettled` for parallel data fetching — single API failure never blocks others
+- 24h-accurate APY calculation using `poolDayData` / `lbPairDayData` subgraph fields
+- localStorage persistence with max record limits
+- Responsive design (desktop multi-column + mobile tabs)
+- Error boundaries on all data panels
+- Adaptive polling (15s active / 60s idle)
+- 2-minute server-side pool cache + 5-minute AI context cache
+- 90 unit tests passing across 10 test files
 
-### The Problem They Have Right Now
+### Architecture Decisions
 
-1. They cannot monitor 1000+ markets manually — they miss moves
-2. They have no way to know if a market has good execution conditions before entering
-3. They have no automated risk management — they watch positions manually
-4. The AI tools they use (ChatGPT, etc.) do not have live Polymarket data
+**Paper-trade first** — All features work without credentials. Graceful degradation: paper mode → signing required → executed.
 
-### Why This Solves It
+**Server-side system prompt injection** — Backend proxy enriches every message with live Mantle pool data. AI always has current context without visible message pollution in the thread.
 
-- The edge engine surfaces the 3 best opportunities from 1000+ markets in seconds
-- The signal engine tells you if the spread is too wide before you enter
-- The position guard watches your positions 24/7 and alerts when thresholds cross
-- The AI has live data injected — it actually knows what is happening right now
-- Paper-trade mode means anyone can start immediately without a wallet
+**localStorage-based state** — No backend database required. Trades, alerts, guards, bankroll all stored locally. Scales to 200 trades per user.
 
-### Why Now
+**Deterministic edge scoring** — Observable signals only. No fabricated labels. Transparent breakdown shown to user.
 
-Polymarket volume hit $1B+ in 2024 and is growing. The 2026 midterms, Fed rate decisions, crypto price markets — there is more money and more markets than ever. But the tooling has not kept up. The traders who are winning are the ones with better information and faster execution. This is that tool.
+**Honest signal engine** — Every signal has a verifiable data source (spread bps, book depth, volume, 24h movement).
 
-### The Honest Gap
-
-The position guard fires an alert but does not auto-execute yet. That is the next unlock — when the guard triggers, it routes the exit order through aomi automatically. That is the feature that makes this genuinely differentiated from anything else in the market.
+**MantlePool → Market adapter** — All UI components consume the `Market` type. The adapter maps Mantle DeFi concepts (APY, TVL, protocol) to the Market interface without rewriting every component.
 
 ---
 
@@ -407,109 +404,33 @@ The position guard fires an alert but does not auto-execute yet. That is the nex
 
 ### Fully Implemented
 
-- AI chat with live market context injection
-- Market discovery with edge scoring
+- AI chat with live Mantle pool context injection
+- Pool discovery with edge scoring
 - Paper trade simulation with dollar-based sizing
-- Live order execution via wallet and aomi
+- Live order execution via Para wallet on Mantle
 - Position tracking and P&L
 - Price alerts with browser notifications
 - Position guards (stop-loss / take-profit rules)
 - Trade history with resolved P&L and CSV export
 - Bankroll tracking and sizing context
-- Order book visualization with depth bars
+- Liquidity depth visualization
 - Market signals (spread, activity, movement, liquidity)
-- Slippage estimation from order book depth
+- Slippage estimation
 - Aggregate trade stats (win rate, total deployed, avg return)
 - Responsive design (desktop multi-column + mobile tabs)
 - Rate limiting, CSRF protection, security headers
+- ERC-8004 agent identity badge with real Mantle RPC check
+- On-chain agent decision logging via RealClaw API
+- Onboarding modal with terminal window
 
 ### Next Opportunities
 
 1. Auto-execute position guard exits via aomi when rules trigger
-2. WebSocket price feed — replace polling with live Polymarket stream
-3. Server-side edge scoring — incorporate CLOB depth and whale activity signals
-4. Kalshi integration — cross-platform arbitrage detection
+2. WebSocket price feed — replace polling with live Mantle price stream
+3. Server-side edge scoring — incorporate on-chain depth and whale activity signals
+4. Real CLOB integration when available on Mantle
 5. Desktop app — Tauri-based native app with system tray and push notifications
-6. Onboarding flow — welcome modal + spotlight tour for first-time users
 
 ---
 
-## Future Roadmap — Expanding the Product Surface
-
-### DeFi Layer (unlocks DeFi category)
-
-Build a momentum rotation agent directly into Pun using the `aomi-client-example` pattern. The architecture already exists — aomi Session, EIP-712 signing, viem. The addition:
-
-- A DeFi tab where the agent manages a risk/stable allocation on Uniswap or Curve
-- User sets a rule: "rotate to stable if ETH drops 10% in 24h"
-- The agent evaluates the signal every 60s using the same position guard loop already in `globalAlertPoller.ts`
-- On trigger, routes the swap through aomi's DeFi plugin (Delta, Khalani, Molinar apps already in the SDK)
-- User signs locally via Para — no custody, no API-key juggling
-
-This is a 2-week build on top of existing infrastructure. The position guard service, the aomi Session pattern, and the polling loop are all already written. The only new work is the DeFi strategy logic and the UI tab.
-
-**Why it matters:** Prediction market traders already think in probabilities and expected value. Extending that same mental model to DeFi yield and rotation strategies is a natural product expansion. The same user who sets a stop-loss on a Polymarket position would set a rotation rule on their ETH/USDC allocation.
-
----
-
-### Social Trade Feed (unlocks Social category)
-
-Add a public trade feed — when a user confirms a trade card, they can optionally broadcast it to a shared Pun feed.
-
-- `shareToChat` already exists in `appStore.ts` — extend it to an optional public broadcast
-- Each shared trade shows: market question, side, price, timestamp, wallet address (truncated)
-- Other users see a live feed: "0x1a2b just bought YES on Fed rate cut at 44¢"
-- Trades can be one-click copied into your own simulation modal
-- Filter by category, side, or probability range
-
-**Why it matters:** Every shared trade is a distribution moment. Prediction market traders follow each other's positions — this is how Polymarket's own leaderboard drives engagement. A social feed turns Pun from a solo tool into a community layer on top of Polymarket. It also creates a natural viral loop: traders share their wins, others discover the product.
-
-**Implementation path:** Minimal backend required. A lightweight Vercel KV store (already configured in the environment) can hold the last 500 public trades. The feed polls every 30s. No authentication required to view — wallet connection required to post.
-
----
-
-### Wallet Risk Layer — DD.xyz Integration (extends Security category)
-
-Integrate Webacy's DD.xyz APIs to add a due diligence layer at key interaction points:
-
-- **On wallet connect:** Call the Exposure Risk API, display a safety score in TopNav alongside the wallet address (LOW / MEDIUM / SAFE / SAFEST)
-- **Before order execution:** Run the Transaction Risk API on the counterparty addresses in the order book before submitting to CLOB
-- **On market load:** Flag markets whose underlying contracts have risk signals via the Contract Risk API
-
-This directly addresses the gap between AI-assisted trading and safe trading. A user executing through an AI agent currently has zero visibility into the risk profile of the addresses they're interacting with. The DD.xyz layer closes that gap.
-
-**Implementation:** 2-hour integration for the wallet connect flow. The Exposure Risk API call fires after Para SDK confirms connection, result stored in component state, displayed as a badge in TopNav. No new architecture required.
-
----
-
-## Code Quality
-
-### Strengths
-
-- Consistent service layer abstraction
-- Type-safe throughout (TypeScript)
-- Deterministic algorithms (edge scoring, signal generation)
-- Graceful error handling and fallbacks at every layer
-- localStorage persistence with max record limits
-- Responsive design (desktop and mobile)
-- Error boundaries on all data panels
-- Adaptive polling (15s active / 60s idle)
-- 5-minute server-side market context cache
-
-### Architecture Decisions
-
-**Paper-trade first** — All features work without credentials. Graceful degradation: paper mode to signing required to executed.
-
-**Server-side system prompt injection** — Backend proxy enriches every message with live market data. AI always has current context without visible message pollution in the thread.
-
-**localStorage-based state** — No backend database required. Trades, alerts, guards, bankroll all stored locally. Scales to 200 trades per user. Survives page reloads and navigation.
-
-**Deterministic edge scoring** — Observable signals only. No fabricated labels. Transparent breakdown shown to user.
-
-**Honest signal engine** — Replaces old edge engine which fabricated signals. Every signal has a verifiable data source (spread bps, book depth, volume, 24h movement).
-
-**Slippage estimation** — Walks order book, calculates volume-weighted average fill price vs best price. Shown in order form for transparency before the user commits.
-
----
-
-*Last updated: April 2026*
+*Last updated: May 2026*
