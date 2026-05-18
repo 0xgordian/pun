@@ -176,18 +176,15 @@ export async function fetchActiveMarkets(): Promise<{ markets: Market[]; isFallb
 
   inflight = (async () => {
     try {
-      const response = await fetch(GAMMA_API_URL, { headers: { Accept: 'application/json' } });
+      const response = await fetch(API_URL, { headers: { Accept: 'application/json' } });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
       const data = await response.json();
       const rawArray = Array.isArray(data) ? data : [];
 
-      // Detect MantlePool shape by presence of 'protocol' field
-      const isMantlePool = rawArray.length > 0 && 'protocol' in rawArray[0];
-
-      const markets = isMantlePool
-        ? rawArray.map((p: MantlePool) => mantlePoolToMarket(p)).filter((m: Market) => m.currentProbability > 0)
-        : rawArray.map(parseGammaMarket).filter((m): m is Market => m !== null && m.currentProbability > 0).sort((a: Market, b: Market) => b.volume - a.volume);
+      const markets = rawArray
+        .map((p: MantlePool) => mantlePoolToMarket(p))
+        .filter((m: Market) => m.currentProbability > 0);
 
       if (!markets.length) throw new Error('No active markets returned');
 
