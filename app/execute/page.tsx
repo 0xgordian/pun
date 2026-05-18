@@ -183,7 +183,7 @@ function FillStatusPanel({ fill }: { fill: OrderFillResult | null }) {
       )}
       {fill.rejectReason && <p className="text-xs" style={{ color: '#f87171' }}>{fill.rejectReason}</p>}
       {fill.timedOut && (
-        <p className="text-xs" style={{ color: '#f59e0b' }}>Polling timed out — check Polymarket directly for order status</p>
+          <p className="text-xs" style={{ color: '#f59e0b' }}>Polling timed out — order status unavailable on Mantle</p>
       )}
       <p className="font-terminal text-[10px]" style={{ color: '#444' }}>Order ID: {fill.orderId.slice(0, 16)}...</p>
     </div>
@@ -669,7 +669,7 @@ function ExecuteContent() {
                           Paper Mode
                         </p>
                         <p className="text-xs" style={{ color: '#555' }}>
-                          Connect wallet to execute live orders on Polymarket
+                          Connect wallet to execute live orders on Mantle
                         </p>
                       </div>
                       <button
