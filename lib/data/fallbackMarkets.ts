@@ -1,7 +1,7 @@
 import type { Market } from '@/types';
 
 /**
- * Fallback markets used when the Polymarket Gamma API is unavailable.
+ * Fallback markets used when the Mantle pools API is unavailable.
  * Updated for 2026 — these reflect currently active prediction market themes.
  * Displayed with a "Fallback" status indicator so users know data may not be live.
  */
