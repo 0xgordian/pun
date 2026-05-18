@@ -31,7 +31,7 @@ export interface MantleToken {
   priceUsd?: number;
 }
 
-export type PolymarketPricePoint = {
+export type MantlePricePoint = {
   t: number;
   p: number;
 };
