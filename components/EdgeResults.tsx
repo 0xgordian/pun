@@ -66,7 +66,7 @@ function OpportunityCard({ opp, onPropose, onAskAomi, onSetAlert, isFetchingBet 
     const change = opp.market.probabilityChange24h;
     const changeStr = change !== null && change !== undefined
       ? ` 24h change: ${change > 0 ? '+' : ''}${change.toFixed(1)}%.` : '';
-    const msg = `Analyze this Polymarket opportunity: "${opp.market.question}" — currently at ${opp.market.currentProbability}% YES.${changeStr} Volume: $${(opp.market.volume / 1000).toFixed(0)}K. Edge score: ${opp.edgeScore}/100 (${opp.edgeStrength}) on the ${opp.side} side. Should I trade this? What's the risk/reward?`;
+    const msg = `Analyze this Mantle DeFi opportunity: "${opp.market.question}" — currently at ${opp.market.currentProbability}% APY.${changeStr} Volume: $${(opp.market.volume / 1000).toFixed(0)}K. Edge score: ${opp.edgeScore}/100 (${opp.edgeStrength}) on the ${opp.side} side. Should I trade this? What's the risk/reward?`;
     router.push(`/?q=${encodeURIComponent(msg)}`);
   };
 
