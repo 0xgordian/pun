@@ -100,70 +100,6 @@ export function mantlePoolToMarket(pool: MantlePool): Market {
   };
 }
 
-// ─── Parsing helpers ──────────────────────────────────────────────────────────
-
-type GammaMarketRaw = {
-  id?: string | number;
-  slug?: string;
-  title?: string;
-  question?: string;
-  outcomes?: unknown;
-  outcomePrices?: unknown;
-  volume?: number | string;
-  liquidity?: number | string;
-  oneDayPriceChange?: number | null;
-  sevenDayPriceChange?: number | null;
-  thirtyDayPriceChange?: number | null;
-  clobTokenIds?: unknown;
-  endDate?: string;
-  end_date?: string;
-};
-
-function parseOutcomePrices(raw: GammaMarketRaw): number[] {
-  if (Array.isArray(raw.outcomePrices)) return raw.outcomePrices.map(Number);
-  if (typeof raw.outcomePrices === 'string') {
-    try {
-      const parsed = JSON.parse(raw.outcomePrices);
-      return Array.isArray(parsed) ? parsed.map(Number) : [];
-    } catch { return []; }
-  }
-  return [];
-}
-
-function parseGammaMarket(raw: GammaMarketRaw): Market | null {
-  try {
-    const outcomes = parseStringArray(raw.outcomes);
-    const outcomePrices = parseOutcomePrices(raw);
-
-    const yesIndex = outcomes.findIndex((o: string) => String(o).toLowerCase() === 'yes');
-    const yesPrice = yesIndex >= 0 ? outcomePrices[yesIndex] : outcomePrices[0] ?? 0.5;
-    const probability = Math.max(1, Math.min(99, Math.round(yesPrice * 100)));
-
-    let probabilityChange24h: number | null = null;
-    if (raw.oneDayPriceChange != null) {
-      const v = Number(raw.oneDayPriceChange);
-      if (Number.isFinite(v)) probabilityChange24h = Math.round(v * 100 * 10) / 10;
-    }
-
-    return {
-      id: String(raw.slug ?? raw.id ?? `market-${Math.random().toString(36).slice(2, 8)}`),
-      question: raw.question ?? raw.title ?? 'Untitled market',
-      currentProbability: probability,
-      volume: Number(raw.volume ?? 0),
-      liquidity: Number(raw.liquidity ?? 0),
-      endDate: raw.endDate ?? raw.end_date ?? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
-      active: true,
-      slug: raw.slug,
-      probabilityChange24h,
-      probabilityChange7d: raw.sevenDayPriceChange != null ? Number(raw.sevenDayPriceChange) : null,
-      probabilityChange30d: raw.thirtyDayPriceChange != null ? Number(raw.thirtyDayPriceChange) : null,
-      clobTokenId: getYesTokenId(raw) ?? undefined,
-    };
-  } catch {
-    return null;
-  }
-}
-
 // ─── Public API ───────────────────────────────────────────────────────────────
 
 export async function fetchActiveMarkets(): Promise<{ markets: Market[]; isFallback: boolean }> {
@@ -208,8 +144,8 @@ export function clearMarketCache(): void {
 }
 
 /**
- * Resolve a market question string to a CLOB YES token ID.
- * Used by trade-card.tsx to get the token ID for AI-initiated live trades.
+ * Resolve a market question string to a token ID.
+ * Used by trade-card.tsx for AI-initiated trade execution.
  * Searches the in-memory cache — no network call.
  */
 export function resolveTokenIdFromQuestion(question: string): string | null {
