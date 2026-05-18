@@ -19,7 +19,7 @@ const DEFAULTS: Record<EmptyStateVariant, { title: string; description: string }
   },
   positions: {
     title: 'No open positions',
-    description: 'You have no active positions on Polymarket. Simulate a trade to get started.',
+    description: 'You have no active positions on Mantle. Simulate a trade to get started.',
   },
   history: {
     title: 'No trades yet',
