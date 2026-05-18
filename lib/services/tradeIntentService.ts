@@ -133,7 +133,7 @@ export interface LiveOrderParams {
  * The intent is routed through aomi → Para wallet → Mantle chain 5000.
  */
 export async function sendLiveOrder(params: LiveOrderParams): Promise<TradeIntentResponse> {
-  // Build a Mantle-native swap intent instead of Polymarket EIP-712
+  // Build a Mantle-native swap intent
   const mantleIntent = buildMantleSwapIntent(params);
 
   if (!hasCredentials()) {
@@ -186,7 +186,7 @@ export async function sendLiveOrder(params: LiveOrderParams): Promise<TradeInten
 
 /**
  * Build a natural-language Mantle swap intent for aomi routing.
- * This replaces the Polymarket EIP-712 CLOB order format.
+ * Mantle-native swap intent format.
  */
 function buildMantleSwapIntent(params: LiveOrderParams): string {
   const action = params.side === 'BUY' ? 'provide liquidity to' : 'remove liquidity from';
