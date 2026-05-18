@@ -2,7 +2,7 @@
  * Core data models for Pun
  */
 
-/** A single active Polymarket prediction market */
+/** A single active Mantle DeFi pool / market */
 export interface Market {
   id: string;
   question: string;
