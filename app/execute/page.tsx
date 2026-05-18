@@ -7,12 +7,43 @@ import { fetchMantlePools } from '@/lib/services/mantleDeFiService';
 import { analyseMarket, type MarketAnalysis, type MarketSignal } from '@/lib/services/signalEngine';
 import { sendLiveOrder } from '@/lib/services/tradeIntentService';
 import { addTradeRecord } from '@/lib/services/tradeHistoryService';
-import { pollOrderFill, type OrderFillResult, type OrderStatus } from '@/lib/services/orderFillService';
+// OrderFillResult and OrderStatus are defined inline below
 import { getSizingContext, getBankroll, setBankroll } from '@/lib/services/bankrollService';
 import { useAomiAuthAdapter } from '@/lib/aomi-auth-adapter';
 import TopNav from '@/components/TopNav';
 import Footer from '@/components/Footer';
 import toast from 'react-hot-toast';
+
+// ─── Local types ───────────────────────────────────────────────────────────────
+
+type OrderStatus = 'PENDING' | 'OPEN' | 'MATCHED' | 'FILLED' | 'CANCELLED' | 'REJECTED' | 'UNKNOWN';
+
+interface OrderFillResult {
+  orderId: string;
+  status: OrderStatus;
+  fillFraction: number;
+  avgFillPrice: number | null;
+  rejectReason: string | null;
+  timedOut: boolean;
+}
+
+// No CLOB on Mantle — pollOrderFill is a no-op
+async function pollOrderFill(
+  _orderId: string,
+  _onUpdate: (result: OrderFillResult) => void,
+  _signal?: AbortController,
+): Promise<OrderFillResult> {
+  const result: OrderFillResult = {
+    orderId: _orderId,
+    status: 'UNKNOWN',
+    fillFraction: 0,
+    avgFillPrice: null,
+    rejectReason: null,
+    timedOut: false,
+  };
+  _onUpdate(result);
+  return result;
+}
 
 // ─── Local OrderBook type (no CLOB on Mantle — used for signal analysis shape) ─
 
