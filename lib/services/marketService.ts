@@ -1,9 +1,8 @@
 import type { Market } from '@/types';
 import { FALLBACK_MARKETS } from '@/lib/data/fallbackMarkets';
-import { type MantlePool, parseStringArray, getYesTokenId } from '@/lib/services/mantleDeFiService';
+import { type MantlePool } from '@/lib/services/mantleDeFiService';
 
-// Use our own API route to avoid CORS — server proxies to Gamma API
-const GAMMA_API_URL = '/api/markets';
+const API_URL = '/api/markets';
 const CACHE_DURATION_MS = 5 * 60 * 1000; // 5 minutes — server also caches 2min
 const IDLE_REFRESH_MS = 60 * 1000;        // 1 minute when idle
 const ACTIVE_REFRESH_MS = 15 * 1000;      // 15 seconds when user is active
@@ -85,7 +84,6 @@ export function initMarketService(): void {
 /**
  * Adapt a MantlePool to the Market interface used by all UI components.
  * APY is mapped to currentProbability (capped to [1, 99]).
- * Requirements: 3.3, 3.4
  */
 export function mantlePoolToMarket(pool: MantlePool): Market {
   return {
